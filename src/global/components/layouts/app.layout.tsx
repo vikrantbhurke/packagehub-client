@@ -1,82 +1,49 @@
 import { AppShell } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import {
-  HeaderLayout,
-  AsideLayout,
-  MainLayout,
-  FooterLayout,
-  NavbarLayout,
-} from "./index";
+import { HeaderLayout, AsideLayout, MainLayout, FooterLayout } from "./index";
 import {
   footerHeight,
   getAppShell,
   headerHeight,
-  navbarAsideWidth,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
-import {
-  borderBottom,
-  borderBottomShadow,
-  borderLeftShadow,
-  borderRightShadow,
-  borderTop,
-  borderTopShadow,
-  oneTxOneBg,
-  readexProFont,
-} from "@/global/styles/app.css";
-import { useViewInfo, usePopunderAd } from "@/global/hooks";
+import { noBorder, oneTxOneBg, oneTxTwoBg } from "@/global/styles/app.css";
+import { useViewInfo } from "@/global/hooks";
 import { useSelector } from "react-redux";
 
 export const AppLayout = () => {
-  usePopunderAd();
   useViewInfo();
-  // useSocialAd();
-
-  const { isMobile, isPaginationVisible, isAdHeaderVisible } = useSelector(
-    (state: any) => state.view
-  );
-  const [opened, { toggle }] = useDisclosure();
-
-  const { navbar, aside, header, footer } = getAppShell(
-    isMobile,
-    footerHeight,
-    headerHeight,
-    navbarAsideWidth,
-    responsiveBreakpoint,
-    opened
-  );
+  const { isMobile } = useSelector((state: any) => state.view);
+  const { header, footer } = getAppShell(isMobile, footerHeight, headerHeight);
 
   return (
-    <AppShell
-      header={header}
-      navbar={navbar}
-      aside={aside}
-      footer={footer}
-      className={`${oneTxOneBg} ${readexProFont}`}
-      p={0}>
+    <AppShell header={header} footer={footer} className={`${oneTxTwoBg}`} p={0}>
       <AppShell.Header
+        visibleFrom={responsiveBreakpoint}
         style={{ zIndex: 2 }}
-        className={`${oneTxOneBg} ${isAdHeaderVisible ? borderBottom : borderBottomShadow}`}>
-        <HeaderLayout opened={opened} toggle={toggle} />
+        className={`${`${oneTxTwoBg} ${noBorder}`}`}>
+        <HeaderLayout />
       </AppShell.Header>
 
-      <AppShell.Navbar className={`${oneTxOneBg} ${borderRightShadow}`}>
-        <NavbarLayout toggle={toggle} />
-      </AppShell.Navbar>
+      <AppShell.Header
+        hiddenFrom={responsiveBreakpoint}
+        style={{ zIndex: 2 }}
+        className={`${oneTxOneBg} ${noBorder}`}>
+        <HeaderLayout />
+      </AppShell.Header>
 
-      <AppShell.Aside className={`${oneTxOneBg} ${borderLeftShadow}`}>
+      <AppShell.Aside className={`${oneTxTwoBg} ${noBorder}`}>
         <AsideLayout />
       </AppShell.Aside>
 
-      <AppShell.Main className={`${oneTxOneBg}`} h="100vh">
+      <AppShell.Main className={`${oneTxTwoBg} ${noBorder}`} h="100vh">
         <MainLayout />
       </AppShell.Main>
 
       <AppShell.Footer
         style={{ zIndex: 2 }}
-        className={`${oneTxOneBg} ${isMobile && isPaginationVisible ? borderTop : borderTopShadow}`}
+        className={`${oneTxOneBg} ${noBorder}`}
         hiddenFrom={responsiveBreakpoint}>
-        <FooterLayout opened={opened} toggle={toggle} />
+        <FooterLayout />
       </AppShell.Footer>
     </AppShell>
   );

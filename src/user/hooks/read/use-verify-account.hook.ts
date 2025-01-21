@@ -8,6 +8,7 @@ export const useVerifyAccount = () => {
   const { data, error, isPending, isError } = useQuery({
     queryKey: ["verifyAccount", token],
     queryFn: () => verifyAccount(token),
+    enabled: !!token,
   });
 
   return { data, error, isPending, isError };

@@ -11,7 +11,6 @@ export const useViewInfo = () => {
   useEffect(() => {
     if (width < Breakpoint.md) dispatch(setIsMobile(true));
     else dispatch(setIsMobile(false));
-
     dispatch(setWidth(width));
   }, [width]);
 };

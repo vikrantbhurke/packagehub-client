@@ -29,7 +29,7 @@ import {
   inputStyles,
   border,
   oneBg,
-  roundBorders,
+  roundBorder,
   twoBg,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
@@ -71,12 +71,12 @@ export const UpdateUserByIdFormLayout = () => {
           py="xl">
           <form onSubmit={form.onSubmit(handleUpdateUserById)}>
             <Stack
-              maw={isMobile ? 500 : 570}
+              maw={isMobile ? 600 : 670}
               miw={isMobile ? 400 : 470}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+              className={`${isMobile ? "" : `${border}`} ${roundBorder}`}>
               <Modal
                 c={oneTx}
                 styles={modal}

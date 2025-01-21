@@ -2,22 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import viewReducer from "./view.slice";
 import authReducer from "@/user/auth.slice";
 import userReducer from "@/user/user.slice";
-import topicReducer from "@/topic/topic.slice";
-import authorReducer from "@/author/author.slice";
-import quoteReducer from "@/quote/quote.slice";
+import packageReducer from "@/package/package.slice";
+import reviewReducer from "@/review/review.slice";
 import messageReducer from "@/message/message.slice";
-import playlistReducer from "@/playlist/playlist.slice";
 
 export const store = configureStore({
   reducer: {
     view: viewReducer,
     auth: authReducer,
     user: userReducer,
-    topic: topicReducer,
-    author: authorReducer,
-    quote: quoteReducer,
+    package: packageReducer,
+    review: reviewReducer,
     message: messageReducer,
-    playlist: playlistReducer,
   },
 });
 

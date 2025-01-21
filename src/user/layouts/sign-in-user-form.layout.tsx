@@ -7,7 +7,7 @@ import {
   oneTx,
   inputStyles,
   border,
-  roundBorders,
+  roundBorder,
   twoBg,
 } from "@/global/styles/app.css";
 import {
@@ -54,12 +54,12 @@ export const SignInUserFormLayout = () => {
         <Stack px="md" justify="center" align="center" h="100%">
           <form onSubmit={form.onSubmit(handleSignInUser)}>
             <Stack
-              maw={isMobile ? 500 : 570}
+              maw={isMobile ? 600 : 670}
               miw={isMobile ? 400 : 470}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+              className={`${isMobile ? "" : `${border}`} ${roundBorder}`}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />

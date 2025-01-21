@@ -1,6 +1,6 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { noBorder } from "@/global/styles/app.css";
+import { border } from "@/global/styles/app.css";
 import {
   getComboboxTextInput,
   getComboboxStyles,
@@ -26,6 +26,7 @@ export const CustomEnumCombobox = ({
   value,
   handleValue,
   id,
+  shouldCapitalize = true,
 }: any) => {
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
@@ -42,9 +43,13 @@ export const CustomEnumCombobox = ({
 
   const options = data.map((item: any) => (
     <Combobox.Option value={item} key={item} p="xs">
-      <Text tt="capitalize" ta="center">
-        {globalUtility.getKeyByValue(EnumObject, item)}
-      </Text>
+      {shouldCapitalize ? (
+        <Text tt="capitalize" ta="center">
+          {globalUtility.getKeyByValue(EnumObject, item)}
+        </Text>
+      ) : (
+        <Text ta="center">{globalUtility.getKeyByValue(EnumObject, item)}</Text>
+      )}
     </Combobox.Option>
   ));
 
@@ -67,12 +72,12 @@ export const CustomEnumCombobox = ({
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,
           }}
-          radius="sm"
+          radius="md"
           onClick={() => combobox.openDropdown()}
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={120} className={noBorder} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown miw={120} className={border} p={3} bg={dropdownBg}>
         <Combobox.Options>
           <Stack gap={3}>{options}</Stack>
         </Combobox.Options>

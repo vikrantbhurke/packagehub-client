@@ -22,52 +22,17 @@ export const getListButtonHeight = (isMobile: boolean) =>
   isMobile ? largeButtonHeight : smallButtonHeight;
 
 export const getComboboxStyles = (colorScheme: string) => ({
-  optionBg: colorScheme === "dark" ? threeBg : oneBg,
-  dropdownBg: colorScheme === "dark" ? oneBg : threeBg,
+  optionBg: colorScheme === "dark" ? twoBg : oneBg,
+  dropdownBg: colorScheme === "dark" ? oneBg : twoBg,
 });
-
-// export const getMainAndContentGap = (
-//   mainWidth: number,
-//   navbarAsideWidth: number,
-//   mainContentWidth: number
-// ) => {
-//   const mainAndContentGap = mainWidth - 2 * navbarAsideWidth - mainContentWidth;
-//   let border = mainAndContentGap > 0 ? borderLowContrast : "none";
-
-//   return {
-//     borderLeft: border,
-//     borderRight: border,
-//   };
-// };
-
-// export const getMainContentHeight = (
-//   headerHeight: number,
-//   footerHeight: number,
-//   subheaderHeight: number,
-//   isMobile: boolean
-// ) =>
-//   `calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 0}px - ${subheaderHeight}px)`;
 
 // Component Styles
 export const getAppShell = (
   isMobile: boolean,
   footerHeight: number,
-  headerHeight: number,
-  navbarAsideWidth: number,
-  responsiveBreakpoint: string,
-  opened: boolean
+  headerHeight: number
 ) => ({
   header: { height: headerHeight },
-  navbar: {
-    width: navbarAsideWidth,
-    breakpoint: responsiveBreakpoint,
-    collapsed: { mobile: !opened },
-  },
-  aside: {
-    width: navbarAsideWidth,
-    breakpoint: responsiveBreakpoint,
-    collapsed: { mobile: true },
-  },
   footer: {
     height: isMobile ? footerHeight : 0,
   },
@@ -78,7 +43,7 @@ export const getSearchTextInput = (isMobile: boolean, width: number) => ({
     backgroundColor: "transparent",
     height: isMobile ? headerHeight : "100%",
     width,
-    maxWidth: isMobile ? "100%" : 800,
+    maxWidth: isMobile ? "100%" : 500,
     border: borderHighContrast,
     borderRadius: isMobile ? 0 : 8,
   },
@@ -89,24 +54,6 @@ export const getItemCardStyles = (isMobile: boolean) => ({
   border: isMobile ? "none" : borderLowContrast,
   borderRadius: isMobile ? 0 : 10,
 });
-
-// Mantine Grid.Colum Component Styles
-// export const getGridBorder = (
-//   isMobile: boolean,
-//   index: number,
-//   totalItems: number
-// ) => {
-//   return {
-//     borderTop: "none",
-//     borderBottom: borderLowContrast,
-//     borderRight: isMobile
-//       ? "none"
-//       : index % 2 === 0 && index !== totalItems - 1
-//         ? borderLowContrast
-//         : "none",
-//     borderLeft: "none",
-//   };
-// };
 
 // Mantine Grid.Column Custom Child Component Styles
 export const getGridItemBorderWithBorder = (isMobile: boolean) => {
@@ -120,22 +67,11 @@ export const getGridItemBorderWithBorder = (isMobile: boolean) => {
   } else {
     return {
       border: borderLowContrast,
-      borderRadius: "10px",
+      borderRadius: "8px",
       transition: "box-shadow 0.3s ease",
     };
   }
 };
-
-// export const getGridItemBorderNoBorder = (isMobile: boolean) => {
-//   if (isMobile) {
-//     return {
-//       borderTop: "none",
-//       borderBottom: borderLowContrast,
-//       borderRight: "none",
-//       borderLeft: "none",
-//     };
-//   } else return {};
-// };
 
 export const getSubheadersStyles = (isMobile: boolean) => {
   return {
@@ -155,13 +91,13 @@ export const getPaginationStyles = (isMobile: boolean) => {
   };
 };
 
-export const getTopRoundBorders = (isMobile: boolean) => {
+export const getToproundBorder = (isMobile: boolean) => {
   return {
     borderRadius: isMobile ? "0" : "10px 10px 0 0",
   };
 };
 
-export const getBottomRoundBorders = (isMobile: boolean) => {
+export const getBottomroundBorder = (isMobile: boolean) => {
   return {
     borderRadius: isMobile ? "0" : "0 0 10px 10px",
   };
@@ -176,9 +112,8 @@ export const removeBoxShadow = (e: any) => {
 };
 
 export const modal = {
-  title: { fontFamily: "Readex Pro" },
-  content: { backgroundColor: `${twoBg}` },
-  header: { backgroundColor: `${twoBg}` },
+  content: { backgroundColor: `${oneBg}`, border: borderLowContrast },
+  header: { backgroundColor: `${oneBg}` },
 };
 
 export const modalOverlayProps = {
@@ -186,39 +121,26 @@ export const modalOverlayProps = {
   blur: 3,
 };
 
-export const drawer = {
-  title: { fontFamily: "Readex Pro" },
-  header: { backgroundColor: `${twoBg}` },
-  content: {
-    borderRadius: "20px 20px 0 0",
-    backgroundColor: `${twoBg}`,
-  },
-};
-
 export const getFormTextInput = (isFocused: boolean) => ({
   input: {
-    padding: "1.5rem",
-    backgroundColor: oneBg,
-    border: isFocused ? borderHighContrast : borderLowContrast,
+    padding: "1rem",
+    backgroundColor: twoBg,
+    border: isFocused ? borderHighContrast : "none",
   },
 });
 
 export const getComboboxTextInput = (isFocused: boolean) => ({
   input: {
-    fontFamily: "Readex Pro",
-    fontWeight: 300,
     textAlign: "center" as const,
-    padding: "1.5rem",
+    padding: "1rem",
     color: oneTx,
-    backgroundColor: oneBg,
-    border: isFocused ? borderHighContrast : borderLowContrast,
+    backgroundColor: twoBg,
+    border: isFocused ? borderHighContrast : "none",
   },
 });
 
 export const getComboboxTextInputForPagination = () => ({
   input: {
-    fontFamily: "Readex Pro",
-    fontWeight: 300,
     textAlign: "center" as const,
     color: oneTx,
     backgroundColor: threeBg,

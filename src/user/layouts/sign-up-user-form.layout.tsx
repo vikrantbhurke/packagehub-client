@@ -1,10 +1,10 @@
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { I } from "@/global/components/components";
 import {
   oneBg,
   oneTx,
   inputStyles,
   border,
-  roundBorders,
+  roundBorder,
   twoBg,
 } from "@/global/styles/app.css";
 import {
@@ -30,10 +30,7 @@ import {
 import { IconRefresh } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Gender } from "../enums";
-import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
-import { setGender } from "../user.slice";
 import { useDispatch } from "react-redux";
 import { useAuthReroute } from "@/global/hooks";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -43,7 +40,6 @@ export const SignUpUserFormLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignUpUser, isPending } = useSignUpUserForm();
-  const { gender } = useSelector((state: RootState) => state.user);
 
   const { focusedInput, isMobile } = useSelector(
     (state: RootState) => state.view
@@ -52,10 +48,6 @@ export const SignUpUserFormLayout = () => {
   const handleNavigateToSignIn = () => navigate("/sign-in");
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
-
-  const handleGender = (gender: Gender) => {
-    dispatch(setGender(gender));
-  };
 
   return (
     <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
@@ -73,12 +65,12 @@ export const SignUpUserFormLayout = () => {
                 },
               }}>
               <Stack
-                maw={isMobile ? 500 : 570}
+                maw={isMobile ? 600 : 670}
                 miw={isMobile ? 400 : 470}
                 gap="lg"
                 p={isMobile ? "md" : "xl"}
                 bg={oneBg}
-                className={`${isMobile ? "" : `${border}`} ${roundBorders}`}>
+                className={`${isMobile ? "" : `${border}`} ${roundBorder}`}>
                 <Stack gap={0}>
                   <Group gap={0} align="center" justify="space-between">
                     <Space w="md" />
@@ -226,19 +218,6 @@ export const SignUpUserFormLayout = () => {
                       placeholder="Password123!"
                       key={form.key("confirmPassword")}
                       {...form.getInputProps("confirmPassword")}
-                    />
-                  </Stack>
-
-                  <Stack gap={0}>
-                    <Text>Gender</Text>
-
-                    <CustomEnumCombobox
-                      id="gender"
-                      EnumObject={Gender}
-                      label="Gender"
-                      data={Object.values(Gender)}
-                      handleValue={handleGender}
-                      value={globalUtility.getKeyByValue(Gender, gender)}
                     />
                   </Stack>
                 </Stack>

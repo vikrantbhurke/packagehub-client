@@ -25,7 +25,7 @@ export default defineConfig({
         id: process.env.VITE_APP_NAME,
         name: process.env.VITE_APP_NAME,
         short_name: process.env.VITE_APP_NAME,
-        description: "Read, Like, Save and Share Quotes.",
+        description: "Read, Rate And Review Software Packages.",
         start_url: "/",
         display: "standalone",
         orientation: "portrait-primary",

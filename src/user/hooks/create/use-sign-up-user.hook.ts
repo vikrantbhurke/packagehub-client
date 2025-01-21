@@ -1,5 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { useNotification } from "@/global/hooks";
 import { signUpUser } from "@/user/user.network";
 import { NotificationColor } from "@/global/enums";
@@ -17,8 +16,11 @@ export const useSignUpUser = () => {
       );
     },
 
-    onError: (error: AxiosError) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: (error: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 

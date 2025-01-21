@@ -1,86 +1,85 @@
-import { RootState } from "@/global/states/store";
-import { setPage as setTopicPage } from "@/topic/topic.slice";
-import { setPage as setAuthorPage } from "@/author/author.slice";
-import { borderLowContrastColor, roundBorders } from "@/global/styles/app.css";
+import { borderLowContrastColor, roundBorder } from "@/global/styles/app.css";
 import { footerHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
-  IconArticle,
-  IconArticleFilledFilled,
-  IconBallpen,
-  IconBallpenFilled,
-  IconCategory,
-  IconCategoryFilled,
+  IconBox,
+  IconLogin,
   IconSearch,
+  IconStar,
+  IconStarFilled,
+  IconUser,
+  IconUserFilled,
 } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { I } from "../components";
+import { setPage } from "@/package/package.slice";
+import { RootState } from "@/global/states/store";
+import { useSelector } from "react-redux";
+import { CompOneOrTwoRoute } from "@/global/routes";
+import { Clearance } from "@/user/enums";
 
-export const FooterLayout = ({ opened, toggle }: any) => {
+export const FooterLayout = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
   const location = useLocation();
 
-  const {
-    sort: authorSort,
-    order: authorOrder,
-    alpha: authorAlpha,
-  } = useSelector((state: RootState) => state.author);
+  const { auth } = useSelector((state: RootState) => state.auth);
+  const { isSearchbarVisible } = useSelector((state: any) => state.view);
 
   const {
-    sort: topicSort,
-    order: topicOrder,
-    alpha: topicAlpha,
-  } = useSelector((state: RootState) => state.topic);
+    platform,
+    sort: packageSort,
+    order: packageOrder,
+    rating: packageRating,
+  } = useSelector((state: RootState) => state.package);
 
-  const handleNavigateToFeed = () => {
+  const handleNavigateToHome = () => {
     scrollTo({ y: 0 });
     navigate("/");
-    opened && toggle();
   };
 
-  const handleNavigateToTopics = () => {
+  const handleNavigateToPlatformPackages = () => {
     scrollTo({ y: 0 });
-    dispatch(setTopicPage(1));
-    opened && toggle();
+    dispatch(setPage(1));
     navigate(
-      `/topics?page=1&sort=${topicSort}&order=${topicOrder}&alpha=${topicAlpha}`
-    );
-  };
-
-  const handleNavigateToAuthors = () => {
-    scrollTo({ y: 0 });
-    dispatch(setAuthorPage(1));
-    opened && toggle();
-    navigate(
-      `/authors?page=1&sort=${authorSort}&order=${authorOrder}&alpha=${authorAlpha}`
+      `/packages/platform/${platform}?page=1&sort=${packageSort}&order=${packageOrder}&rating=${packageRating}`
     );
   };
 
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
-  const feedIconColor =
+  const handleNavigateToSignIn = () => {
+    navigate("/sign-in");
+  };
+
+  const homeIconColor =
     location.pathname === "/" ? borderLowContrastColor : "transparent";
 
-  const feedPath =
-    location.pathname === "/" ? IconArticleFilledFilled : IconArticle;
+  const homePath = location.pathname === "/" ? IconStarFilled : IconStar;
 
-  const topicsIconColor =
-    location.pathname === "/topics" ? borderLowContrastColor : "transparent";
+  const packagesIconColor = location.pathname.includes("/packages/platform")
+    ? borderLowContrastColor
+    : "transparent";
 
-  const topicsPath =
-    location.pathname === "/topics" ? IconCategoryFilled : IconCategory;
+  const profileIconColor = location.pathname.includes(`/users/${auth.id}`)
+    ? borderLowContrastColor
+    : "transparent";
 
-  const authorsIconColor =
-    location.pathname === "/authors" ? borderLowContrastColor : "transparent";
+  const profilePath = location.pathname.includes(`/users/${auth.id}`)
+    ? IconUserFilled
+    : IconUser;
 
-  const authorsPath =
-    location.pathname === "/authors" ? IconBallpenFilled : IconBallpen;
+  const signInIconColor = location.pathname.includes(`/sign-in`)
+    ? borderLowContrastColor
+    : "transparent";
+
+  const searchIconColor = isSearchbarVisible
+    ? borderLowContrastColor
+    : "transparent";
 
   return (
     <Group justify="space-evenly" grow gap={0} h={footerHeight}>
@@ -89,11 +88,11 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        onClick={handleNavigateToFeed}>
-        <Stack bg={feedIconColor} px="xs" py={4} className={roundBorders}>
-          <I I={feedPath} />
+        onClick={handleNavigateToHome}>
+        <Stack bg={homeIconColor} px="xs" py={4} className={roundBorder}>
+          <I I={homePath} />
         </Stack>
-        <Text>Feed</Text>
+        <Text>Home</Text>
       </Stack>
 
       <Stack
@@ -101,23 +100,11 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         align="center"
         gap={0}
         h={footerHeight}
-        onClick={handleNavigateToTopics}>
-        <Stack bg={topicsIconColor} px="xs" py={4} className={roundBorders}>
-          <I I={topicsPath} />
+        onClick={handleNavigateToPlatformPackages}>
+        <Stack bg={packagesIconColor} px="xs" py={4} className={roundBorder}>
+          <I I={IconBox} />
         </Stack>
-        <Text>Topics</Text>
-      </Stack>
-
-      <Stack
-        justify="center"
-        align="center"
-        gap={0}
-        h={footerHeight}
-        onClick={handleNavigateToAuthors}>
-        <Stack bg={authorsIconColor} px="xs" py={4} className={roundBorders}>
-          <I I={authorsPath} />
-        </Stack>
-        <Text>Authors</Text>
+        <Text>Packages</Text>
       </Stack>
 
       <Stack
@@ -126,9 +113,41 @@ export const FooterLayout = ({ opened, toggle }: any) => {
         gap={0}
         h={footerHeight}
         onClick={handleReadOnlyClick}>
-        <I I={IconSearch} />
+        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorder}>
+          <I I={IconSearch} />
+        </Stack>
         <Text>Search</Text>
       </Stack>
+
+      <CompOneOrTwoRoute
+        clearance={Clearance.LevelTwo}
+        childOne={
+          <Stack
+            justify="center"
+            align="center"
+            gap={0}
+            h={footerHeight}
+            onClick={handleNavigateToPlatformPackages}>
+            <Stack bg={profileIconColor} px="xs" py={4} className={roundBorder}>
+              <I I={profilePath} />
+            </Stack>
+            <Text>Profile</Text>
+          </Stack>
+        }
+        childTwo={
+          <Stack
+            justify="center"
+            align="center"
+            gap={0}
+            h={footerHeight}
+            onClick={handleNavigateToSignIn}>
+            <Stack bg={signInIconColor} px="xs" py={4} className={roundBorder}>
+              <I I={IconLogin} />
+            </Stack>
+            <Text>Sign In</Text>
+          </Stack>
+        }
+      />
     </Group>
   );
 };

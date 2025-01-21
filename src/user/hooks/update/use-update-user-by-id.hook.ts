@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { getUserByUsername, updateUserById } from "@/user/user.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
@@ -94,8 +93,11 @@ export const useUpdateUserById = () => {
       }
     },
 
-    onError: async (error: AxiosError, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       await queryClient.setQueryData(
         ["getUserById", uid],

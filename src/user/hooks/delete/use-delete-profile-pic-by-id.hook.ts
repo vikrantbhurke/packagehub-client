@@ -1,7 +1,6 @@
 import { useNotification } from "@/global/hooks";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteProfilePicById } from "@/user/user.network";
-import { AxiosError } from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
@@ -76,8 +75,11 @@ export const useDeleteProfilePicById = () => {
       showNotification("Profile pic deleted!", NotificationColor.Success);
     },
 
-    onError: async (error: AxiosError, context: any) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: async (error: any, context: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
 
       await queryClient.setQueryData(
         ["getUserById", auth.id],

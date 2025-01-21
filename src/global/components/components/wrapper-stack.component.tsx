@@ -1,6 +1,6 @@
 import { forwardRef } from "react";
 import { Stack, StackProps } from "@mantine/core";
-import { useSelector } from "react-redux";
+import { responsiveBreakpoint as rb } from "@/global/styles/global.styles";
 
 interface WrapperStackComponentProps extends StackProps {
   mobP?: number;
@@ -11,11 +11,12 @@ export const WrapperStackComponent = forwardRef<
   HTMLDivElement,
   WrapperStackComponentProps
 >(({ mobP = 0, deskP = 8, ...props }, ref) => {
-  const { isMobile } = useSelector((state: any) => state.view);
-
-  const padding = isMobile ? mobP : deskP;
-
-  return <Stack {...props} ref={ref} p={padding} />;
+  return (
+    <>
+      <Stack {...props} ref={ref} p={mobP} hiddenFrom={rb} />
+      <Stack {...props} ref={ref} p={deskP} visibleFrom={rb} />
+    </>
+  );
 });
 
 WrapperStackComponent.displayName = "WrapperStackComponent";

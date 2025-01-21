@@ -1,12 +1,9 @@
 import { useForm } from "@mantine/form";
 import { userUtility } from "../../user.utility";
 import { useSignUpUser } from "./use-sign-up-user.hook";
-import { RootState } from "@/global/states/store";
-import { useSelector } from "react-redux";
 
 export const useSignUpUserForm = () => {
   const { signUpUserMutation, isPending } = useSignUpUser();
-  const { gender } = useSelector((state: RootState) => state.user);
 
   const form = useForm({
     mode: "uncontrolled",
@@ -38,7 +35,6 @@ export const useSignUpUserForm = () => {
       username,
       email,
       password,
-      gender,
     });
 
     form.reset();

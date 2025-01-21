@@ -1,24 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import { Gender } from "./enums";
 
-export interface UserState {
-  gender: Gender;
-}
+export interface UserState {}
 
-const initialState: UserState = {
-  gender: Gender.Male,
-};
+const initialState: UserState = {};
 
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    setGender: (state, action: PayloadAction<Gender>) => {
-      state.gender = action.payload;
-    },
-  },
+  reducers: {},
 });
 
-export const { setGender } = userSlice.actions;
+export const {} = userSlice.actions;
 export default userSlice.reducer;

@@ -1,11 +1,11 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { borderTopShadow, oneBg } from "@/global/styles/app.css";
+import { borderTop, oneBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
   getGridItemBorderWithBorder,
   getPaginationStyles,
-  getTopRoundBorders,
+  getToproundBorder,
   removeBoxShadow,
   subheaderHeight,
 } from "@/global/styles/global.styles";
@@ -53,13 +53,13 @@ export const CustomList = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${subheaderHeight}px`}
       bg={listBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
-        <Box component="div" p={isMobile ? 0 : 4}>
+        <Box component="div" p={isMobile ? 0 : "xs"}>
           {dataArray.map((item: any, index: number) => {
             return (
-              <Box key={index} p={isMobile ? 0 : 4}>
+              <Box key={index} py={isMobile ? 0 : "xs"}>
                 <Box
                   h="100%"
                   bg={oneBg}
@@ -76,12 +76,13 @@ export const CustomList = ({
       </ScrollArea>
 
       <Center
+        mx={isMobile ? 0 : "xs"}
         ref={ref}
-        className={borderTopShadow}
+        className={borderTop}
         style={{
           zIndex: 1,
           ...getPaginationStyles(isMobile),
-          ...getTopRoundBorders(isMobile),
+          ...getToproundBorder(isMobile),
         }}
         bg={oneBg}>
         <CustomNumberCombobox

@@ -18,7 +18,7 @@ import {
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-// Used for Alpha filter field
+// Use for Alphabets, Long Lists filter field
 // Sets Enum Value as value and Key as Display Label
 export const CustomEnumScrollableCombobox = ({
   EnumObject,

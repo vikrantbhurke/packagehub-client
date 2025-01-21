@@ -7,86 +7,89 @@ import {
 import { AppLayout } from "@/global/components/layouts";
 import {
   AboutPage,
+  HomePage,
   VerifyAccountPage,
   VerifyEmailPage,
 } from "../components/pages";
-import { PlaylistsLayout } from "@/playlist/layouts";
-import {
-  GetPlaylistsByCreatorIdList,
-  GetPlaylistsBySaverIdList,
-  GetPlaylistsList,
-  SearchPlaylistsList,
-} from "@/playlist/lists";
-import { AuthorsLayout } from "@/author/layouts";
-import { GetAuthorsGrid, SearchAuthorsGrid } from "@/author/grids";
-import { TopicsLayout } from "@/topic/layouts";
-import { GetTopicsGrid, SearchTopicsGrid } from "@/topic/grids";
-import { QuotesLayout } from "@/quote/layouts";
-import {
-  GetQuotesByAuthorIdGrid,
-  GetQuotesByPlaylistIdGrid,
-  GetQuotesByTopicIdGrid,
-  GetRandomQuotesGrid,
-  SearchQuotesGrid,
-} from "@/quote/grids";
-import { GetQuoteByIdItem } from "@/quote/items";
-import { GetPlaylistByIdItem, UpdatePlaylistByIdItem } from "@/playlist/items";
 import {
   GetUserByIdItem,
+  UpdateUserByIdItem,
   SignInUserItem,
   SignUpUserItem,
-  UpdateUserByIdItem,
 } from "@/user/items";
+import { PackagesLayout } from "@/package/layouts";
+import {
+  GetPackagesByPlatformCustomList,
+  SearchPackagesByPlatformCustomList,
+} from "@/package/lists";
+import {
+  CreateFirstReviewItem,
+  CreateNextReviewItem,
+  GetReviewByIdItem,
+  UpdateReviewByIdItem,
+} from "@/review/items";
+import { ReviewsLayout } from "@/review/layouts";
+import {
+  GetReviewsByPackageIdCustomList,
+  GetReviewsByReviewerIdCustomList,
+  SearchReviewsByPackageIdCustomList,
+  SearchReviewsByReviewerIdCustomList,
+} from "@/review/lists";
+import { GetPackageByIdItem } from "@/package/items";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route element={<AppLayout />} path="/" errorElement={<></>}>
-      <Route path="/" element={<GetRandomQuotesGrid />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="sign-up" element={<SignUpUserItem />} />
       <Route path="sign-in" element={<SignInUserItem />} />
       <Route path="about" element={<AboutPage />} />
 
-      <Route element={<QuotesLayout />} path="quotes" errorElement={<></>}>
-        <Route path="authorId/:aid" element={<GetQuotesByAuthorIdGrid />} />
-        <Route path="topicId/:tid" element={<GetQuotesByTopicIdGrid />} />
-        <Route path="playlistId/:pid" element={<GetQuotesByPlaylistIdGrid />} />
-        <Route path="search/:search" element={<SearchQuotesGrid />} />
-      </Route>
-
-      <Route path="quotes/:qid" element={<GetQuoteByIdItem />} />
-
-      <Route
-        element={<PlaylistsLayout />}
-        path="playlists"
-        errorElement={<></>}>
-        <Route path="" element={<GetPlaylistsList />} />
+      <Route element={<PackagesLayout />} path="packages" errorElement={<></>}>
         <Route
-          path="creatorId/:cid"
-          element={<GetPlaylistsByCreatorIdList />}
+          path="platform/:platform"
+          element={<GetPackagesByPlatformCustomList />}
         />
-        <Route path="saverId/:sid" element={<GetPlaylistsBySaverIdList />} />
-        <Route path="search/:search" element={<SearchPlaylistsList />} />
+        <Route
+          path="platform/:platform/search"
+          element={<SearchPackagesByPlatformCustomList />}
+        />
       </Route>
 
-      <Route path="playlists/:pid" element={<GetPlaylistByIdItem />} />
-      <Route path="playlists/:pid/edit" element={<UpdatePlaylistByIdItem />} />
+      <Route path="packages/:pid" element={<GetPackageByIdItem />} />
 
-      <Route element={<AuthorsLayout />} path="authors" errorElement={<></>}>
-        <Route path="" element={<GetAuthorsGrid />} />
-        <Route path="search/:search" element={<SearchAuthorsGrid />} />
+      <Route element={<ReviewsLayout />} path="reviews" errorElement={<></>}>
+        <Route
+          path="packageId/:pid"
+          element={<GetReviewsByPackageIdCustomList />}
+        />
+        <Route
+          path="reviewerId/:rwid"
+          element={<GetReviewsByReviewerIdCustomList />}
+        />
+        <Route
+          path="packageId/:pid/search/:search"
+          element={<SearchReviewsByPackageIdCustomList />}
+        />
+        <Route
+          path="reviewerId/:rwid/search/:search"
+          element={<SearchReviewsByReviewerIdCustomList />}
+        />
       </Route>
 
-      <Route element={<TopicsLayout />} path="topics" errorElement={<></>}>
-        <Route path="" element={<GetTopicsGrid />} />
-        <Route path="search/:search" element={<SearchTopicsGrid />} />
-      </Route>
+      <Route path="reviews/:rid" element={<GetReviewByIdItem />} />
+      <Route path="reviews/:rid/edit" element={<UpdateReviewByIdItem />} />
+      <Route path="reviews/first" element={<CreateFirstReviewItem />} />
+      <Route path="reviews/next" element={<CreateNextReviewItem />} />
 
       <Route path="users/:uid" element={<GetUserByIdItem />} />
       <Route path="users/:uid/edit" element={<UpdateUserByIdItem />} />
+
       <Route
         path="users/verify-account/:token"
         element={<VerifyAccountPage />}
       />
+
       <Route path="users/verify-email/:token" element={<VerifyEmailPage />} />
       <Route path="*" element={<></>} />
     </Route>

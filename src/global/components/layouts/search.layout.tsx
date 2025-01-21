@@ -1,61 +1,62 @@
 import { RootState } from "@/global/states/store";
 import { setIsSearchbarVisible, setSearch } from "@/global/states/view.slice";
-import { setPage as setQuotePage } from "@/quote/quote.slice";
-import { setPage as setTopicPage } from "@/topic/topic.slice";
-import { setPage as setAuthorPage } from "@/author/author.slice";
-import { setPage as setPlaylistPage, setTab } from "@/playlist/playlist.slice";
+import { setPage as setReviewPage } from "@/review/review.slice";
 import { ActionIcon, Group, TextInput } from "@mantine/core";
-import { useViewportSize } from "@mantine/hooks";
 import { IconX } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { getSearchTextInput } from "@/global/styles/global.styles";
-import { useLocation, useNavigate } from "react-router-dom";
-import { inputStyles, oneBg } from "@/global/styles/app.css";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import {
+  border,
+  circularBorder,
+  inputStyles,
+  oneBg,
+} from "@/global/styles/app.css";
 import { I } from "../components";
 
 export const SearchLayout = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { width } = useViewportSize();
   const inputRef = useRef<any>(null);
-  const { search, isMobile } = useSelector((state: RootState) => state.view);
+  const { pid, rwid } = useParams();
 
-  const { sort: authorSort, order: authorOrder } = useSelector(
-    (state: RootState) => state.author
+  const { search, isMobile, width } = useSelector(
+    (state: RootState) => state.view
   );
 
-  const { sort: topicSort, order: topicOrder } = useSelector(
-    (state: RootState) => state.topic
-  );
+  const {
+    sort: reviewSort,
+    order: reviewOrder,
+    rating: reviewRating,
+  } = useSelector((state: RootState) => state.review);
 
-  let placeholder = "Search Quotes";
-  if (location.pathname.includes("topics")) placeholder = "Search Topics";
-  if (location.pathname.includes("authors")) placeholder = "Search Authors";
-  if (location.pathname.includes("playlists")) placeholder = "Search Playlists";
+  let placeholder = "Search...";
+  if (location.pathname.includes("reviews/packageId"))
+    placeholder = "Search reviews";
+  if (location.pathname.includes("reviews/reviewerId"))
+    placeholder = "Search reviews";
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, []);
+  }, [inputRef]);
 
   useEffect(() => {
     if (search) {
-      if (location.pathname.includes("topics")) {
-        dispatch(setTopicPage(1));
-        navigate(`/topics/search/${search}?page=1`);
-      } else if (location.pathname.includes("authors")) {
-        dispatch(setAuthorPage(1));
-        navigate(`/authors/search/${search}?page=1`);
-      } else if (location.pathname.includes("playlists")) {
-        dispatch(setPlaylistPage(1));
-        navigate(`/playlists/search/${search}?page=1`);
-      } else {
-        dispatch(setQuotePage(1));
-        navigate(`/quotes/search/${search}?page=1`, {
-          state: { name: search },
-        });
+      if (location.pathname.includes("reviews/packageId")) {
+        dispatch(setReviewPage(1));
+        navigate(
+          `/reviews/packageId/${pid}/search/${search}?page=1&sort=${reviewSort}&order=${reviewOrder}&rating=${reviewRating}`
+        );
+      }
+
+      if (location.pathname.includes("reviews/reviewerId")) {
+        dispatch(setReviewPage(1));
+        navigate(
+          `/reviews/reviewerId/${rwid}/search/${search}?page=1&sort=${reviewSort}&order=${reviewOrder}&rating=${reviewRating}`
+        );
       }
     }
   }, [search]);
@@ -64,31 +65,26 @@ export const SearchLayout = () => {
     event.preventDefault();
     dispatch(setSearch(""));
 
-    if (location.pathname.includes("topics")) {
-      dispatch(setTopicPage(1));
-      navigate(`/topics?page=1&sort=${topicSort}&order=${topicOrder}`);
+    if (location.pathname.includes("reviews/packageId")) {
+      dispatch(setReviewPage(1));
+      navigate(
+        `/reviews/packageId/${pid}?page=1&sort=${reviewSort}&order=${reviewOrder}&rating=${reviewRating}`
+      );
     }
 
-    if (location.pathname.includes("authors")) {
-      dispatch(setAuthorPage(1));
-      navigate(`/authors?page=1&sort=${authorSort}&order=${authorOrder}`);
-    }
-
-    if (location.pathname.includes("playlists")) {
-      dispatch(setPlaylistPage(1));
-      navigate(`/playlists?page=1`);
-      dispatch(setTab("All"));
-    }
-    if (location.pathname.includes("quotes")) {
-      dispatch(setQuotePage(1));
-      navigate(`/`);
+    if (location.pathname.includes("reviews/reviewerId")) {
+      dispatch(setReviewPage(1));
+      navigate(
+        `/reviews/reviewerId/${rwid}?page=1&sort=${reviewSort}&order=${reviewOrder}&rating=${reviewRating}`
+      );
     }
   };
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    dispatch(setSearch(event.target.value));
+    if (!event.target.value) handleClearSearch(event);
+    else dispatch(setSearch(event.target.value));
   };
 
   const handleBlur = () => {
@@ -96,13 +92,25 @@ export const SearchLayout = () => {
   };
 
   return (
-    <Group justify="center" p={isMobile ? 0 : "xs"} align="center" h="100%">
+    <Group justify="center" align="center" h="100%">
       <TextInput
         bg={oneBg}
         value={search}
         ref={inputRef}
-        classNames={{ input: inputStyles }}
-        styles={getSearchTextInput(isMobile, width)}
+        classNames={{
+          input: `${inputStyles} ${border} ${circularBorder}`,
+        }}
+        styles={
+          isMobile
+            ? getSearchTextInput(isMobile, width)
+            : {
+                input: {
+                  height: 50,
+                  minWidth: 500,
+                  margin: 4,
+                },
+              }
+        }
         placeholder={placeholder}
         onChange={handleChange}
         onBlur={handleBlur}

@@ -1,4 +1,3 @@
-import { AxiosError } from "axios";
 import { useMutation } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { createMessage } from "@/message/message.network";
@@ -14,8 +13,11 @@ export const useCreateMessage = () => {
       showNotification("Message sent.", NotificationColor.Info);
     },
 
-    onError: (error: AxiosError) => {
-      showNotification(error.message, NotificationColor.Failure);
+    onError: (error: any) => {
+      showNotification(
+        error?.response?.data?.message || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 

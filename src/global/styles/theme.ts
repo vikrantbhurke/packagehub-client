@@ -1,5 +1,5 @@
 import { themeToVars } from "@mantine/vanilla-extract";
-import { oneTx, readexProFont, threeBg } from "./app.css";
+import { oneTx, threeBg } from "./app.css";
 import {
   Button,
   Text,
@@ -17,10 +17,9 @@ export const theme = createTheme({
     Button: Button.extend({
       defaultProps: {
         color: oneTx,
-        className: readexProFont,
-        fw: 300,
+
         radius: 10,
-        h: "3rem",
+        h: "2rem",
       },
     }),
 
@@ -33,23 +32,19 @@ export const theme = createTheme({
     }),
 
     Pill: Pill.extend({
-      defaultProps: {
-        fw: 300,
-      },
+      defaultProps: {},
     }),
 
     Text: Text.extend({
       defaultProps: {
         color: oneTx,
-        className: readexProFont,
-        fw: 300,
+
         fz: "sm",
       },
     }),
 
     Textarea: Textarea.extend({
       defaultProps: {
-        className: readexProFont,
         color: oneTx,
         radius: "sm",
       },
@@ -57,7 +52,6 @@ export const theme = createTheme({
 
     TextInput: TextInput.extend({
       defaultProps: {
-        className: readexProFont,
         color: oneTx,
         radius: "sm",
       },
@@ -66,8 +60,6 @@ export const theme = createTheme({
     Title: Title.extend({
       defaultProps: {
         c: oneTx,
-        className: readexProFont,
-        fw: 600,
       },
     }),
 
@@ -77,7 +69,6 @@ export const theme = createTheme({
           color: oneTx,
           backgroundColor: threeBg,
           border: "none",
-          fontWeight: 200,
         },
       },
     }),

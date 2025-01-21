@@ -23,18 +23,30 @@ export const noBorder = style({
 });
 
 export const roundBorder = style({
-  borderRadius: vars.radius.sm,
+  borderRadius: vars.radius.md,
+});
+
+export const circularBorder = style({
+  borderRadius: vars.radius.xl,
+
+  border: borderHighContrast,
+  ":hover": {
+    border: borderHighContrast,
+  },
+  ":active": {
+    border: borderHighContrast,
+  },
+  ":focus": {
+    border: borderHighContrast,
+  },
 });
 
 export const inputStyles = style({
   color: oneTx,
-  fontFamily: "Readex Pro",
-  fontWeight: 300,
+  backgroundColor: oneBg,
 
   "::placeholder": {
     color: "gray",
-    fontFamily: "Readex Pro",
-    fontWeight: 300,
   },
 });
 
@@ -76,7 +88,7 @@ export const oneTxThreeBg = style({
 
 export const normalPseudo = style({
   color: oneTx,
-  fontFamily: "Readex Pro",
+
   backgroundColor: oneBg,
   ":hover": {
     color: oneTx,
@@ -112,7 +124,7 @@ export const normalPseudo = style({
 
 export const oneTxOneBgButtonPseudo = style({
   color: oneTx,
-  fontFamily: "Readex Pro",
+
   backgroundColor: oneBg,
   ":hover": {
     color: oneTx,
@@ -148,7 +160,7 @@ export const oneTxOneBgButtonPseudo = style({
 
 export const oneTxTwoBgButtonPseudo = style({
   color: oneTx,
-  fontFamily: "Readex Pro",
+
   backgroundColor: twoBg,
   ":hover": {
     color: oneTx,
@@ -184,7 +196,7 @@ export const oneTxTwoBgButtonPseudo = style({
 
 export const oneTxThreeBgButtonPseudo = style({
   color: oneTx,
-  fontFamily: "Readex Pro",
+
   backgroundColor: threeBg,
   ":hover": {
     color: oneTx,
@@ -218,10 +230,6 @@ export const oneTxThreeBgButtonPseudo = style({
   },
 });
 
-export const roundBorders = style({
-  borderRadius: "10px",
-});
-
 export const border = style({
   border: borderLowContrast,
 });
@@ -240,10 +248,6 @@ export const borderLeft = style({
 
 export const borderRight = style({
   borderRight: borderLowContrast,
-});
-
-export const readexProFont = style({
-  fontFamily: "Readex Pro",
 });
 
 export const borderTopShadow = style({

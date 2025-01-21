@@ -3,7 +3,9 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 
 export const useGetUserById = () => {
-  let { uid } = useParams();
+  let { rwid, uid } = useParams();
+
+  const id = rwid || uid;
 
   const {
     data: user,
@@ -11,8 +13,9 @@ export const useGetUserById = () => {
     isError,
     error,
   } = useQuery({
-    queryKey: ["getUserById", uid],
-    queryFn: () => getUserById(uid),
+    queryKey: ["getUserById", id],
+    queryFn: () => getUserById(id),
+    enabled: !!rwid || !!uid,
   });
 
   return { user, isPending, isError, error };

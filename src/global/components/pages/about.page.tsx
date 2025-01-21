@@ -1,29 +1,19 @@
-import Banner300x250 from "@/global/ads/Banner300x250";
-import Banner320x50 from "@/global/ads/Banner320x50";
-import DesktopLeaderboard from "@/global/ads/DesktopLeaderboard";
 import { oneBg, threeTx } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
-import { useSelector } from "react-redux";
 import { SeoComponent } from "../components";
 import { mainContentWidth } from "@/global/styles/global.styles";
 
 export const AboutPage = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
-
   return (
     <Stack h="100%" bg={oneBg}>
       <SeoComponent
-        title="About Page"
+        title="PackageHub | About Page"
         description="Learn more about Qool Quotes."
       />
 
       <ScrollArea scrollbarSize={2}>
         <Center>
-          <Stack p={isMobile ? "md" : "xl"} gap="lg" maw={mainContentWidth}>
-            <Center>
-              {isMobile ? <Banner320x50 /> : <DesktopLeaderboard />}
-            </Center>
-
+          <Stack p="md" gap="lg" maw={mainContentWidth}>
             <Center>
               <Title order={2}>About</Title>
             </Center>
@@ -115,28 +105,6 @@ export const AboutPage = () => {
               </Text>
             </Stack>
 
-            {/* <Stack gap={0}>
-            <Title order={5}>9. Change Fonts and Theme Colors</Title>
-            <Text>
-              Personalize your reading experience by selecting fonts and theme
-              colors that suit your style.
-            </Text>
-          </Stack>
-
-          <Title order={4}>Stay Motivated</Title>
-
-          <Stack gap={0}>
-            <Title order={5}>10. Daily Inspiration</Title>
-            <Text>
-              Get a dose of inspiration with featured quotes and playlists
-              updated regularly.
-            </Text>
-          </Stack> */}
-
-            <Center p="md">
-              {isMobile ? <Banner320x50 /> : <Banner300x250 />}
-            </Center>
-
             <Center>
               <Title order={3}>Why Choose Our App?</Title>
             </Center>
@@ -175,18 +143,6 @@ export const AboutPage = () => {
                 project. License: CC BY-SA 4.0
               </Text>
             </Center>
-
-            {/* <Center>
-            <Title order={3}>Get Started</Title>
-          </Center>
-
-          <Text>
-            Experience the joy of collecting, organizing, and sharing
-            inspiration. Begin your journey today by exploring our extensive
-            quote library, creating your first playlist, or customizing the look
-            and feel of your app. We’re thrilled to have you as part of our
-            community and can’t wait to see how you make it uniquely yours!
-          </Text> */}
           </Stack>
         </Center>
       </ScrollArea>
