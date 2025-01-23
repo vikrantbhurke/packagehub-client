@@ -55,8 +55,8 @@ export const HomePage = () => {
           <Space h="xl" visibleFrom={responsiveBreakpoint} />
 
           <Stack gap={0}>
-            <Text size="sm">Pick a package registry</Text>
-            <Text c="dimmed" size="sm">
+            <Text>Pick a package registry</Text>
+            <Text c="dimmed" fz="xs">
               Your search will show packages from selected registry
             </Text>
           </Stack>

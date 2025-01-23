@@ -23,10 +23,12 @@ import {
   borderHC,
   circularBorder,
   inputStyles,
+  noBorder,
   oneBg,
   oneTx,
   roundBorder,
   themeGreenColor,
+  threeBg,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
 import { setPage as setPackagePage } from "../package.slice";
@@ -201,21 +203,27 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
     handleBlur();
   };
 
-  const tooltipMessage = `Use the exact URL endpoint format of the package in its registry link.
-  For example - ${packageUtility.getTooltipMessage(platform)}`;
+  const tooltipMessage = (
+    <div style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
+      Use the exact URL endpoint format of the package in its registry link. For
+      example - {packageUtility.getTooltipMessage(platform)}
+    </div>
+  );
 
   const comboboxLabel = (
-    <Group justify="center" align="center" gap="xs">
+    <Group justify="center" align="center" gap={4}>
       <Tooltip
-        events={{ hover: true, focus: true, touch: true }}
+        c={oneTx}
         p="md"
+        bg={threeBg}
+        events={{ hover: true, focus: true, touch: true }}
         multiline
         maw={400}
         position="top-start"
         label={tooltipMessage}>
-        <IconInfoCircle color="darkGray" size={20} />
+        <IconInfoCircle color="darkGray" size={16} className={`${noBorder}`} />
       </Tooltip>
-      <Text size="sm" c="dimmed">
+      <Text fz="xs" c="dimmed">
         Type package name in proper format in smallcase
       </Text>
     </Group>
