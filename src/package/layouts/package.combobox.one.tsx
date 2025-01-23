@@ -242,7 +242,9 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
             classNames={{
               input: `${inputStyles} ${borderHC} ${circularBorder}`,
             }}
-            styles={{ input: { height: 50 } }}
+            styles={{
+              input: { height: 50 },
+            }}
             placeholder={`Search packages ex - ${packageUtility.getPlaceholder(platform)}`}
             visibleFrom={responsiveBreakpoint}
             value={search}

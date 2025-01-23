@@ -6,7 +6,7 @@ import {
   threeBg,
   twoBg,
   borderLC,
-  borderBottom,
+  noBorder,
   oneTxThreeBgButtonPseudo,
   fiveBg,
   oneTxThreeBg,
@@ -71,11 +71,6 @@ export const ReviewItemLayout = ({ review }: any) => {
     scrollTo({ y: 0 });
   };
 
-  const handleReview = () => {
-    navigate(`/reviews/${review.id}`);
-    scrollTo({ y: 0 });
-  };
-
   return (
     <>
       <Modal
@@ -108,7 +103,7 @@ export const ReviewItemLayout = ({ review }: any) => {
             gap="md"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
+            className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
             <Stack gap="xs">
               <Group justify="space-between">
                 <Group onClick={handleNavigateToUserReviews}>
@@ -160,10 +155,8 @@ export const ReviewItemLayout = ({ review }: any) => {
               </Stack>
             </Stack>
 
-            <Stack onClick={handleReview} gap="xs">
-              <Title order={5} td="underline">
-                {review.title}
-              </Title>
+            <Stack gap="xs">
+              <Title order={5}>{review.title}</Title>
 
               <Text size="sm">{review.body}</Text>
             </Stack>

@@ -15,7 +15,7 @@ import {
   twoBg,
   oneTxTwoBgButtonPseudo,
   threeBg,
-  borderBottom,
+  noBorder,
   oneTx,
   themeGreenColor,
 } from "@/global/styles/app.css";
@@ -89,7 +89,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
           gap="lg"
           p={isMobile ? "md" : "xl"}
           bg={oneBg}
-          className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
+          className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
           <Stack gap="xs">
             <Title
               order={5}

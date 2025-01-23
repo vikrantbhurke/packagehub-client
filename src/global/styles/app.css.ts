@@ -15,7 +15,7 @@ export const borderLCColor = "var(--border-low-contrast)";
 export const borderHCColor = "var(--border-high-contrast)";
 export const themeGreenColor = "var(--theme-green)";
 
-export const themeGreenBorder = `1px solid ${themeGreenColor}`;
+export const themeGreenBorder = `2px solid ${themeGreenColor}`;
 export const borderLCBorder = `1px solid ${borderLCColor}`;
 export const borderHCBorder = `2px solid ${borderHCColor}`;
 
@@ -47,6 +47,7 @@ export const inputStyles = style({
 
   "::placeholder": {
     color: "gray",
+    fontSize: "12px",
   },
 });
 

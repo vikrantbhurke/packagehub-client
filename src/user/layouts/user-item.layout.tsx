@@ -19,7 +19,7 @@ import {
   borderLC,
   roundBorder,
   twoBg,
-  borderBottom,
+  noBorder,
   themeGreenColor,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
@@ -80,7 +80,7 @@ export const UserItemLayout = ({ user }: any) => {
             gap="xl"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
+            className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
             <DeleteUserModalLayout opened={opened} close={close} />
 
             <Stack align="center">
