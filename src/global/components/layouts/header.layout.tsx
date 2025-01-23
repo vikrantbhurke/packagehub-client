@@ -29,8 +29,7 @@ import {
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
-import logo from "@/global/assets/pwa-512x512.png";
-import logoDark from "@/global/assets/pwa-512x512-dark.png";
+import logo from "@/global/assets/pwa-64x64.png";
 import { useInstallApp } from "@/global/hooks";
 import { setPage } from "@/package/package.slice";
 import { SearchPackagesByPlatformComboboxTwo } from "@/package/lists";
@@ -96,11 +95,7 @@ export const HeaderLayout = () => {
         <Container size={mainContentWidth}>
           <Group h={headerHeight} justify="space-between" align="center">
             <Group gap={4} onClick={handleNavigateToHome} align="center">
-              <Image
-                src={colorScheme === "dark" ? logoDark : logo}
-                alt="logo"
-                w={32}
-              />
+              <Image src={logo} alt="logo" w={32} />
               <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
             </Group>
 

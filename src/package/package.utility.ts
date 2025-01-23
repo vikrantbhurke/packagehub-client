@@ -1,12 +1,4 @@
 import { Platform } from "./enums";
-import Npm from "@/global/assets/Npm.jpg";
-import Maven from "@/global/assets/Maven.png";
-import Pypi from "@/global/assets/Pypi.jpg";
-import Packagist from "@/global/assets/Packagist.png";
-import Rubygems from "@/global/assets/Rubygems.png";
-import Crates from "@/global/assets/Crates.png";
-import Nuget from "@/global/assets/Nuget.png";
-import Go from "@/global/assets/Go.png";
 
 class PackageUtility {
   getPlaceholder = (platform: string): string => {
@@ -80,26 +72,26 @@ class PackageUtility {
     return "white";
   };
 
-  getPlatformImage = (platform: string): any => {
+  getPlatformImageUrl = (platform: string): any => {
     switch (platform) {
       case Platform.Npm:
-        return Npm;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Npm_qzspiz.jpg";
       case Platform.Maven:
-        return Maven;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Maven_uiqiac.png";
       case Platform.Pypi:
-        return Pypi;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Pypi_z0cztr.jpg";
       case Platform.Packagist:
-        return Packagist;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Packagist_vbturx.png";
       case Platform.Rubygems:
-        return Rubygems;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Rubygems_ncqcvq.png";
       case Platform.Crates:
-        return Crates;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Crates_ktseim.png";
       case Platform.Nuget:
-        return Nuget;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Nuget_jdqlwp.png";
       case Platform.Go:
-        return Go;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Go_b3qchz.png";
       default:
-        return Npm;
+        return "https://res.cloudinary.com/dgzhf1uoe/image/upload/c_thumb,w_200,g_face/v1737626292/Npm_qzspiz.jpg";
     }
   };
 }

@@ -67,7 +67,7 @@ export const HomePage = () => {
             bg={oneBg}
             p="md"
             className={isMobile ? noBorder : `${roundBorder} ${borderLC}`}>
-            <Image src={packageUtility.getPlatformImage(platform)} w={50} />
+            <Image src={packageUtility.getPlatformImageUrl(platform)} w={50} />
             <CustomEnumCombobox
               id="package-platform"
               EnumObject={Platform}
