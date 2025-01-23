@@ -1,11 +1,15 @@
-import { oneBg, threeTx } from "@/global/styles/app.css";
+import { oneBg, threeTx, twoBg } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { SeoComponent } from "../components";
 import { mainContentWidth } from "@/global/styles/global.styles";
+import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const AboutPage = () => {
+  const { isMobile } = useSelector((state: RootState) => state.view);
+
   return (
-    <Stack h="100%" bg={oneBg}>
+    <Stack h="100%" bg={isMobile ? oneBg : twoBg}>
       <SeoComponent
         title="PackageHub | About Page"
         description="Learn more about Qool Quotes."

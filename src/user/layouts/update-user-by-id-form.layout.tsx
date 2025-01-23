@@ -27,7 +27,7 @@ import { IconRefresh, IconTrash } from "@tabler/icons-react";
 import {
   oneTx,
   inputStyles,
-  border,
+  borderLC,
   oneBg,
   roundBorder,
   twoBg,
@@ -71,12 +71,11 @@ export const UpdateUserByIdFormLayout = () => {
           py="xl">
           <form onSubmit={form.onSubmit(handleUpdateUserById)}>
             <Stack
-              maw={isMobile ? 600 : 670}
-              miw={isMobile ? 400 : 470}
+              w={400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border}`} ${roundBorder}`}>
+              className={`${isMobile ? "" : `${borderLC}`} ${roundBorder}`}>
               <Modal
                 c={oneTx}
                 styles={modal}
@@ -249,7 +248,6 @@ export const UpdateUserByIdFormLayout = () => {
                     disabled={isPending}
                     type="submit"
                     fullWidth
-                    radius="sm"
                     bg="blue"
                     loading={isPending}
                     loaderProps={{ type: "dots" }}>
@@ -258,11 +256,7 @@ export const UpdateUserByIdFormLayout = () => {
                 </Grid.Col>
 
                 <Grid.Col span={6}>
-                  <Button
-                    fullWidth
-                    radius="sm"
-                    bg="yellow"
-                    onClick={handleCancel}>
+                  <Button fullWidth bg="yellow" onClick={handleCancel}>
                     Cancel
                   </Button>
                 </Grid.Col>

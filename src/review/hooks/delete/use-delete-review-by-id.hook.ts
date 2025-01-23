@@ -41,9 +41,7 @@ export const useDeleteReviewById = () => {
 
     onMutate: async (rid) => {
       dispatch(setPage(1));
-      navigate(
-        `/reviews/reviewerId/${auth.id}?page=1&sort=${sort}&order=${order}&rating=${rating}`
-      );
+      navigate(`/users/${auth.id}`);
 
       if (reviewId) {
         await queryClient.cancelQueries({
@@ -132,6 +130,12 @@ export const useDeleteReviewById = () => {
       await queryClient.invalidateQueries({
         queryKey: ["getReviewsByReviewerId"],
       });
+
+      await queryClient.invalidateQueries({
+        queryKey: ["countUserReviews"],
+      });
+
+      navigate(`/users/${auth.id}`);
 
       showNotification(
         "Review deleted successfully!",

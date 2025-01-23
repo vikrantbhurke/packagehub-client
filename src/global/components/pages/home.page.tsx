@@ -21,12 +21,19 @@ import { CustomEnumCombobox, SeoComponent } from "../components";
 import { Platform } from "@/package/enums";
 import { globalUtility } from "@/global/utilities";
 import { packageUtility } from "@/package/package.utility";
-import { border, oneBg, roundBorder, twoBg } from "@/global/styles/app.css";
+import {
+  borderLC,
+  noBorder,
+  oneBg,
+  roundBorder,
+  twoBg,
+} from "@/global/styles/app.css";
 import { SearchPackagesByPlatformComboboxOne } from "@/package/lists";
 
 export const HomePage = () => {
   const dispatch = useDispatch();
   const [, scrollTo] = useWindowScroll();
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const { platform } = useSelector((state: RootState) => state.package);
 
   const handlePlatform = (value: any) => {
@@ -59,7 +66,7 @@ export const HomePage = () => {
             gap="md"
             bg={oneBg}
             p="md"
-            className={`${roundBorder} ${border}`}>
+            className={isMobile ? noBorder : `${roundBorder} ${borderLC}`}>
             <Image src={packageUtility.getPlatformImage(platform)} w={50} />
             <CustomEnumCombobox
               id="package-platform"

@@ -148,7 +148,6 @@ export const CreateMessageFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
-          radius="sm"
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Send Message

@@ -42,7 +42,7 @@ export const GetReviewsByReviewerIdCustomList = () => {
       </>
     );
 
-  if (!reviews.content.length)
+  if (!reviews?.content?.length)
     return (
       <>
         <CustomError message="Reviews not found." />

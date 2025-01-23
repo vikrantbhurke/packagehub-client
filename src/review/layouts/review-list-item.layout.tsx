@@ -1,7 +1,6 @@
 import {
   Avatar,
   Button,
-  Divider,
   Group,
   Modal,
   Rating,
@@ -11,12 +10,11 @@ import {
 } from "@mantine/core";
 import { reviewUtility } from "../review.utility";
 import {
-  borderLowContrastColor,
   fiveBg,
   oneTxThreeBg,
   oneTxTwoBgButtonPseudo,
   roundBorder,
-  themeGreen,
+  themeGreenColor,
   threeBg,
 } from "@/global/styles/app.css";
 import { globalUtility } from "@/global/utilities";
@@ -93,60 +91,60 @@ export const ReviewListItemLayout = ({ item }: any) => {
         </Stack>
       </Modal>
 
-      <Stack p="md" gap="xs">
-        <Group justify="space-between">
-          <Group onClick={handleNavigateToUserReviews}>
-            {item.reviewerId.profilepic ? (
-              <Avatar src={item.reviewerId.profilepic} radius="50%" />
-            ) : (
-              <Avatar>
-                {item.reviewerId.firstname[0]}
-                {item.reviewerId.lastname[0]}
-              </Avatar>
-            )}
+      <Stack p="md" gap="md">
+        <Stack gap="xs">
+          <Group justify="space-between">
+            <Group onClick={handleNavigateToUserReviews}>
+              {item.reviewerId.profilepic ? (
+                <Avatar src={item.reviewerId.profilepic} radius="50%" />
+              ) : (
+                <Avatar>
+                  {item.reviewerId.firstname[0]}
+                  {item.reviewerId.lastname[0]}
+                </Avatar>
+              )}
 
-            <Stack gap={0}>
-              <Title order={5}>
-                {item.reviewerId.firstname} {item.reviewerId.lastname}
-              </Title>
-              <Text size="sm" c="dimmed" td="underline">
-                @{item.reviewerId.username}
+              <Stack gap={0}>
+                <Title order={5}>
+                  {item.reviewerId.firstname} {item.reviewerId.lastname}
+                </Title>
+                <Text size="sm" c="dimmed" td="underline">
+                  @{item.reviewerId.username}
+                </Text>
+              </Stack>
+            </Group>
+
+            <Rating
+              readOnly
+              value={item.rating}
+              color={reviewUtility.getRatingColor(item.rating)}
+              bg={threeBg}
+              size="xs"
+              p="xs"
+              className={roundBorder}
+            />
+          </Group>
+
+          <Stack gap={0} align="stretch">
+            <Group gap={5}>
+              <Text
+                size="sm"
+                c={themeGreenColor}
+                td="underline"
+                onClick={handleNavigateToPackageReviews}>
+                {item.packageId.name}
               </Text>
-            </Stack>
-          </Group>
-
-          <Rating
-            readOnly
-            value={item.rating}
-            color={reviewUtility.getRatingColor(item.rating)}
-            bg={threeBg}
-            size="xs"
-            p="xs"
-            className={roundBorder}
-          />
-        </Group>
-
-        <Stack gap={0} align="stretch">
-          <Group gap={5}>
-            <Text
-              size="sm"
-              c={themeGreen}
-              td="underline"
-              onClick={handleNavigateToPackageReviews}>
-              {item.packageId.name}
-            </Text>
-            <Text size="sm">review</Text>
-          </Group>
-          <Group gap="xs">
-            <Text size="sm" c="dimmed">
-              {globalUtility.formatDateDistance(item.updatedAt)}
-            </Text>
-          </Group>
+              <Text size="sm">review</Text>
+            </Group>
+            <Group gap="xs">
+              <Text size="sm" c="dimmed">
+                {globalUtility.formatDateDistance(item.updatedAt)}
+              </Text>
+            </Group>
+          </Stack>
         </Stack>
 
-        <Divider color={borderLowContrastColor} my="xs" />
-
-        <Stack onClick={handleReview}>
+        <Stack onClick={handleReview} gap="xs">
           <Title order={5} td="underline">
             {item.title}
           </Title>
@@ -155,15 +153,6 @@ export const ReviewListItemLayout = ({ item }: any) => {
             {item.body}
           </Text>
         </Stack>
-
-        <Divider color={borderLowContrastColor} my="xs" />
-
-        {/* <Group gap="xs" onClick={handleReview}>
-      <Title order={6}>Date of experience :</Title>
-      <Title order={6} c="dimmed">
-        {globalUtility.formatLocaleDate(item.doe)}
-      </Title>
-    </Group> */}
 
         <Group>
           <Group p={6} gap={8} className={`${roundBorder} ${oneTxThreeBg}`}>

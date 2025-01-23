@@ -14,7 +14,7 @@ import { globalUtility } from "@/global/utilities";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Platform, Rating, Sort } from "../enums";
-import { border, oneBg, roundBorder } from "@/global/styles/app.css";
+import { borderLC, oneBg, roundBorder } from "@/global/styles/app.css";
 import { responsiveBreakpoint } from "@/global/styles/global.styles";
 
 export const PackagesFilterBox = () => {
@@ -71,7 +71,7 @@ export const PackagesFilterBox = () => {
   return (
     <Stack
       w="29%"
-      className={`${border} ${roundBorder}`}
+      className={`${borderLC} ${roundBorder}`}
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>

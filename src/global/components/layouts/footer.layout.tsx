@@ -1,4 +1,4 @@
-import { borderLowContrastColor, roundBorder } from "@/global/styles/app.css";
+import { borderLCColor, roundBorder } from "@/global/styles/app.css";
 import { footerHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -50,23 +50,27 @@ export const FooterLayout = () => {
     );
   };
 
-  const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
+  const handleNavigateToUser = () => {
+    navigate(`/users/${auth.id}`);
+  };
 
   const handleNavigateToSignIn = () => {
     navigate("/sign-in");
   };
 
+  const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
+
   const homeIconColor =
-    location.pathname === "/" ? borderLowContrastColor : "transparent";
+    location.pathname === "/" ? borderLCColor : "transparent";
 
   const homePath = location.pathname === "/" ? IconStarFilled : IconStar;
 
   const packagesIconColor = location.pathname.includes("/packages/platform")
-    ? borderLowContrastColor
+    ? borderLCColor
     : "transparent";
 
   const profileIconColor = location.pathname.includes(`/users/${auth.id}`)
-    ? borderLowContrastColor
+    ? borderLCColor
     : "transparent";
 
   const profilePath = location.pathname.includes(`/users/${auth.id}`)
@@ -74,12 +78,10 @@ export const FooterLayout = () => {
     : IconUser;
 
   const signInIconColor = location.pathname.includes(`/sign-in`)
-    ? borderLowContrastColor
+    ? borderLCColor
     : "transparent";
 
-  const searchIconColor = isSearchbarVisible
-    ? borderLowContrastColor
-    : "transparent";
+  const searchIconColor = isSearchbarVisible ? borderLCColor : "transparent";
 
   return (
     <Group justify="space-evenly" grow gap={0} h={footerHeight}>
@@ -127,7 +129,7 @@ export const FooterLayout = () => {
             align="center"
             gap={0}
             h={footerHeight}
-            onClick={handleNavigateToPlatformPackages}>
+            onClick={handleNavigateToUser}>
             <Stack bg={profileIconColor} px="xs" py={4} className={roundBorder}>
               <I I={profilePath} />
             </Stack>

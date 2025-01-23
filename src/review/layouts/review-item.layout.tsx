@@ -1,23 +1,21 @@
 import { Role } from "@/user/enums";
 import { RootState } from "@/global/states/store";
 import {
-  borderLowContrastColor,
   oneBg,
   roundBorder,
   threeBg,
   twoBg,
-  border,
+  borderLC,
   borderBottom,
   oneTxThreeBgButtonPseudo,
   fiveBg,
   oneTxThreeBg,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import {
   Avatar,
   Box,
   Button,
-  Divider,
   Group,
   Modal,
   Rating,
@@ -106,79 +104,69 @@ export const ReviewItemLayout = ({ review }: any) => {
           justify={isMobile ? "start" : "center"}>
           <Stack
             maw={isMobile ? 600 : 670}
-            miw={isMobile ? "100%" : 470}
-            gap="xs"
+            miw={isMobile ? "100%" : 570}
+            gap="md"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${borderBottom}` : `${border} ${roundBorder}`}`}>
-            <Group justify="space-between">
-              <Group onClick={handleNavigateToUserReviews}>
-                {review.reviewerId.profilepic ? (
-                  <Avatar src={review.reviewerId.profilepic} radius="50%" />
-                ) : (
-                  <Avatar>
-                    {review.reviewerId.firstname[0]}
-                    {review.reviewerId.lastname[0]}
-                  </Avatar>
-                )}
+            className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
+            <Stack gap="xs">
+              <Group justify="space-between">
+                <Group onClick={handleNavigateToUserReviews}>
+                  {review.reviewerId.profilepic ? (
+                    <Avatar src={review.reviewerId.profilepic} radius="50%" />
+                  ) : (
+                    <Avatar>
+                      {review.reviewerId.firstname[0]}
+                      {review.reviewerId.lastname[0]}
+                    </Avatar>
+                  )}
 
-                <Stack gap={0}>
-                  <Title order={5}>
-                    {review.reviewerId.firstname} {review.reviewerId.lastname}
-                  </Title>
-                  <Text size="sm" c="dimmed" td="underline">
-                    @{review.reviewerId.username}
+                  <Stack gap={0}>
+                    <Title order={5}>
+                      {review.reviewerId.firstname} {review.reviewerId.lastname}
+                    </Title>
+                    <Text size="sm" c="dimmed" td="underline">
+                      @{review.reviewerId.username}
+                    </Text>
+                  </Stack>
+                </Group>
+
+                <Rating
+                  readOnly
+                  value={review.rating}
+                  color={reviewUtility.getRatingColor(review.rating)}
+                  bg={threeBg}
+                  size="xs"
+                  p="xs"
+                  className={roundBorder}
+                />
+              </Group>
+              <Stack gap={0} align="stretch">
+                <Group gap={5}>
+                  <Text
+                    size="sm"
+                    c={themeGreenColor}
+                    td="underline"
+                    onClick={handleNavigateToPackageReviews}>
+                    {review.packageId.name}
                   </Text>
-                </Stack>
-              </Group>
-
-              <Rating
-                readOnly
-                value={review.rating}
-                color={reviewUtility.getRatingColor(review.rating)}
-                bg={threeBg}
-                size="xs"
-                p="xs"
-                className={roundBorder}
-              />
-            </Group>
-
-            <Stack gap={0} align="stretch">
-              <Group gap={5}>
-                <Text
-                  size="sm"
-                  c={themeGreen}
-                  td="underline"
-                  onClick={handleNavigateToPackageReviews}>
-                  {review.packageId.name}
-                </Text>
-                <Text size="sm">review</Text>
-              </Group>
-              <Group gap="xs">
-                <Text size="sm" c="dimmed">
-                  {globalUtility.formatDateDistance(review.updatedAt)}
-                </Text>
-              </Group>
+                  <Text size="sm">review</Text>
+                </Group>
+                <Group gap="xs">
+                  <Text size="sm" c="dimmed">
+                    {globalUtility.formatDateDistance(review.updatedAt)}
+                  </Text>
+                </Group>
+              </Stack>
             </Stack>
 
-            <Divider color={borderLowContrastColor} my="xs" />
-
-            <Stack onClick={handleReview}>
+            <Stack onClick={handleReview} gap="xs">
               <Title order={5} td="underline">
                 {review.title}
               </Title>
 
-              <Text size={isMobile ? "sm" : "md"}>{review.body}</Text>
+              <Text size="sm">{review.body}</Text>
             </Stack>
-
-            <Divider color={borderLowContrastColor} my="xs" />
-
-            {/* <Group gap="xs" onClick={handleReview}>
-          <Title order={6}>Date of experience :</Title>
-          <Title order={6} c="dimmed">
-            {globalUtility.formatLocaleDate(review.doe)}
-          </Title>
-        </Group> */}
 
             <Group>
               <Group p={6} gap={8} className={`${roundBorder} ${oneTxThreeBg}`}>

@@ -8,7 +8,7 @@ import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Rating, Sort } from "../enums";
-import { border, oneBg, roundBorder } from "@/global/styles/app.css";
+import { borderLC, oneBg, roundBorder } from "@/global/styles/app.css";
 import { responsiveBreakpoint } from "@/global/styles/global.styles";
 
 export const ReviewsFilterBox = () => {
@@ -54,7 +54,7 @@ export const ReviewsFilterBox = () => {
   return (
     <Stack
       w="29%"
-      className={`${border} ${roundBorder}`}
+      className={`${borderLC} ${roundBorder}`}
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>

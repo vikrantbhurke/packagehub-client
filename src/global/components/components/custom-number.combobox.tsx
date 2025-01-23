@@ -1,5 +1,5 @@
 import { setFocusedInput } from "@/global/states/view.slice";
-import { border } from "@/global/styles/app.css";
+import { borderLC } from "@/global/styles/app.css";
 import {
   getComboboxStyles,
   getComboboxTextInputForPagination,
@@ -58,16 +58,15 @@ export const CustomNumberCombobox = ({
           value={value}
           readOnly
           styles={getComboboxTextInputForPagination()}
+          onClick={() => combobox.openDropdown()}
           wrapperProps={{
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,
           }}
-          radius="sm"
-          onClick={() => combobox.openDropdown()}
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={60} className={border} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown miw={60} className={borderLC} p={3} bg={dropdownBg}>
         <Combobox.Options>
           <ScrollArea
             h={totalPages === 1 ? 45 : totalPages === 2 ? 90 : 110}

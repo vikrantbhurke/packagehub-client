@@ -6,7 +6,7 @@ import {
   oneBg,
   oneTx,
   inputStyles,
-  border,
+  borderLC,
   roundBorder,
   twoBg,
 } from "@/global/styles/app.css";
@@ -54,12 +54,11 @@ export const SignInUserFormLayout = () => {
         <Stack px="md" justify="center" align="center" h="100%">
           <form onSubmit={form.onSubmit(handleSignInUser)}>
             <Stack
-              maw={isMobile ? 600 : 670}
-              miw={isMobile ? 400 : 470}
+              w={400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border}`} ${roundBorder}`}>
+              className={`${isMobile ? "" : `${borderLC}`} ${roundBorder}`}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />
@@ -134,7 +133,6 @@ export const SignInUserFormLayout = () => {
                 disabled={isPending}
                 type="submit"
                 fullWidth
-                radius="sm"
                 c={oneBg}
                 bg={oneTx}
                 loading={isPending}

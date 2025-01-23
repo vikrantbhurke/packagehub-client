@@ -21,7 +21,7 @@ import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
-import { themeGreen } from "@/global/styles/app.css";
+import { themeGreenColor } from "@/global/styles/app.css";
 import { signOut } from "@/user/auth.slice";
 import {
   headerHeight,
@@ -108,11 +108,11 @@ export const HeaderLayout = () => {
               {!isInstalled && installPrompt && (
                 <Group
                   gap={4}
-                  c={themeGreen}
+                  c={themeGreenColor}
                   onClick={handleInstallClick}
                   visibleFrom={responsiveBreakpoint}>
                   <I I={IconDownload} />
-                  <Text c={themeGreen} fw={500}>
+                  <Text c={themeGreenColor} fw={500}>
                     Install App
                   </Text>
                 </Group>

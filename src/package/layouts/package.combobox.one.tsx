@@ -20,16 +20,15 @@ import { RootState } from "@/global/states/store";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { globalUtility } from "@/global/utilities";
 import {
-  border,
+  borderHC,
   circularBorder,
   inputStyles,
   oneBg,
   oneTx,
   roundBorder,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
-import { setPage as setReviewPage } from "@/review/review.slice";
 import { setPage as setPackagePage } from "../package.slice";
 import { responsiveBreakpoint } from "@/global/styles/global.styles";
 import { I } from "@/global/components/components";
@@ -42,9 +41,11 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   const { isMobile, search } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { platform, rating, sort, order } = useSelector(
-    (state: any) => state.package
-  );
+  const {
+    platform,
+    sort: packageSort,
+    order: packageOrder,
+  } = useSelector((state: any) => state.package);
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -54,19 +55,16 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
     scrollTo({ y: 0 });
     dispatch(setPackagePage(1));
     navigate(
-      `packages/platform/${platform}/search?page=1&sort=${sort}&order=${order}`
+      `packages/platform/${platform}/search?page=1&sort=${packageSort}&order=${packageOrder}`
     );
   };
 
-  const handleNavigateToPackageReviews = (item: any) => {
+  const handleNavigateToPackage = (item: any) => {
     scrollTo({ y: 0 });
-    dispatch(setReviewPage(1));
-    navigate(
-      `reviews/packageId/${item.id}?page=1&sort=${sort}&rating=${rating}&order=${order}`
-    );
+    navigate(`packages/${item.id}`);
   };
 
-  const handleWrite1stReview = (registry: any) => {
+  const handleNativateToCreateFirstReview = (registry: any) => {
     if (!auth.id) {
       navigate("/sign-in");
       return;
@@ -103,8 +101,8 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
         <Group>
           <Button
             c={oneTx}
-            bg={themeGreen}
-            onClick={() => handleWrite1stReview(registry)}>
+            bg={themeGreenColor}
+            onClick={() => handleNativateToCreateFirstReview(registry)}>
             Write 1st review
           </Button>
         </Group>
@@ -113,15 +111,14 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   );
 
   const repoComp = (item: any) => (
-    <Combobox.Option
-      value={item.name}
-      key={item.id}
-      onClick={() => handleNavigateToPackageReviews(item)}>
-      <Group justify="space-between">
+    <Combobox.Option value={item.name} key={item.id}>
+      <Group
+        justify="space-between"
+        onClick={() => handleNavigateToPackage(item)}>
         <Stack gap={0}>
           <Text>{item.name}</Text>
           <Text size="sm" c="dimmed">
-            reviews • {globalUtility.formatNumber(item.reviews)}
+            reviews {globalUtility.formatNumber(item.reviews)}
           </Text>
         </Stack>
 
@@ -219,7 +216,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
         <IconInfoCircle color="darkGray" size={20} />
       </Tooltip>
       <Text size="sm" c="dimmed">
-        Type package name in proper format
+        Type package name in proper format in smallcase
       </Text>
     </Group>
   );
@@ -229,7 +226,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
       <TextInput
         label={comboboxLabel}
         classNames={{
-          input: `${inputStyles} ${border} ${circularBorder}`,
+          input: `${inputStyles} ${borderHC} ${circularBorder}`,
         }}
         styles={{ input: { height: 50 } }}
         readOnly
@@ -243,7 +240,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
           <TextInput
             label={comboboxLabel}
             classNames={{
-              input: `${inputStyles} ${border} ${circularBorder}`,
+              input: `${inputStyles} ${borderHC} ${circularBorder}`,
             }}
             styles={{ input: { height: 50 } }}
             placeholder={`Search packages ex - ${packageUtility.getPlaceholder(platform)}`}

@@ -18,17 +18,16 @@ import {
 import { IconStarFilled, IconX } from "@tabler/icons-react";
 import { globalUtility } from "@/global/utilities";
 import {
-  border,
+  borderLC,
   circularBorder,
   inputStyles,
   oneBg,
   oneTx,
   roundBorder,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
 import { useWindowScroll } from "@mantine/hooks";
-import { setPage as setReviewPage } from "@/review/review.slice";
 import { setPage as setPackagePage } from "../package.slice";
 import { RootState } from "@/global/states/store";
 import { getSearchTextInput } from "@/global/styles/global.styles";
@@ -43,9 +42,11 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
 
   const { auth } = useSelector((state: any) => state.auth);
 
-  const { platform, rating, sort, order } = useSelector(
-    (state: any) => state.package
-  );
+  const {
+    platform,
+    sort: packageSort,
+    order: packageOrder,
+  } = useSelector((state: any) => state.package);
 
   const { isMobile, search, width } = useSelector(
     (state: RootState) => state.view
@@ -63,19 +64,16 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
     scrollTo({ y: 0 });
     dispatch(setPackagePage(1));
     navigate(
-      `packages/platform/${platform}/search?page=1&sort=${sort}&order=${order}`
+      `packages/platform/${platform}/search?page=1&sort=${packageSort}&order=${packageOrder}`
     );
   };
 
-  const handleNavigateToPackageReviews = (item: any) => {
+  const handleNavigateToPackage = (item: any) => {
     scrollTo({ y: 0 });
-    dispatch(setReviewPage(1));
-    navigate(
-      `reviews/packageId/${item.id}?page=1&sort=${sort}&rating=${rating}&order=${order}`
-    );
+    navigate(`packages/${item.id}`);
   };
 
-  const handleWrite1stReview = (registry: any) => {
+  const handleNativateToCreateFirstReview = (registry: any) => {
     if (!auth.id) {
       navigate("/sign-in");
       return;
@@ -112,8 +110,8 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
         <Group>
           <Button
             c={oneTx}
-            bg={themeGreen}
-            onClick={() => handleWrite1stReview(registry)}>
+            bg={themeGreenColor}
+            onClick={() => handleNativateToCreateFirstReview(registry)}>
             Write 1st review
           </Button>
         </Group>
@@ -122,15 +120,14 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   );
 
   const repoComp = (item: any) => (
-    <Combobox.Option
-      value={item.name}
-      key={item.id}
-      onClick={() => handleNavigateToPackageReviews(item)}>
-      <Group justify="space-between">
+    <Combobox.Option value={item.name} key={item.id}>
+      <Group
+        justify="space-between"
+        onClick={() => handleNavigateToPackage(item)}>
         <Stack gap={0}>
           <Text>{item.name}</Text>
           <Text size="sm" c="dimmed">
-            reviews • {globalUtility.formatNumber(item.reviews)}
+            reviews {globalUtility.formatNumber(item.reviews)}
           </Text>
         </Stack>
 
@@ -147,7 +144,7 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
             bg={darken(packageUtility.getRatingColor(item.rating), 0.2)}>
             <IconStarFilled />
           </ActionIcon>
-          <Text>{globalUtility.formatFloat(item.reviews)}</Text>
+          <Text>{globalUtility.formatFloat(item.rating)}</Text>
         </Group>
       </Group>
     </Combobox.Option>
@@ -225,7 +222,7 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
           <TextInput
             ref={inputRef}
             classNames={{
-              input: `${inputStyles} ${border} ${circularBorder}`,
+              input: `${inputStyles} ${borderLC} ${circularBorder}`,
             }}
             styles={
               isMobile

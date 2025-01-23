@@ -2,6 +2,7 @@ import { ReviewsLayout } from "./reviews.layout";
 import { ReviewsFilterBox } from "./reviews-filter.box";
 import { ReviewsFilterModal } from "./reviews-filter.modal";
 import { ReviewListItemLayout } from "./review-list-item.layout";
+import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
 import { CreateFirstReviewFormLayout } from "./create-first-review-form.layout";
 import { CreateNextReviewFormLayout } from "./create-next-review-form.layout";
 import { UpdateReviewByIdFormLayout } from "./update-review-by-id-form.layout";
@@ -13,6 +14,7 @@ export {
   ReviewsFilterBox,
   ReviewsFilterModal,
   ReviewListItemLayout,
+  DeleteReviewsModalLayout,
   CreateFirstReviewFormLayout,
   CreateNextReviewFormLayout,
   UpdateReviewByIdFormLayout,

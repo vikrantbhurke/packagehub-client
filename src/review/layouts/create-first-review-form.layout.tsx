@@ -17,7 +17,7 @@ import {
   oneBg,
   threeBg,
   twoBg,
-  border,
+  borderLC,
   roundBorder,
 } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
@@ -74,12 +74,11 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
           py="xl">
           <form onSubmit={form.onSubmit(handleCreateFirstReview)}>
             <Stack
-              maw={isMobile ? 600 : 670}
-              miw={isMobile ? 400 : 470}
+              w={400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border} ${roundBorder}`} `}>
+              className={`${isMobile ? "" : `${borderLC} ${roundBorder}`} `}>
               <Stack gap="xl">
                 <Stack gap={4}>
                   <Group gap={0} align="center" justify="space-between">
@@ -172,7 +171,6 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                     disabled={isPending}
                     type="submit"
                     fullWidth
-                    radius="sm"
                     bg="green"
                     loading={isPending}
                     loaderProps={{ type: "dots" }}>
@@ -181,11 +179,7 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                 </Grid.Col>
 
                 <Grid.Col span={6}>
-                  <Button
-                    fullWidth
-                    radius="sm"
-                    bg="yellow"
-                    onClick={handleCancel}>
+                  <Button fullWidth bg="yellow" onClick={handleCancel}>
                     Cancel
                   </Button>
                 </Grid.Col>

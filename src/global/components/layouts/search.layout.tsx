@@ -8,12 +8,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { getSearchTextInput } from "@/global/styles/global.styles";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import {
-  border,
-  circularBorder,
-  inputStyles,
-  oneBg,
-} from "@/global/styles/app.css";
+import { borderLC, circularBorder, inputStyles } from "@/global/styles/app.css";
 import { I } from "../components";
 
 export const SearchLayout = () => {
@@ -94,11 +89,10 @@ export const SearchLayout = () => {
   return (
     <Group justify="center" align="center" h="100%">
       <TextInput
-        bg={oneBg}
         value={search}
         ref={inputRef}
         classNames={{
-          input: `${inputStyles} ${border} ${circularBorder}`,
+          input: `${inputStyles} ${borderLC} ${circularBorder}`,
         }}
         styles={
           isMobile

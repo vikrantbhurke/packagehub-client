@@ -16,10 +16,11 @@ import {
 import {
   oneTx,
   oneBg,
-  border,
+  borderLC,
   roundBorder,
   twoBg,
   borderBottom,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -30,14 +31,17 @@ import { I } from "@/global/components/components";
 import { IconMailFilled, IconStarFilled } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/review/review.slice";
+import { useCountUserReviews } from "../hooks/read";
+import { globalUtility } from "@/global/utilities";
 
 export const UserItemLayout = ({ user }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
   const [picOpened, setPicOpened] = useState(false);
-
+  const { userReviews } = useCountUserReviews(user.id);
   const { isMobile } = useSelector((state: RootState) => state.view);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const { sort, order, rating } = useSelector(
     (state: RootState) => state.review
@@ -72,11 +76,11 @@ export const UserItemLayout = ({ user }: any) => {
           justify={isMobile ? "start" : "center"}>
           <Stack
             maw={isMobile ? 600 : 670}
-            miw={isMobile ? "100%" : 470}
+            miw={isMobile ? "100%" : 570}
             gap="xl"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${borderBottom}` : `${border} ${roundBorder}`}`}>
+            className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
             <DeleteUserModalLayout opened={opened} close={close} />
 
             <Stack align="center">
@@ -98,7 +102,11 @@ export const UserItemLayout = ({ user }: any) => {
                 )}
 
                 <Stack gap="md" align="center">
-                  <Stack gap={0} onClick={handleNavigateToUserReviews}>
+                  <Stack
+                    gap={0}
+                    onClick={() => {
+                      userReviews?.count > 0 && handleNavigateToUserReviews();
+                    }}>
                     <Title order={5}>
                       {user.firstname} {user.lastname}
                     </Title>
@@ -113,42 +121,57 @@ export const UserItemLayout = ({ user }: any) => {
                       <I I={IconMailFilled} /> <Text>{user.email}</Text>
                     </Group>
 
-                    <Group gap="xs">
-                      <I I={IconStarFilled} /> <Text>123 reviews</Text>
+                    <Group
+                      gap="xs"
+                      onClick={() => {
+                        userReviews?.count > 0 && handleNavigateToUserReviews();
+                      }}>
+                      <I I={IconStarFilled} />
+
+                      {userReviews?.count > 0 ? (
+                        <Text fw={500} c={themeGreenColor} td="underline">
+                          {globalUtility.formatNumber(userReviews?.count)}{" "}
+                          reviews
+                        </Text>
+                      ) : (
+                        <Text>0 reviews</Text>
+                      )}
                     </Group>
                   </Stack>
                 </Stack>
               </Group>
             </Stack>
 
-            <Grid>
-              <Grid.Col span={6}>
-                <Button
-                  fullWidth
-                  radius="sm"
-                  bg="blue"
-                  onClick={() => navigate(`/users/${user.id}/edit`)}>
-                  Edit Profile
-                </Button>
-              </Grid.Col>
+            {auth.id === user.id && (
+              <Grid>
+                <Grid.Col span={6}>
+                  <Button
+                    fullWidth
+                    bg="blue"
+                    onClick={() => navigate(`/users/${user.id}/edit`)}>
+                    Edit Profile
+                  </Button>
+                </Grid.Col>
 
-              <Grid.Col span={6}>
-                <Button fullWidth radius="sm" bg="red" onClick={open}>
-                  Delete Account
-                </Button>
-              </Grid.Col>
+                <Grid.Col span={6}>
+                  <Button fullWidth bg="red" onClick={open}>
+                    Delete Account
+                  </Button>
+                </Grid.Col>
 
-              <Grid.Col span={6}>
-                <Button
-                  fullWidth
-                  radius="sm"
-                  bg={oneTx}
-                  c={oneBg}
-                  onClick={handleNavigateToUserReviews}>
-                  View Reviews
-                </Button>
-              </Grid.Col>
-            </Grid>
+                {userReviews?.count > 0 && (
+                  <Grid.Col span={6}>
+                    <Button
+                      fullWidth
+                      bg={oneTx}
+                      c={oneBg}
+                      onClick={handleNavigateToUserReviews}>
+                      View Reviews
+                    </Button>
+                  </Grid.Col>
+                )}
+              </Grid>
+            )}
           </Stack>
         </Stack>
       </Box>

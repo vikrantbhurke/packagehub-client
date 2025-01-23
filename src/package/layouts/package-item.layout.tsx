@@ -10,14 +10,14 @@ import {
 } from "@mantine/core";
 import {
   oneBg,
-  border,
+  borderLC,
   roundBorder,
   twoBg,
   oneTxTwoBgButtonPseudo,
   threeBg,
   borderBottom,
   oneTx,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -85,76 +85,82 @@ export const PackageItemLayout = ({ pkg }: any) => {
         justify={isMobile ? "start" : "center"}>
         <Stack
           maw={isMobile ? 600 : 670}
-          miw={isMobile ? "100%" : 470}
+          miw={isMobile ? "100%" : 570}
           gap="lg"
           p={isMobile ? "md" : "xl"}
           bg={oneBg}
-          className={`${isMobile ? `${borderBottom}` : `${border} ${roundBorder}`}`}>
-          <Title
-            order={5}
-            td="underline"
-            onClick={handleNavigateToReviewsByPackageId}>
-            {pkg.name}
-          </Title>
+          className={`${isMobile ? `${borderBottom}` : `${borderLC} ${roundBorder}`}`}>
+          <Stack gap="xs">
+            <Title
+              order={5}
+              td="underline"
+              onClick={handleNavigateToReviewsByPackageId}>
+              {pkg.name}
+            </Title>
 
-          <Group justify="space-between">
-            <Group justify="start">
-              <Rating
-                readOnly
-                fractions={4}
-                value={pkg.rating}
-                color={packageUtility.getRatingColor(pkg.rating)}
-                size="xs"
-                bg={threeBg}
-                p="xs"
-                className={roundBorder}
-              />
+            <Group justify="space-between">
+              <Group justify="start">
+                <Rating
+                  readOnly
+                  fractions={4}
+                  value={pkg.rating}
+                  color={packageUtility.getRatingColor(pkg.rating)}
+                  size="xs"
+                  bg={threeBg}
+                  p="xs"
+                  className={roundBorder}
+                />
 
-              <Text c="dimmed">
-                {globalUtility.formatFloat(pkg.rating)} rating
-              </Text>
-              <Text c="dimmed">•</Text>
-              <Text c="dimmed">
-                {globalUtility.formatNumberWithComma(pkg.reviews)} reviews
-              </Text>
+                <Text c="dimmed">
+                  {globalUtility.formatFloat(pkg.rating)} rating
+                </Text>
+
+                <Text c="dimmed">
+                  {globalUtility.formatNumberWithComma(pkg.reviews)} reviews
+                </Text>
+              </Group>
+
+              <Button
+                px="xs"
+                disabled={auth.id ? isPending : false}
+                loading={auth.id ? isPending : false}
+                onClick={readOrWriteHandler}
+                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}
+                loaderProps={{ type: "dots", color: oneTx }}>
+                {readOrWriteText}
+              </Button>
             </Group>
-
-            <Button
-              px="xs"
-              disabled={isPending}
-              loading={isPending}
-              onClick={readOrWriteHandler}
-              className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}
-              loaderProps={{ type: "dots", color: oneTx }}>
-              {readOrWriteText}
-            </Button>
-          </Group>
+          </Stack>
 
           {pkg.description !== "None" && <Text>{pkg.description}</Text>}
 
-          {pkg.homepageUrl !== pkg.packageUrl && (
+          <Stack gap="xs">
+            {pkg.homepageUrl !== pkg.packageUrl && (
+              <Text
+                p="xs"
+                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
+                Home :{" "}
+                <Anchor
+                  target="_blank"
+                  href={pkg.homepageUrl}
+                  size="sm"
+                  c={themeGreenColor}>
+                  {pkg.homepageUrl}
+                </Anchor>
+              </Text>
+            )}
+
             <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
-              Home :{" "}
+              Registry :{" "}
               <Anchor
                 target="_blank"
-                href={pkg.homepageUrl}
+                href={pkg.packageUrl}
                 size="sm"
-                c={themeGreen}>
-                {pkg.homepageUrl}
+                c={themeGreenColor}>
+                {pkg.packageUrl}
               </Anchor>
             </Text>
-          )}
-
-          <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
-            Registry :{" "}
-            <Anchor
-              target="_blank"
-              href={pkg.packageUrl}
-              size="sm"
-              c={themeGreen}>
-              {pkg.packageUrl}
-            </Anchor>
-          </Text>
+          </Stack>
         </Stack>
       </Stack>
     </Box>

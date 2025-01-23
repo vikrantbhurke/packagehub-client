@@ -1,6 +1,6 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { border } from "@/global/styles/app.css";
+import { borderLC } from "@/global/styles/app.css";
 import {
   getComboboxTextInput,
   getComboboxStyles,
@@ -68,16 +68,15 @@ export const CustomEnumCombobox = ({
           value={value}
           readOnly
           styles={getComboboxTextInput(focusedInput === id)}
+          onClick={() => combobox.openDropdown()}
           wrapperProps={{
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,
           }}
-          radius="md"
-          onClick={() => combobox.openDropdown()}
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={120} className={border} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown miw={120} className={borderLC} p={3} bg={dropdownBg}>
         <Combobox.Options>
           <Stack gap={3}>{options}</Stack>
         </Combobox.Options>

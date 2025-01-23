@@ -34,7 +34,6 @@ export const DeleteProfilePicModalLayout = ({ opened, close }: any) => {
         <Button
           onClick={handleDeleteProfilePicById}
           fullWidth
-          radius="sm"
           bg="red"
           loading={isPending}
           loaderProps={{ type: "dots" }}>

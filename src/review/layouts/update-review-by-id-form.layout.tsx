@@ -3,7 +3,7 @@ import {
   roundBorder,
   threeBg,
   twoBg,
-  border,
+  borderLC,
   inputStyles,
 } from "@/global/styles/app.css";
 import {
@@ -79,12 +79,11 @@ export const UpdateReviewByIdFormLayout = () => {
           py="xl">
           <form onSubmit={form.onSubmit(handleUpdateReviewById)}>
             <Stack
-              maw={isMobile ? 600 : 670}
-              miw={isMobile ? 400 : 470}
+              w={400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${border} ${roundBorder}`} `}>
+              className={`${isMobile ? "" : `${borderLC} ${roundBorder}`} `}>
               <Stack gap="xl">
                 <Stack gap={4}>
                   <Group gap={0} align="center" justify="space-between">
@@ -177,7 +176,6 @@ export const UpdateReviewByIdFormLayout = () => {
                     disabled={isPending}
                     type="submit"
                     fullWidth
-                    radius="sm"
                     bg="blue"
                     loading={isPending}
                     loaderProps={{ type: "dots" }}>
@@ -186,11 +184,7 @@ export const UpdateReviewByIdFormLayout = () => {
                 </Grid.Col>
 
                 <Grid.Col span={6}>
-                  <Button
-                    fullWidth
-                    radius="sm"
-                    bg="yellow"
-                    onClick={handleCancel}>
+                  <Button fullWidth bg="yellow" onClick={handleCancel}>
                     Cancel
                   </Button>
                 </Grid.Col>

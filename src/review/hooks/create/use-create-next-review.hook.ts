@@ -2,8 +2,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNotification } from "@/global/hooks";
 import { createNextReview } from "@/review/review.network";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { RootState } from "@/global/states/store";
 import { NotificationColor } from "@/global/enums";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
@@ -13,17 +11,17 @@ export const useCreateNextReview = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
-  const { auth } = useSelector((state: RootState) => state.auth);
+  // const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { sort, order, rating } = useSelector(
-    (state: RootState) => state.review
-  );
+  // const { sort, order, rating } = useSelector(
+  //   (state: RootState) => state.review
+  // );
 
   const { mutate: createNextReviewMutation, isPending } = useMutation({
     mutationFn: createNextReview,
 
-    onSuccess: async () => {
-      showNotification(`Next review created.`, NotificationColor.Success);
+    onSuccess: async (review: any) => {
+      showNotification(`Review created.`, NotificationColor.Success);
 
       await queryClient.invalidateQueries({
         queryKey: ["searchReviewsByPackageId"],
@@ -41,10 +39,12 @@ export const useCreateNextReview = () => {
         queryKey: ["getReviewsByReviewerId"],
       });
 
+      await queryClient.invalidateQueries({
+        queryKey: ["countUserReviews"],
+      });
+
       dispatch(setPage(1));
-      navigate(
-        `/reviews/reviewerId/${auth.id}?page=1&sort=${sort}&order=${order}&rating=${rating}`
-      );
+      navigate(`/reviews/${review.id}`);
     },
 
     onError: (error: any) => {

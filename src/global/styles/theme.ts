@@ -10,6 +10,7 @@ import {
   Textarea,
   ActionIcon,
   Pill,
+  PasswordInput,
 } from "@mantine/core";
 
 export const theme = createTheme({
@@ -17,9 +18,8 @@ export const theme = createTheme({
     Button: Button.extend({
       defaultProps: {
         color: oneTx,
-
-        radius: 10,
         h: "2rem",
+        radius: "md",
       },
     }),
 
@@ -38,7 +38,6 @@ export const theme = createTheme({
     Text: Text.extend({
       defaultProps: {
         color: oneTx,
-
         fz: "sm",
       },
     }),
@@ -46,14 +45,21 @@ export const theme = createTheme({
     Textarea: Textarea.extend({
       defaultProps: {
         color: oneTx,
-        radius: "sm",
+        radius: "md",
       },
     }),
 
     TextInput: TextInput.extend({
       defaultProps: {
         color: oneTx,
-        radius: "sm",
+        radius: "md",
+      },
+    }),
+
+    PasswordInput: PasswordInput.extend({
+      defaultProps: {
+        color: oneTx,
+        radius: "md",
       },
     }),
 

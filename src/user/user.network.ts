@@ -22,6 +22,11 @@ export const verifyEmail = async (token: string | undefined) => {
   return result.data;
 };
 
+export const countUserReviews = async (uid: string) => {
+  const result = await axios.get(`/users/${uid}/reviews`);
+  return result.data;
+};
+
 export const getUserByUsername = async (username: string) => {
   const result = await axios.get(`/users/username/${username}`);
   return result.data;

@@ -1,7 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createFirstReview } from "@/review/review.network";
-import { useSelector } from "react-redux";
-import { RootState } from "@/global/states/store";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
@@ -13,17 +11,12 @@ export const useCreateFirstReview = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
-  const { auth } = useSelector((state: RootState) => state.auth);
-
-  const { sort, order, rating } = useSelector(
-    (state: RootState) => state.review
-  );
 
   const { mutate: createFirstReviewMutation, isPending } = useMutation({
     mutationFn: createFirstReview,
 
-    onSuccess: async () => {
-      showNotification(`First review created.`, NotificationColor.Success);
+    onSuccess: async (review: any) => {
+      showNotification(`Review created.`, NotificationColor.Success);
 
       await queryClient.invalidateQueries({
         queryKey: ["searchReviewsByPackageId"],
@@ -41,10 +34,12 @@ export const useCreateFirstReview = () => {
         queryKey: ["getReviewsByReviewerId"],
       });
 
+      await queryClient.invalidateQueries({
+        queryKey: ["countUserReviews"],
+      });
+
       dispatch(setPage(1));
-      navigate(
-        `/reviews/reviewerId/${auth.id}?page=1&sort=${sort}&order=${order}&rating=${rating}`
-      );
+      navigate(`/reviews/${review.id}`);
     },
 
     onError: (error: any) => {

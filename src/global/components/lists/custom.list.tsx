@@ -96,7 +96,6 @@ export const CustomList = ({
         <Pagination
           size="md"
           m="xs"
-          radius="sm"
           siblings={0}
           value={page}
           onChange={handlePage}

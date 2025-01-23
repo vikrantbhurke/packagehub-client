@@ -2,11 +2,13 @@ import { useSelector } from "react-redux";
 import { useNotification } from "@/global/hooks";
 import { RootState } from "@/global/states/store";
 import { NotificationColor } from "@/global/enums";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { deleteReviewsByReviewerId } from "@/review/review.network";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export const useDeleteReviewsByReviewerId = () => {
+  const navigate = useNavigate();
+  const { auth } = useSelector((state: RootState) => state.auth);
   const { showNotification } = useNotification();
   const queryClient = useQueryClient();
   let [searchParams] = useSearchParams();
@@ -24,10 +26,12 @@ export const useDeleteReviewsByReviewerId = () => {
     rating,
   };
 
-  const { mutate: deleteReviewsByReviewerIdMutation } = useMutation({
+  const { mutate: deleteReviewsByReviewerIdMutation, isPending } = useMutation({
     mutationFn: deleteReviewsByReviewerId,
 
     onMutate: async (_data) => {
+      navigate(`/users/${auth.id}`);
+
       await queryClient.cancelQueries({
         queryKey: [
           "getReviewsByReviewerId",
@@ -67,6 +71,10 @@ export const useDeleteReviewsByReviewerId = () => {
         queryKey: ["getReviewsByReviewerId"],
       });
 
+      await queryClient.invalidateQueries({
+        queryKey: ["countUserReviews"],
+      });
+
       showNotification(
         "All your reviews deleted successfully!",
         NotificationColor.Success
@@ -93,5 +101,5 @@ export const useDeleteReviewsByReviewerId = () => {
     },
   });
 
-  return { deleteReviewsByReviewerIdMutation };
+  return { deleteReviewsByReviewerIdMutation, isPending };
 };

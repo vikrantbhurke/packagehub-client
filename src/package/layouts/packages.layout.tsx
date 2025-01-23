@@ -9,13 +9,13 @@ import { ActionIcon, Container, Group, Stack, Text } from "@mantine/core";
 import { Outlet } from "react-router-dom";
 import { IconFileDescription, IconFilter } from "@tabler/icons-react";
 import {
-  border,
+  borderLC,
   borderBottom,
   oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
   roundBorder,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { useState } from "react";
 import { globalUtility } from "@/global/utilities";
@@ -57,7 +57,7 @@ export const PackagesLayout = () => {
             bg={oneBg}
             justify="space-between"
             gap={0}
-            className={`${isMobile ? borderBottom : `${border} ${roundBorder}`}`}>
+            className={`${isMobile ? borderBottom : `${borderLC} ${roundBorder}`}`}>
             <Group gap={3}>
               <I I={IconFileDescription} />
 
@@ -68,7 +68,7 @@ export const PackagesLayout = () => {
             </Group>
 
             <Group gap={4}>
-              <Text fw={500} c={themeGreen}>
+              <Text fw={500} c={themeGreenColor}>
                 {isSearchingPackages ? search : platform}
               </Text>
 

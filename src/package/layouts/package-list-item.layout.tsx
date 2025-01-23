@@ -13,7 +13,7 @@ import {
   oneTx,
   oneTxTwoBgButtonPseudo,
   roundBorder,
-  themeGreen,
+  themeGreenColor,
   threeBg,
 } from "@/global/styles/app.css";
 import { globalUtility } from "@/global/utilities";
@@ -95,7 +95,7 @@ export const PackageListItemLayout = ({ item }: any) => {
           <Text c="dimmed">
             {globalUtility.formatFloat(item.rating)} rating
           </Text>
-          <Text c="dimmed">•</Text>
+
           <Text c="dimmed">
             {globalUtility.formatNumberWithComma(item.reviews)} reviews
           </Text>
@@ -103,8 +103,8 @@ export const PackageListItemLayout = ({ item }: any) => {
 
         <Button
           px="xs"
-          disabled={isPending}
-          loading={isPending}
+          disabled={auth.id ? isPending : false}
+          loading={auth.id ? isPending : false}
           onClick={readOrWriteHandler}
           className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}
           loaderProps={{ type: "dots", color: oneTx }}>
@@ -121,7 +121,7 @@ export const PackageListItemLayout = ({ item }: any) => {
             target="_blank"
             href={item.homepageUrl}
             size="sm"
-            c={themeGreen}>
+            c={themeGreenColor}>
             {item.homepageUrl}
           </Anchor>
         </Text>
@@ -129,7 +129,11 @@ export const PackageListItemLayout = ({ item }: any) => {
 
       <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
         Registry :{" "}
-        <Anchor target="_blank" href={item.packageUrl} size="sm" c={themeGreen}>
+        <Anchor
+          target="_blank"
+          href={item.packageUrl}
+          size="sm"
+          c={themeGreenColor}>
           {item.packageUrl}
         </Anchor>
       </Text>

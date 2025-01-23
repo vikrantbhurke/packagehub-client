@@ -30,7 +30,6 @@ export const DeleteUserModalLayout = ({ opened, close }: any) => {
         <Button
           onClick={handleDeleteUserById}
           fullWidth
-          radius="sm"
           bg="red"
           loading={isPending}
           loaderProps={{ type: "dots" }}>

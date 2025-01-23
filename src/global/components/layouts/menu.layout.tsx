@@ -2,7 +2,7 @@ import { RootState } from "@/global/states/store";
 import {
   oneBg,
   oneTxOneBgButtonPseudo,
-  themeGreen,
+  themeGreenColor,
 } from "@/global/styles/app.css";
 import { Avatar, Burger, Menu, Text } from "@mantine/core";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { responsiveBreakpoint } from "@/global/styles/global.styles";
 import { useInstallApp } from "@/global/hooks";
-import { border } from "@/global/styles/app.css";
+import { borderLC } from "@/global/styles/app.css";
 import {
   IconArticle,
   IconBox,
@@ -26,6 +26,7 @@ import { setPage as setPackagePage } from "@/package/package.slice";
 import { setPage as setReviewPage } from "@/review/review.slice";
 import { CompOrFragmentRoute } from "@/global/routes";
 import { Clearance } from "@/user/enums";
+import { useCountUserReviews } from "@/user/hooks/read";
 
 export const MenuLayout = () => {
   const dispatch = useDispatch();
@@ -34,6 +35,7 @@ export const MenuLayout = () => {
   const { installPrompt, isInstalled, handleInstallClick } = useInstallApp();
   const { auth } = useSelector((state: RootState) => state.auth);
   const [opened, { open, close }] = useDisclosure();
+  const { userReviews } = useCountUserReviews(auth.id);
 
   const {
     platform,
@@ -103,16 +105,16 @@ export const MenuLayout = () => {
           </Menu.Target>
         )}
 
-        <Menu.Dropdown bg={oneBg} className={border}>
+        <Menu.Dropdown bg={oneBg} className={borderLC}>
           {!isInstalled && installPrompt && (
             <Menu.Item
               onClick={handleInstallClick}
               p="xs"
-              c={themeGreen}
+              c={themeGreenColor}
               className={oneTxOneBgButtonPseudo}
               leftSection={<I I={IconDownload} />}
               hiddenFrom={responsiveBreakpoint}>
-              <Text size="sm" c={themeGreen}>
+              <Text size="sm" c={themeGreenColor}>
                 Install App
               </Text>
             </Menu.Item>
@@ -136,15 +138,17 @@ export const MenuLayout = () => {
             <Text size="sm">Packages</Text>
           </Menu.Item>
 
-          <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
-            <Menu.Item
-              onClick={handleNavigateToUserReviews}
-              p="xs"
-              className={oneTxOneBgButtonPseudo}
-              leftSection={<I I={IconArticle} />}>
-              <Text size="sm">My Reviews</Text>
-            </Menu.Item>
-          </CompOrFragmentRoute>
+          {userReviews?.count > 0 && (
+            <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
+              <Menu.Item
+                onClick={handleNavigateToUserReviews}
+                p="xs"
+                className={oneTxOneBgButtonPseudo}
+                leftSection={<I I={IconArticle} />}>
+                <Text size="sm">My Reviews</Text>
+              </Menu.Item>
+            </CompOrFragmentRoute>
+          )}
 
           <CompOrFragmentRoute clearance={Clearance.LevelTwo}>
             <Menu.Item

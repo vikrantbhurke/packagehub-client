@@ -6,13 +6,14 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useNotification } from "@/global/hooks";
 import { NotificationColor } from "@/global/enums";
-import { oneTx } from "@/global/styles/app.css";
+import { oneBg, oneTx, twoBg } from "@/global/styles/app.css";
 
 export const VerifyEmailItem = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const { showNotification } = useNotification();
   const { isError, data, error } = useVerifyEmail();
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   useEffect(() => {
     if (data) {
@@ -31,7 +32,11 @@ export const VerifyEmailItem = () => {
   if (data) text = data.message;
 
   return (
-    <Stack justify="center" align="center" h="100%">
+    <Stack
+      justify="center"
+      align="center"
+      h="100%"
+      bg={isMobile ? oneBg : twoBg}>
       <Loader type="dots" color={oneTx} />
       <Text>{text}</Text>
     </Stack>
