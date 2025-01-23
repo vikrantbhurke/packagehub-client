@@ -11,11 +11,6 @@ export const useCreateNextReview = () => {
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const { showNotification } = useNotification();
-  // const { auth } = useSelector((state: RootState) => state.auth);
-
-  // const { sort, order, rating } = useSelector(
-  //   (state: RootState) => state.review
-  // );
 
   const { mutate: createNextReviewMutation, isPending } = useMutation({
     mutationFn: createNextReview,
@@ -48,13 +43,16 @@ export const useCreateNextReview = () => {
     },
 
     onError: (error: any) => {
-      const { message }: any = error?.response?.data;
-      if (message) showNotification(message, NotificationColor.Warning);
-      else
-        showNotification(
-          error?.response?.data?.message || error.message,
-          NotificationColor.Failure
-        );
+      let cvm = error?.response?.data?.message;
+      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
+      let errorMessage;
+
+      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
+
+      showNotification(
+        errorMessage || error.message,
+        NotificationColor.Failure
+      );
     },
   });
 

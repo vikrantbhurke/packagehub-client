@@ -17,8 +17,14 @@ export const useSignUpUser = () => {
     },
 
     onError: (error: any) => {
+      let cvm = error?.response?.data?.message;
+      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
+      let errorMessage;
+
+      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
+
       showNotification(
-        error?.response?.data?.message || error.message,
+        errorMessage || error.message,
         NotificationColor.Failure
       );
     },

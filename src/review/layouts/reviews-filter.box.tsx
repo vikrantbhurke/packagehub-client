@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setOrder, setSort, setRating, setPage } from "../review.slice";
-import { ActionIcon, Group, Space, Stack, Text } from "@mantine/core";
+import { ActionIcon, Group, Space, Stack, Text, Title } from "@mantine/core";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
@@ -58,9 +58,9 @@ export const ReviewsFilterBox = () => {
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>
-      <Text ta="center" fw={500}>
+      <Title ta="center" order={5}>
         Review Filter
-      </Text>
+      </Title>
       <Stack align="center" gap="xs">
         <Group justify="space-between" w="100%">
           <Space w="md" />

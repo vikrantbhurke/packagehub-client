@@ -43,15 +43,18 @@ export const useDeleteUserById = () => {
       dispatch(signOut());
 
       await queryClient.invalidateQueries();
-      showNotification(
-        "Account deleted successfully!",
-        NotificationColor.Success
-      );
+      showNotification("Account deleted.", NotificationColor.Success);
     },
 
     onError: async (error: any, { uid }: any, context: any) => {
+      let cvm = error?.response?.data?.message;
+      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
+      let errorMessage;
+
+      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
+
       showNotification(
-        error?.response?.data?.message || error.message,
+        errorMessage || error.message,
         NotificationColor.Failure
       );
 

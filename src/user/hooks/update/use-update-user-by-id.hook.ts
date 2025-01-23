@@ -82,20 +82,23 @@ export const useUpdateUserById = () => {
         variables.updateUserByIdDTO.email !== user.email
       ) {
         showNotification(
-          `Profile updated successfully! Verify your new email at ${variables.updateUserByIdDTO.email}.`,
+          `Profile updated. Verify your new email at ${variables.updateUserByIdDTO.email}.`,
           NotificationColor.Success
         );
       } else {
-        showNotification(
-          `Profile updated successfully!`,
-          NotificationColor.Success
-        );
+        showNotification(`Profile updated.`, NotificationColor.Success);
       }
     },
 
     onError: async (error: any, context: any) => {
+      let cvm = error?.response?.data?.message;
+      let cvc = Object.values(error?.response?.data?.errors[0]?.constraints)[0];
+      let errorMessage;
+
+      if (cvm === process.env.CLASS_VALIDATOR_ERROR) errorMessage = cvc;
+
       showNotification(
-        error?.response?.data?.message || error.message,
+        errorMessage || error.message,
         NotificationColor.Failure
       );
 

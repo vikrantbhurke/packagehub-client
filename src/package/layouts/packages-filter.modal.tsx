@@ -75,7 +75,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       centered
-      title={<Text fw={500}>Package Filter</Text>}>
+      title="Package Filter">
       <Stack bg={oneBg}>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">

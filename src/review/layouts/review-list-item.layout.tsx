@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 import { reviewUtility } from "../review.utility";
 import {
+  fiveBg,
   fiveTxTwoBg,
   fiveTxTwoBgButtonPseudo,
-  fourBg,
   roundBorder,
   themeGreenColor,
   threeBg,
@@ -156,7 +156,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
 
         <Group>
           <Group p={6} gap={8} className={`${roundBorder} ${fiveTxTwoBg}`}>
-            <Group gap={4} p={4} bg={fourBg} className={`${roundBorder}`}>
+            <Group gap={4} p={4} bg={fiveBg} className={`${roundBorder}`}>
               {auth.role === Role.Public ? (
                 <ReviewVoterReadonlyButtonLayout>
                   <Text fw={500}>

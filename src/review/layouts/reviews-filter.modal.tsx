@@ -58,7 +58,7 @@ export const ReviewsFilterModal = ({ opened, close }: any) => {
       opened={opened}
       onClose={close}
       centered
-      title={<Text fw={500}>Review Filter</Text>}>
+      title="Review Filter">
       <Stack bg={oneBg}>
         <Stack align="center" gap="xs">
           <Group justify="space-between" w="100%">

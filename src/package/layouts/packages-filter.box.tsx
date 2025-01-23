@@ -7,7 +7,7 @@ import {
   setRating,
   setPage,
 } from "../package.slice";
-import { ActionIcon, Group, Space, Stack, Text } from "@mantine/core";
+import { ActionIcon, Group, Space, Stack, Text, Title } from "@mantine/core";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
@@ -75,9 +75,9 @@ export const PackagesFilterBox = () => {
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>
-      <Text ta="center" fw={500}>
+      <Title ta="center" order={5}>
         Package Filter
-      </Text>
+      </Title>
       <Stack align="center" gap="xs">
         <Group justify="space-between" w="100%">
           <Space w="md" />
