@@ -18,6 +18,7 @@ import {
   noBorder,
   oneTx,
   themeGreenColor,
+  fiveTxTwoBgButtonPseudo,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -125,7 +126,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
                 disabled={auth.id ? isPending : false}
                 loading={auth.id ? isPending : false}
                 onClick={readOrWriteHandler}
-                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}
+                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}
                 loaderProps={{ type: "dots", color: oneTx }}>
                 {readOrWriteText}
               </Button>

@@ -10,6 +10,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { packageUtility } from "../package.utility";
 import {
+  fiveTxTwoBgButtonPseudo,
   oneTx,
   oneTxTwoBgButtonPseudo,
   roundBorder,
@@ -106,7 +107,7 @@ export const PackageListItemLayout = ({ item }: any) => {
           disabled={auth.id ? isPending : false}
           loading={auth.id ? isPending : false}
           onClick={readOrWriteHandler}
-          className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}
+          className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}
           loaderProps={{ type: "dots", color: oneTx }}>
           {readOrWriteText}
         </Button>
