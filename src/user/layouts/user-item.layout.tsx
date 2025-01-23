@@ -20,7 +20,6 @@ import {
   roundBorder,
   twoBg,
   noBorder,
-  themeGreenColor,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -111,7 +110,7 @@ export const UserItemLayout = ({ user }: any) => {
                       {user.firstname} {user.lastname}
                     </Title>
 
-                    <Text size="sm" c="dimmed" td="underline">
+                    <Text size="sm" c="dimmed">
                       @{user.username}
                     </Text>
                   </Stack>
@@ -129,7 +128,7 @@ export const UserItemLayout = ({ user }: any) => {
                       <I I={IconStarFilled} />
 
                       {userReviews?.count > 0 ? (
-                        <Text fw={500} c={themeGreenColor} td="underline">
+                        <Text>
                           {globalUtility.formatNumber(userReviews?.count)}{" "}
                           reviews
                         </Text>

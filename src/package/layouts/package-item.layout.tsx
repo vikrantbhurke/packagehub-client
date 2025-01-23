@@ -99,7 +99,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
             </Title>
 
             <Group justify="space-between">
-              <Group justify="start">
+              <Group justify="start" gap="xs">
                 <Rating
                   readOnly
                   fractions={4}
@@ -111,11 +111,11 @@ export const PackageItemLayout = ({ pkg }: any) => {
                   className={roundBorder}
                 />
 
-                <Text c="dimmed">
+                <Text c="dimmed" fz="xs">
                   {globalUtility.formatFloat(pkg.rating)} rating
                 </Text>
 
-                <Text c="dimmed">
+                <Text c="dimmed" fz="xs">
                   {globalUtility.formatNumberWithComma(pkg.reviews)} reviews
                 </Text>
               </Group>
