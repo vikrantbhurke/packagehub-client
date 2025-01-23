@@ -1,4 +1,5 @@
 import { I } from "@/global/components/components";
+import { fiveTx } from "@/global/styles/app.css";
 import { ActionIcon } from "@mantine/core";
 import {
   IconArrowBigDownFilled,
@@ -15,11 +16,11 @@ export const ReviewVoterReadonlyButtonLayout = ({ children }: any) => {
 
   return (
     <>
-      <ActionIcon onClick={handleNavigateToSignIn}>
+      <ActionIcon c={fiveTx} onClick={handleNavigateToSignIn}>
         <I I={IconArrowBigUpFilled} />
       </ActionIcon>
       {children}
-      <ActionIcon onClick={handleNavigateToSignIn}>
+      <ActionIcon c={fiveTx} onClick={handleNavigateToSignIn}>
         <I I={IconArrowBigDownFilled} />
       </ActionIcon>
     </>

@@ -87,6 +87,18 @@ export const oneTxThreeBg = style({
   },
 });
 
+export const fiveTxTwoBg = style({
+  color: fiveTx,
+  backgroundColor: twoBg,
+
+  selectors: {
+    [vars.darkSelector]: {
+      color: fiveTx,
+      backgroundColor: twoBg,
+    },
+  },
+});
+
 export const normalPseudo = style({
   color: oneTx,
 
@@ -227,6 +239,42 @@ export const oneTxThreeBgButtonPseudo = style({
     [`${vars.darkSelector}:focus`]: {
       color: oneTx,
       backgroundColor: fiveBg,
+    },
+  },
+});
+
+export const fiveTxTwoBgButtonPseudo = style({
+  color: fiveTx,
+
+  backgroundColor: twoBg,
+  ":hover": {
+    color: fiveTx,
+    backgroundColor: threeBg,
+  },
+  ":active": {
+    color: fiveTx,
+    backgroundColor: fourBg,
+  },
+  ":focus": {
+    color: fiveTx,
+    backgroundColor: fourBg,
+  },
+  selectors: {
+    [vars.darkSelector]: {
+      color: fiveTx,
+      backgroundColor: twoBg,
+    },
+    [`${vars.darkSelector}:hover`]: {
+      color: fiveTx,
+      backgroundColor: threeBg,
+    },
+    [`${vars.darkSelector}:active`]: {
+      color: fiveTx,
+      backgroundColor: fourBg,
+    },
+    [`${vars.darkSelector}:focus`]: {
+      color: fiveTx,
+      backgroundColor: fourBg,
     },
   },
 });

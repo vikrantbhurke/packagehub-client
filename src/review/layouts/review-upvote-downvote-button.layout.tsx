@@ -6,7 +6,7 @@ import {
 } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
 import { I } from "@/global/components/components";
-import { oneTx } from "@/global/styles/app.css";
+import { fiveTx } from "@/global/styles/app.css";
 
 export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {
   const { auth } = useSelector((state: any) => state.auth);
@@ -33,7 +33,7 @@ export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {
         c={
           review.upvoterIds.find((id: string) => id === auth.id)
             ? "green"
-            : oneTx
+            : fiveTx
         }>
         <I I={IconArrowBigUpFilled} />
       </ActionIcon>
@@ -44,7 +44,7 @@ export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {
         c={
           review.downvoterIds.find((id: string) => id === auth.id)
             ? "red"
-            : oneTx
+            : fiveTx
         }>
         <I I={IconArrowBigDownFilled} />
       </ActionIcon>

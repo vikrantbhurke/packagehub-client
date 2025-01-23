@@ -10,9 +10,9 @@ import {
 } from "@mantine/core";
 import { reviewUtility } from "../review.utility";
 import {
-  fiveBg,
-  oneTxThreeBg,
-  oneTxTwoBgButtonPseudo,
+  fiveTxTwoBg,
+  fiveTxTwoBgButtonPseudo,
+  fourBg,
   roundBorder,
   themeGreenColor,
   threeBg,
@@ -105,10 +105,10 @@ export const ReviewListItemLayout = ({ item }: any) => {
               )}
 
               <Stack gap={0}>
-                <Title order={5}>
+                <Title order={6}>
                   {item.reviewerId.firstname} {item.reviewerId.lastname}
                 </Title>
-                <Text size="sm" c="dimmed" td="underline">
+                <Text size="sm" c="dimmed">
                   @{item.reviewerId.username}
                 </Text>
               </Stack>
@@ -137,7 +137,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
               <Text size="sm">review</Text>
             </Group>
             <Group gap="xs">
-              <Text size="sm" c="dimmed">
+              <Text fz="xs" c="dimmed">
                 {globalUtility.formatDateDistance(item.updatedAt)}
               </Text>
             </Group>
@@ -155,8 +155,8 @@ export const ReviewListItemLayout = ({ item }: any) => {
         </Stack>
 
         <Group>
-          <Group p={6} gap={8} className={`${roundBorder} ${oneTxThreeBg}`}>
-            <Group gap={4} p={4} bg={fiveBg} className={`${roundBorder}`}>
+          <Group p={6} gap={8} className={`${roundBorder} ${fiveTxTwoBg}`}>
+            <Group gap={4} p={4} bg={fourBg} className={`${roundBorder}`}>
               {auth.role === Role.Public ? (
                 <ReviewVoterReadonlyButtonLayout>
                   <Text fw={500}>
@@ -180,14 +180,14 @@ export const ReviewListItemLayout = ({ item }: any) => {
                 fw={500}
                 p="xs"
                 onClick={handleEdit}
-                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
+                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
                 Edit
               </Text>
               <Text
                 fw={500}
                 p="xs"
                 onClick={open}
-                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
+                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
                 Delete
               </Text>
             </Group>

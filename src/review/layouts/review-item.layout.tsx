@@ -7,10 +7,10 @@ import {
   twoBg,
   borderLC,
   noBorder,
-  oneTxThreeBgButtonPseudo,
   fiveBg,
-  oneTxThreeBg,
   themeGreenColor,
+  fiveTxTwoBg,
+  fiveTxTwoBgButtonPseudo,
 } from "@/global/styles/app.css";
 import {
   Avatar,
@@ -117,10 +117,10 @@ export const ReviewItemLayout = ({ review }: any) => {
                   )}
 
                   <Stack gap={0}>
-                    <Title order={5}>
+                    <Title order={6}>
                       {review.reviewerId.firstname} {review.reviewerId.lastname}
                     </Title>
-                    <Text size="sm" c="dimmed" td="underline">
+                    <Text size="sm" c="dimmed">
                       @{review.reviewerId.username}
                     </Text>
                   </Stack>
@@ -148,7 +148,7 @@ export const ReviewItemLayout = ({ review }: any) => {
                   <Text size="sm">review</Text>
                 </Group>
                 <Group gap="xs">
-                  <Text size="sm" c="dimmed">
+                  <Text fz="xs" c="dimmed">
                     {globalUtility.formatDateDistance(review.updatedAt)}
                   </Text>
                 </Group>
@@ -162,7 +162,7 @@ export const ReviewItemLayout = ({ review }: any) => {
             </Stack>
 
             <Group>
-              <Group p={6} gap={8} className={`${roundBorder} ${oneTxThreeBg}`}>
+              <Group p={6} gap={8} className={`${roundBorder} ${fiveTxTwoBg}`}>
                 <Group gap={4} p={4} bg={fiveBg} className={`${roundBorder}`}>
                   {auth.role === Role.Public ? (
                     <ReviewVoterReadonlyButtonLayout>
@@ -187,14 +187,14 @@ export const ReviewItemLayout = ({ review }: any) => {
                     fw={500}
                     p="xs"
                     onClick={handleEdit}
-                    className={`${roundBorder} ${oneTxThreeBgButtonPseudo}`}>
+                    className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
                     Edit
                   </Text>
                   <Text
                     fw={500}
                     p="xs"
                     onClick={open}
-                    className={`${roundBorder} ${oneTxThreeBgButtonPseudo}`}>
+                    className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
                     Delete
                   </Text>
                 </Group>
