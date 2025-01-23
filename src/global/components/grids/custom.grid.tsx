@@ -2,7 +2,7 @@ import { Breakpoint } from "@/global/enums";
 import { useCustomScrollbar } from "@/global/hooks";
 import { oneBg, oneTxOneBg, twoBg } from "@/global/styles/app.css";
 import {
-  getGridItemBorderWithBorder,
+  getGridListItemBorderWithBorder,
   listItemHeight,
 } from "@/global/styles/global.styles";
 import { Box, Center, Grid, Stack, Text } from "@mantine/core";
@@ -75,7 +75,7 @@ export const CustomGrid = ({
     <Box component="div" mx={isMobile ? 0 : 16}>
       <Center
         h={listItemHeight}
-        style={getGridItemBorderWithBorder(isMobile)}
+        style={getGridListItemBorderWithBorder(isMobile)}
         className={oneTxOneBg}>
         <Text>{message}</Text>
       </Center>

@@ -14,12 +14,12 @@ import {
 } from "@tabler/icons-react";
 import {
   borderLC,
-  borderBottom,
   oneBg,
   oneTx,
   oneTxOneBgButtonPseudo,
   roundBorder,
   themeGreenColor,
+  noBorder,
 } from "@/global/styles/app.css";
 import { useState } from "react";
 import { globalUtility } from "@/global/utilities";
@@ -86,7 +86,7 @@ export const ReviewsLayout = () => {
               bg={oneBg}
               justify="space-between"
               gap={0}
-              className={`${isMobile ? borderBottom : `${borderLC} ${roundBorder}`}`}>
+              className={`${isMobile ? noBorder : `${borderLC} ${roundBorder}`}`}>
               <Group gap={3}>
                 <I I={IconFileDescription} />
 

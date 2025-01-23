@@ -1,9 +1,9 @@
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
-import { borderTop, oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/app.css";
 import {
   addBoxShadow,
-  getGridItemBorderWithBorder,
+  getGridListItemBorderWithBorder,
   getPaginationStyles,
   getToproundBorder,
   removeBoxShadow,
@@ -64,7 +64,7 @@ export const CustomList = ({
                   h="100%"
                   bg={oneBg}
                   component="div"
-                  style={getGridItemBorderWithBorder(isMobile)}
+                  style={getGridListItemBorderWithBorder(isMobile)}
                   onMouseEnter={(e) => !isMobile && addBoxShadow(e)}
                   onMouseLeave={(e) => !isMobile && removeBoxShadow(e)}>
                   <ListItemLayout item={item} />
@@ -78,7 +78,6 @@ export const CustomList = ({
       <Center
         mx={isMobile ? 0 : "xs"}
         ref={ref}
-        className={borderTop}
         style={{
           zIndex: 1,
           ...getPaginationStyles(isMobile),
