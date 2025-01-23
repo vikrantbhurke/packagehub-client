@@ -15,7 +15,7 @@ import { configureAxios } from "@/global/networks";
 
 export const queryClient = new QueryClient();
 configureAxios();
-
+// App entry point
 const App = () => {
   return (
     <HelmetProvider>
