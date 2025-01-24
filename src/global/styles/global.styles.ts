@@ -132,6 +132,14 @@ export const wordBreakWhiteSpace = {
   wordBreak: "break-word" as const,
 };
 
+export const stringTruncate = {
+  display: "inline-block",
+  maxWidth: "20ch",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
+};
+
 export const getFormTextInput = (isFocused: boolean) => ({
   input: {
     padding: "1rem",

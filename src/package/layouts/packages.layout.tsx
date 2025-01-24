@@ -3,6 +3,7 @@ import {
   headerHeight,
   mainContentWidth,
   responsiveBreakpoint,
+  stringTruncate,
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import { ActionIcon, Container, Group, Stack, Text } from "@mantine/core";
@@ -68,7 +69,7 @@ export const PackagesLayout = () => {
             </Group>
 
             <Group gap={4}>
-              <Text fw={500} c={themeGreenColor}>
+              <Text fw={500} c={themeGreenColor} style={stringTruncate}>
                 {isSearchingPackages ? search : platform}
               </Text>
 

@@ -3,6 +3,7 @@ import {
   headerHeight,
   mainContentWidth,
   responsiveBreakpoint,
+  stringTruncate,
   subheaderHeight,
 } from "@/global/styles/global.styles";
 import { ActionIcon, Container, Group, Stack, Text } from "@mantine/core";
@@ -98,11 +99,15 @@ export const ReviewsLayout = () => {
 
               <Group gap={4} onClick={handleNavigateToPackageOrUser}>
                 {isSearchingReviews ? (
-                  <Text fw={500} c={themeGreenColor}>
+                  <Text fw={500} c={themeGreenColor} style={stringTruncate}>
                     {search}
                   </Text>
                 ) : (
-                  <Text fw={500} c={themeGreenColor} td="underline">
+                  <Text
+                    fw={500}
+                    c={themeGreenColor}
+                    td="underline"
+                    style={stringTruncate}>
                     {pkg?.name} {user?.username && `@${user.username}`}
                   </Text>
                 )}
