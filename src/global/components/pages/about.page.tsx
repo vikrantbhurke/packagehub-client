@@ -1,7 +1,7 @@
 import { oneBg, threeTx, twoBg } from "@/global/styles/app.css";
 import { Center, Divider, ScrollArea, Stack, Text, Title } from "@mantine/core";
 import { SeoComponent } from "../components";
-import { mainContentWidth } from "@/global/styles/global.styles";
+import { aboutContentWidth } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
@@ -17,19 +17,20 @@ export const AboutPage = () => {
 
       <ScrollArea scrollbarSize={2}>
         <Center>
-          <Stack p="md" gap="lg" maw={mainContentWidth}>
+          <Stack p="md" gap="lg" maw={aboutContentWidth}>
             <Center>
               <Title order={2}>About</Title>
             </Center>
 
             <Text>
-              Welcome to QoolQuotes, a creative platform designed for quote
-              enthusiasts and aspiring curators of inspiration. Our app allows
-              users to explore, organize, and share their favorite quotes with a
-              seamless and personalized experience. Whether you’re seeking daily
-              motivation, curating your thoughts, or simply connecting with
-              others who share your love for profound words, our app is the
-              perfect tool for you.
+              Welcome to PackageHub, the ultimate destination for developers,
+              tech enthusiasts, and open-source aficionados! Our platform
+              empowers users to discover, evaluate, and share their experiences
+              with open-source packages from a wide range of registries. Whether
+              you’re hunting for the perfect library, sharing your insights, or
+              simply exploring the vast ecosystem of open-source tools,
+              PackageHub is your go-to hub for informed decisions and
+              community-driven recommendations.
             </Text>
 
             <Center>
@@ -39,73 +40,44 @@ export const AboutPage = () => {
             <Title order={4}>Discover and Explore</Title>
 
             <Stack gap={0}>
-              <Title order={5}>1. Browse Quotes by Author or Topic</Title>
+              <Title order={5}>1. Search Across Multiple Registries</Title>
               <Text>
-                Easily find quotes by your favorite authors or dive into
-                specific topics that resonate with your current mood or
-                interests.
+                Find packages seamlessly from registries like Npm, PyPI, Maven,
+                RubyGems, Crates, Go, NuGet, and Packagist.
               </Text>
             </Stack>
 
             <Stack gap={0}>
-              <Title order={5}>2. Search and Filter</Title>
+              <Title order={5}>2. Filter and Sort Packages</Title>
               <Text>
-                Use our intuitive search and filter options to quickly locate
-                quotes that speak to you.
+                Easily browse reviews and packages by highest rating, most
+                helpful feedback, or recency.
               </Text>
             </Stack>
 
-            <Title order={4}>Create and Personalize Playlists</Title>
+            <Title order={4}>Rate and Review</Title>
 
             <Stack gap={0}>
-              <Title order={5}>3. Build Your Playlists</Title>
+              <Title order={5}>3. Give Star Ratings</Title>
               <Text>
-                Create themed playlists by adding your favorite quotes, giving
-                each collection a unique name and identity.
-              </Text>
-            </Stack>
-
-            <Stack gap={0}>
-              <Title order={5}>4. Clone and Customize</Title>
-              <Text>
-                Found a playlist you adore? Clone it and make it your own by
-                adding or removing quotes.
+                Rate packages based on your experience, helping others quickly
+                identify high-quality tools.
               </Text>
             </Stack>
 
             <Stack gap={0}>
-              <Title order={5}>5. Save and Organize</Title>
+              <Title order={5}>4. Write Detailed Reviews</Title>
               <Text>
-                Save playlists for future inspiration or easy access to your
-                favorite collections.
-              </Text>
-            </Stack>
-
-            <Title order={4}>Connect and Share</Title>
-
-            <Stack gap={0}>
-              <Title order={5}>6. Like and Appreciate</Title>
-              <Text>
-                Show your support by liking quotes and playlists, helping great
-                content rise to prominence.
+                Share your insights, use cases, and opinions to guide the
+                community in making informed choices.
               </Text>
             </Stack>
 
             <Stack gap={0}>
-              <Title order={5}>7. Share with the World</Title>
+              <Title order={5}>5. Upvote or Downvote Reviews</Title>
               <Text>
-                Share your curated playlists with friends, family, or a wider
-                audience through social media or direct links.
-              </Text>
-            </Stack>
-
-            <Title order={4}>Customize Your Experience</Title>
-
-            <Stack gap={0}>
-              <Title order={5}>8. Switch Between Light and Dark Modes</Title>
-              <Text>
-                Optimize for comfort with a simple toggle between light and dark
-                themes.
+                Engage with the community by supporting helpful reviews or
+                flagging less relevant ones.
               </Text>
             </Stack>
 
@@ -113,30 +85,29 @@ export const AboutPage = () => {
               <Title order={3}>Why Choose Our App?</Title>
             </Center>
 
-            <Title order={4}>Seamless User Experience</Title>
+            <Title order={4}>Comprehensive Coverage</Title>
 
             <Text>
-              Our app is designed with you in mind, offering a sleek,
-              user-friendly interface that works flawlessly across devices. As a
-              Progressive Web App (PWA), it provides the convenience of
-              accessing your favorite features on the go, whether you're using
-              your phone, tablet, or desktop.
+              With support for multiple registries, PackageHub offers an
+              unparalleled breadth of open-source package discovery.
             </Text>
 
-            <Title order={4}>Community-Centered</Title>
+            <Title order={4}>Community-Driven Insights</Title>
 
             <Text>
-              Join a community of quote lovers! Share your curated playlists,
-              discover hidden gems from others, and connect through shared
-              inspiration.
+              Benefit from honest, insightful reviews and ratings from
+              developers like you who’ve worked with these tools.
             </Text>
 
-            <Title order={4}>Built for Flexibility</Title>
+            <Title order={4}>Built by Developers, for Developers</Title>
 
             <Text>
-              Whether you’re creating a personal archive of favorite quotes or
-              sharing playlists to inspire others, our app gives you the tools
-              to express yourself and spread positivity.
+              We understand your needs because we’re developers too. From
+              searching for the right library to sharing your thoughts,
+              PackageHub is designed to make your journey smooth, insightful,
+              and impactful. Join PackageHub today and become part of a global
+              community transforming how we discover, review, and connect with
+              open-source software!
             </Text>
 
             <Divider my="xs" />
