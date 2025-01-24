@@ -156,7 +156,7 @@ export const ReviewItemLayout = ({ review }: any) => {
             </Stack>
 
             <Stack gap="xs">
-              <Title order={5}>{review.title}</Title>
+              <Title order={6}>{review.title}</Title>
 
               <Text size="sm">{review.body}</Text>
             </Stack>

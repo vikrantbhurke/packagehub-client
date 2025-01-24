@@ -145,7 +145,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
         </Stack>
 
         <Stack onClick={handleReview} gap="xs">
-          <Title order={5} td="underline">
+          <Title order={6} td="underline">
             {item.title}
           </Title>
 

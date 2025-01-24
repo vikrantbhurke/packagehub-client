@@ -93,7 +93,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
           className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
           <Stack gap="xs">
             <Title
-              order={5}
+              order={6}
               td="underline"
               onClick={handleNavigateToReviewsByPackageId}>
               {pkg.name}

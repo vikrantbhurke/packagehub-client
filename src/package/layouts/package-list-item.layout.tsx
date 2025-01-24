@@ -74,7 +74,7 @@ export const PackageListItemLayout = ({ item }: any) => {
   return (
     <Stack p="md" gap="xs">
       <Title
-        order={5}
+        order={6}
         td="underline"
         onClick={handleNavigateToReviewsByPackageId}>
         {item.name}
