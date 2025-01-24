@@ -28,6 +28,7 @@ import { packageUtility } from "../package.utility";
 import { globalUtility } from "@/global/utilities";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
+import { wordBreakWhiteSpace } from "@/global/styles/global.styles";
 
 export const PackageItemLayout = ({ pkg }: any) => {
   const navigate = useNavigate();
@@ -142,6 +143,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
                 className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
                 Home :{" "}
                 <Anchor
+                  style={wordBreakWhiteSpace}
                   target="_blank"
                   href={pkg.homepageUrl}
                   size="sm"
@@ -154,6 +156,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
             <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
               Registry :{" "}
               <Anchor
+                style={wordBreakWhiteSpace}
                 target="_blank"
                 href={pkg.packageUrl}
                 size="sm"

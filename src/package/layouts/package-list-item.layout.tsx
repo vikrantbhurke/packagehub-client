@@ -23,6 +23,7 @@ import { RootState } from "@/global/states/store";
 import { useGetReviewByPackageIdAndReviewerId } from "@/review/hooks/read";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
+import { wordBreakWhiteSpace } from "@/global/styles/global.styles";
 
 export const PackageListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -119,6 +120,7 @@ export const PackageListItemLayout = ({ item }: any) => {
         <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
           Home :{" "}
           <Anchor
+            style={wordBreakWhiteSpace}
             target="_blank"
             href={item.homepageUrl}
             size="sm"
@@ -131,6 +133,7 @@ export const PackageListItemLayout = ({ item }: any) => {
       <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
         Registry :{" "}
         <Anchor
+          style={wordBreakWhiteSpace}
           target="_blank"
           href={item.packageUrl}
           size="sm"

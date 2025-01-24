@@ -32,7 +32,10 @@ import {
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
 import { setPage as setPackagePage } from "../package.slice";
-import { responsiveBreakpoint } from "@/global/styles/global.styles";
+import {
+  responsiveBreakpoint,
+  wordBreakWhiteSpace,
+} from "@/global/styles/global.styles";
 import { I } from "@/global/components/components";
 
 export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
@@ -204,7 +207,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   };
 
   const tooltipMessage = (
-    <div style={{ whiteSpace: "normal", wordBreak: "break-word" }}>
+    <div style={wordBreakWhiteSpace}>
       Use the exact URL endpoint format of the package in its registry link. For
       example - {packageUtility.getTooltipMessage(platform)}
     </div>
@@ -232,6 +235,9 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   return (
     <>
       <TextInput
+        autoCapitalize="off"
+        autoCorrect="off"
+        autoComplete="off"
         label={comboboxLabel}
         classNames={{
           input: `${inputStyles} ${borderHC} ${circularBorder}`,

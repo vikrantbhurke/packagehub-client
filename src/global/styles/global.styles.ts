@@ -127,6 +127,11 @@ export const modalOverlayProps = {
   blur: 3,
 };
 
+export const wordBreakWhiteSpace = {
+  whiteSpace: "normal",
+  wordBreak: "break-word" as const,
+};
+
 export const getFormTextInput = (isFocused: boolean) => ({
   input: {
     padding: "1rem",

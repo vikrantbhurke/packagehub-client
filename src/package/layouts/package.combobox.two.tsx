@@ -220,6 +220,9 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
       <Combobox.Target>
         <Center w="100vw">
           <TextInput
+            autoCapitalize="off"
+            autoCorrect="off"
+            autoComplete="off"
             ref={inputRef}
             classNames={{
               input: `${inputStyles} ${borderLC} ${circularBorder}`,
