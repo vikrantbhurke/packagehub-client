@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { Fragment, useRef } from "react";
-import { getComboboxStyles } from "@/global/styles/global.styles";
+import { getSchemeStyles } from "@/global/styles/global.styles";
 
 export const CustomModalList = ({
   page,
@@ -19,7 +19,7 @@ export const CustomModalList = ({
 }: any) => {
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
-  const { optionBg, dropdownBg } = getComboboxStyles(colorScheme);
+  const { optionBg, dropdownBg } = getSchemeStyles(colorScheme);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const handlePage = (page: number) => {

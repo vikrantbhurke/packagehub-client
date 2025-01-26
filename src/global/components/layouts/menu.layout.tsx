@@ -1,17 +1,26 @@
 import { RootState } from "@/global/states/store";
 import {
-  oneBg,
-  oneTxOneBgButtonPseudo,
+  borderShadow,
+  noBorder,
   themeGreenColor,
 } from "@/global/styles/app.css";
-import { Avatar, Burger, Menu, Text } from "@mantine/core";
+import {
+  Avatar,
+  Burger,
+  Menu,
+  Text,
+  useMantineColorScheme,
+} from "@mantine/core";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { responsiveBreakpoint } from "@/global/styles/global.styles";
+import {
+  getSchemeButtonStyles,
+  getSchemeStyles,
+  responsiveBreakpoint,
+} from "@/global/styles/global.styles";
 import { useInstallApp } from "@/global/hooks";
-import { borderLC } from "@/global/styles/app.css";
 import {
   IconArticle,
   IconBox,
@@ -36,6 +45,9 @@ export const MenuLayout = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const [opened, { open, close }] = useDisclosure();
   const { userReviews } = useCountUserReviews(auth.id);
+  const { colorScheme } = useMantineColorScheme();
+  const { schemeButtonBg } = getSchemeButtonStyles(colorScheme);
+  const { dropdownBg } = getSchemeStyles(colorScheme);
 
   const {
     platform,
@@ -105,13 +117,15 @@ export const MenuLayout = () => {
           </Menu.Target>
         )}
 
-        <Menu.Dropdown bg={oneBg} className={borderLC}>
+        <Menu.Dropdown
+          bg={dropdownBg}
+          className={`${noBorder} ${borderShadow}`}>
           {!isInstalled && installPrompt && (
             <Menu.Item
               onClick={handleInstallClick}
               p="xs"
               c={themeGreenColor}
-              className={oneTxOneBgButtonPseudo}
+              className={schemeButtonBg}
               leftSection={<I I={IconDownload} />}
               hiddenFrom={responsiveBreakpoint}>
               <Text size="sm" c={themeGreenColor}>
@@ -123,7 +137,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToHome}
             p="xs"
-            className={oneTxOneBgButtonPseudo}
+            className={schemeButtonBg}
             leftSection={<I I={IconStar} />}
             hiddenFrom={responsiveBreakpoint}>
             <Text size="sm">Home</Text>
@@ -132,7 +146,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToPlatformPackages}
             p="xs"
-            className={oneTxOneBgButtonPseudo}
+            className={schemeButtonBg}
             leftSection={<I I={IconBox} />}
             hiddenFrom={responsiveBreakpoint}>
             <Text size="sm">Packages</Text>
@@ -143,7 +157,7 @@ export const MenuLayout = () => {
               <Menu.Item
                 onClick={handleNavigateToUserReviews}
                 p="xs"
-                className={oneTxOneBgButtonPseudo}
+                className={schemeButtonBg}
                 leftSection={<I I={IconArticle} />}>
                 <Text size="sm">My Reviews</Text>
               </Menu.Item>
@@ -154,7 +168,7 @@ export const MenuLayout = () => {
             <Menu.Item
               onClick={handleNavigateToUser}
               p="xs"
-              className={oneTxOneBgButtonPseudo}
+              className={schemeButtonBg}
               leftSection={<I I={IconUser} />}>
               <Text size="sm">Profile</Text>
             </Menu.Item>
@@ -163,7 +177,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToAbout}
             p="xs"
-            className={oneTxOneBgButtonPseudo}
+            className={schemeButtonBg}
             leftSection={<I I={IconInfoCircle} />}>
             <Text size="sm">About</Text>
           </Menu.Item>
@@ -171,7 +185,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleContact}
             p="xs"
-            className={oneTxOneBgButtonPseudo}
+            className={schemeButtonBg}
             leftSection={<I I={IconMessage} />}>
             <Text size="sm">Contact</Text>
           </Menu.Item>

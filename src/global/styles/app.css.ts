@@ -303,6 +303,10 @@ export const borderRight = style({
   borderRight: borderLCBorder,
 });
 
+export const borderShadow = style({
+  boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
+});
+
 export const borderTopShadow = style({
   borderTop: borderLCBorder,
   boxShadow: `0px -2px 4px rgba(0, 0, 0, 0.1)`,

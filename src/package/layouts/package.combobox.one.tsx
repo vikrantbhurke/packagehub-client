@@ -9,6 +9,7 @@ import {
   TextInput,
   Tooltip,
   useCombobox,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { setSearch } from "@/global/states/view.slice";
@@ -21,18 +22,18 @@ import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { globalUtility } from "@/global/utilities";
 import {
   borderHC,
+  borderShadow,
   circularBorder,
   inputStyles,
   noBorder,
-  oneBg,
   oneTx,
   roundBorder,
   themeGreenColor,
-  threeBg,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
 import { setPage as setPackagePage } from "../package.slice";
 import {
+  getSchemeStyles,
   responsiveBreakpoint,
   wordBreakWhiteSpace,
 } from "@/global/styles/global.styles";
@@ -42,6 +43,8 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [, scrollTo] = useWindowScroll();
+  const { colorScheme } = useMantineColorScheme();
+  const { dropdownBg } = getSchemeStyles(colorScheme);
 
   const { isMobile, search } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -218,7 +221,8 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
       <Tooltip
         c={oneTx}
         p="md"
-        bg={threeBg}
+        bg={dropdownBg}
+        className={`${borderShadow} ${roundBorder}`}
         events={{ hover: true, focus: true, touch: true }}
         multiline
         maw={400}
@@ -278,7 +282,9 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
           />
         </Combobox.Target>
 
-        <Combobox.Dropdown bg={oneBg}>
+        <Combobox.Dropdown
+          bg={dropdownBg}
+          className={`${noBorder} ${borderShadow} ${roundBorder}`}>
           <Combobox.Options>
             {registryPackage && (
               <Combobox.Group label="Package Registry">

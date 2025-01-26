@@ -1,7 +1,7 @@
 import { setFocusedInput } from "@/global/states/view.slice";
-import { borderLC } from "@/global/styles/app.css";
+import { borderShadow, noBorder } from "@/global/styles/app.css";
 import {
-  getComboboxStyles,
+  getSchemeStyles,
   getComboboxTextInputForPagination,
 } from "@/global/styles/global.styles";
 import {
@@ -26,7 +26,7 @@ export const CustomNumberCombobox = ({
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getComboboxStyles(colorScheme);
+  const { dropdownBg } = getSchemeStyles(colorScheme);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -66,7 +66,11 @@ export const CustomNumberCombobox = ({
         />
       </Combobox.Target>
 
-      <Combobox.Dropdown miw={60} className={borderLC} p={3} bg={dropdownBg}>
+      <Combobox.Dropdown
+        miw={60}
+        className={`${noBorder} ${borderShadow}`}
+        p={3}
+        bg={dropdownBg}>
         <Combobox.Options>
           <ScrollArea
             h={totalPages === 1 ? 45 : totalPages === 2 ? 90 : 110}

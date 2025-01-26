@@ -6,6 +6,9 @@ import {
   borderLCBorder,
   borderHCBorder,
   themeGreenBorder,
+  noBorder,
+  oneTxThreeBgButtonPseudo,
+  oneTxOneBgButtonPseudo,
 } from "./app.css";
 
 export const mainContentWidth = 1000;
@@ -23,9 +26,14 @@ export const responsiveBreakpoint = "md";
 export const getListButtonHeight = (isMobile: boolean) =>
   isMobile ? largeButtonHeight : smallButtonHeight;
 
-export const getComboboxStyles = (colorScheme: string) => ({
+export const getSchemeStyles = (colorScheme: string) => ({
   optionBg: colorScheme === "dark" ? twoBg : oneBg,
-  dropdownBg: colorScheme === "dark" ? oneBg : twoBg,
+  dropdownBg: colorScheme === "dark" ? threeBg : oneBg,
+});
+
+export const getSchemeButtonStyles = (colorScheme: string) => ({
+  schemeButtonBg:
+    colorScheme === "dark" ? oneTxThreeBgButtonPseudo : oneTxOneBgButtonPseudo,
 });
 
 // Component Styles
@@ -113,7 +121,11 @@ export const removeBoxShadow = (e: any) => {
 };
 
 export const modal = {
-  content: { backgroundColor: `${oneBg}`, border: borderLCBorder },
+  content: {
+    backgroundColor: `${oneBg}`,
+    border: noBorder,
+    borderRadius: 10,
+  },
   header: { backgroundColor: `${oneBg}` },
   title: {
     textAlign: "center" as const,

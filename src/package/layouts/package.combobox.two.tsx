@@ -14,14 +14,16 @@ import {
   Text,
   TextInput,
   useCombobox,
+  useMantineColorScheme,
 } from "@mantine/core";
 import { IconStarFilled, IconX } from "@tabler/icons-react";
 import { globalUtility } from "@/global/utilities";
 import {
   borderLC,
+  borderShadow,
   circularBorder,
   inputStyles,
-  oneBg,
+  noBorder,
   oneTx,
   roundBorder,
   themeGreenColor,
@@ -30,7 +32,10 @@ import { packageUtility } from "../package.utility";
 import { useWindowScroll } from "@mantine/hooks";
 import { setPage as setPackagePage } from "../package.slice";
 import { RootState } from "@/global/states/store";
-import { getSearchTextInput } from "@/global/styles/global.styles";
+import {
+  getSchemeStyles,
+  getSearchTextInput,
+} from "@/global/styles/global.styles";
 import { useEffect, useRef } from "react";
 import { I } from "@/global/components/components";
 
@@ -39,6 +44,8 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   const navigate = useNavigate();
   const inputRef = useRef<any>(null);
   const [, scrollTo] = useWindowScroll();
+  const { colorScheme } = useMantineColorScheme();
+  const { dropdownBg } = getSchemeStyles(colorScheme);
 
   const { auth } = useSelector((state: any) => state.auth);
 
@@ -256,7 +263,9 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
         </Center>
       </Combobox.Target>
 
-      <Combobox.Dropdown bg={oneBg}>
+      <Combobox.Dropdown
+        bg={dropdownBg}
+        className={`${noBorder} ${borderShadow} ${roundBorder}`}>
         <Combobox.Options>
           {registryPackage && (
             <Combobox.Group label="Package Registry">
