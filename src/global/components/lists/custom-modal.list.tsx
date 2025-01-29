@@ -1,4 +1,4 @@
-import { roundBorder } from "@/global/styles/app.css";
+import { roundBorderStyle } from "@/global/styles/app.css";
 import {
   Group,
   Pagination,
@@ -8,7 +8,7 @@ import {
 } from "@mantine/core";
 import { useDispatch } from "react-redux";
 import { Fragment, useRef } from "react";
-import { getSchemeStyles } from "@/global/styles/global.styles";
+import { getDropdownStyles } from "@/global/styles/global.styles";
 
 export const CustomModalList = ({
   page,
@@ -19,7 +19,7 @@ export const CustomModalList = ({
 }: any) => {
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
-  const { optionBg, dropdownBg } = getSchemeStyles(colorScheme);
+  const { optionBg, dropdownBg } = getDropdownStyles(colorScheme);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
   const handlePage = (page: number) => {
@@ -43,7 +43,7 @@ export const CustomModalList = ({
       p={3}
       h={200}
       bg={dropdownBg}
-      className={roundBorder}
+      className={roundBorderStyle}
       justify="space-between">
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Stack gap={3}>

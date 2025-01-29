@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { borderTopShadow, oneBg } from "@/global/styles/app.css";
+import { oneBg } from "@/global/styles/app.css";
 import {
   Box,
   Center,
@@ -11,7 +11,7 @@ import {
   ScrollArea,
   Stack,
 } from "@mantine/core";
-import { subheaderHeight } from "@/global/styles/global.styles";
+import { layoutCompHeight } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
@@ -78,7 +78,7 @@ export const MantineGrid = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px - ${isMobile ? 50 : 90}px)`}
+      h={`calc(100% - ${layoutCompHeight}px - ${isMobile ? 50 : 90}px)`}
       bg={gridBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Grid grow justify="center" gutter={0} p={isMobile ? 0 : p}>
@@ -105,11 +105,7 @@ export const MantineGrid = ({
         </Grid>
       </ScrollArea>
 
-      <Center
-        ref={ref}
-        className={borderTopShadow}
-        bg={oneBg}
-        style={{ zIndex: 1 }}>
+      <Center ref={ref} bg={oneBg} style={{ zIndex: 1 }}>
         <Group gap={0} align="center">
           <CustomNumberCombobox
             data={Array.from({ length: totalPages }, (_, i) => i + 1)}

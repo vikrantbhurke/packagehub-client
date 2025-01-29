@@ -1,6 +1,6 @@
 import { notifications } from "@mantine/notifications";
 import { NotificationColor } from "../enums/notification-color.enum";
-import { noBorder } from "../styles/app.css";
+import { noBorderStyle } from "../styles/app.css";
 
 export const useNotification = () => {
   const showNotification = (title: string, color: NotificationColor) => {
@@ -17,7 +17,7 @@ export const useNotification = () => {
       },
       style: {
         backgroundColor: color,
-        border: noBorder,
+        border: noBorderStyle,
       },
       autoClose: 5000,
     });

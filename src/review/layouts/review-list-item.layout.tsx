@@ -6,16 +6,15 @@ import {
   Rating,
   Stack,
   Text,
-  Title,
 } from "@mantine/core";
 import { reviewUtility } from "../review.utility";
 import {
-  fiveBg,
-  fiveTxTwoBg,
-  fiveTxTwoBgButtonPseudo,
-  roundBorder,
+  roundBorderStyle,
   themeGreenColor,
   threeBg,
+  oneTxGreenBgButtonPseudoStyle,
+  themeTxStyle,
+  oneTxGreenTwoBgButtonPseudoStyle,
 } from "@/global/styles/app.css";
 import { globalUtility } from "@/global/utilities";
 import { RootState } from "@/global/states/store";
@@ -23,7 +22,12 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { useDeleteReviewById } from "../hooks/delete";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+  textBolder,
+} from "@/global/styles/global.styles";
 import { IconTrash } from "@tabler/icons-react";
 import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
 import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
@@ -105,9 +109,9 @@ export const ReviewListItemLayout = ({ item }: any) => {
               )}
 
               <Stack gap={0}>
-                <Title order={6}>
+                <Text fw={textBolder} className={themeTxStyle}>
                   {item.reviewerId.firstname} {item.reviewerId.lastname}
-                </Title>
+                </Text>
                 <Text size="sm" c="dimmed">
                   @{item.reviewerId.username}
                 </Text>
@@ -121,7 +125,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
               bg={threeBg}
               size="xs"
               p="xs"
-              className={roundBorder}
+              className={roundBorderStyle}
             />
           </Group>
 
@@ -145,49 +149,58 @@ export const ReviewListItemLayout = ({ item }: any) => {
         </Stack>
 
         <Stack onClick={handleReview} gap="xs">
-          <Title order={6} td="underline">
+          <Text fw={textBolder} td="underline" className={themeTxStyle}>
             {item.title}
-          </Title>
+          </Text>
 
-          <Text lineClamp={3} size={isMobile ? "sm" : "md"}>
+          <Text
+            lineClamp={3}
+            size={isMobile ? "sm" : "md"}
+            className={themeTxStyle}>
             {item.body}
           </Text>
         </Stack>
 
         <Group>
-          <Group p={6} gap={8} className={`${roundBorder} ${fiveTxTwoBg}`}>
-            <Group gap={4} p={4} bg={fiveBg} className={`${roundBorder}`}>
+          <Group
+            p={6}
+            gap={8}
+            className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+            <Group
+              p={4}
+              gap={4}
+              className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
               {auth.role === Role.Public ? (
                 <ReviewVoterReadonlyButtonLayout>
-                  <Text fw={500}>
+                  <Text fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
                 </ReviewVoterReadonlyButtonLayout>
               ) : (
                 <ReviewUpvoteDownvoteButtonLayout review={item}>
-                  <Text fw={500}>
+                  <Text fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
                 </ReviewUpvoteDownvoteButtonLayout>
               )}
             </Group>
-            <Text fw={500}>Votes</Text>
+            <Text fw={textBold}>Votes</Text>
           </Group>
 
           {item.reviewerId._id === auth.id && (
             <Group>
               <Text
-                fw={500}
+                fw={textBold}
                 p="xs"
                 onClick={handleEdit}
-                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
+                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
                 Edit
               </Text>
               <Text
-                fw={500}
+                fw={textBold}
                 p="xs"
                 onClick={open}
-                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
+                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
                 Delete
               </Text>
             </Group>

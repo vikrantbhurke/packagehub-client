@@ -14,20 +14,38 @@ export const fiveBg = "var(--quinary-background)";
 export const borderLCColor = "var(--border-low-contrast)";
 export const borderHCColor = "var(--border-high-contrast)";
 export const themeGreenColor = "var(--theme-green)";
+export const themeLightGreenOneBg = "var(--theme-light-green-one-bg)";
+export const themeLightGreenTwoBg = "var(--theme-light-green-two-bg)";
 
+export const LCBorder = `1px solid ${borderLCColor}`;
+export const HCBorder = `2px solid ${borderHCColor}`;
 export const themeGreenBorder = `2px solid ${themeGreenColor}`;
-export const borderLCBorder = `1px solid ${borderLCColor}`;
-export const borderHCBorder = `2px solid ${borderHCColor}`;
 
-export const noBorder = style({
+export const inputStyle = style({
+  color: oneTx,
+  backgroundColor: oneBg,
+  fontFamily: "Inter",
+
+  "::placeholder": {
+    color: "gray",
+    fontSize: "11px",
+    fontFamily: "Inter",
+  },
+});
+
+export const interFontStyle = style({
+  fontFamily: "Inter",
+});
+
+export const noBorderStyle = style({
   border: "none",
 });
 
-export const roundBorder = style({
+export const roundBorderStyle = style({
   borderRadius: vars.radius.md,
 });
 
-export const circularBorder = style({
+export const circularBorderStyle = style({
   borderRadius: vars.radius.xl,
 
   ":hover": {
@@ -41,19 +59,10 @@ export const circularBorder = style({
   },
 });
 
-export const inputStyles = style({
+export const oneTxOneBgStyle = style({
   color: oneTx,
   backgroundColor: oneBg,
-
-  "::placeholder": {
-    color: "gray",
-    fontSize: "12px",
-  },
-});
-
-export const oneTxOneBg = style({
-  color: oneTx,
-  backgroundColor: oneBg,
+  fontFamily: "Inter",
 
   selectors: {
     [vars.darkSelector]: {
@@ -63,9 +72,10 @@ export const oneTxOneBg = style({
   },
 });
 
-export const oneTxTwoBg = style({
+export const oneTxTwoBgStyle = style({
   color: oneTx,
   backgroundColor: twoBg,
+  fontFamily: "Inter",
 
   selectors: {
     [vars.darkSelector]: {
@@ -75,34 +85,144 @@ export const oneTxTwoBg = style({
   },
 });
 
-export const oneTxThreeBg = style({
+export const themeTxStyle = style({
   color: oneTx,
-  backgroundColor: threeBg,
+  fontFamily: "Inter",
+  transition: "color 0.2s ease-in-out",
+
+  ":hover": {
+    color: themeGreenColor,
+  },
+  ":active": {
+    color: themeGreenColor,
+  },
+  ":focus": {
+    color: themeGreenColor,
+  },
+});
+
+export const oneTxGreenBgMenuButtonPseudoStyle = style({
+  color: oneTx,
+  backgroundColor: oneBg,
+  transition: "background-color 0.2s ease-in-out",
+  fontFamily: "Inter",
+
+  ":hover": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
+  ":active": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
+  ":focus": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
 
   selectors: {
     [vars.darkSelector]: {
       color: oneTx,
       backgroundColor: threeBg,
     },
-  },
-});
-
-export const fiveTxTwoBg = style({
-  color: fiveTx,
-  backgroundColor: twoBg,
-
-  selectors: {
-    [vars.darkSelector]: {
-      color: fiveTx,
-      backgroundColor: twoBg,
+    [`${vars.darkSelector}:hover`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
+    },
+    [`${vars.darkSelector}:active`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
+    },
+    [`${vars.darkSelector}:focus`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
     },
   },
 });
 
-export const normalPseudo = style({
+export const oneTxGreenBgButtonPseudoStyle = style({
   color: oneTx,
+  backgroundColor: twoBg,
+  transition: "background-color 0.2s ease-in-out",
+  fontFamily: "Inter",
 
+  ":hover": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
+  ":active": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
+  ":focus": {
+    color: oneTx,
+    backgroundColor: themeLightGreenOneBg,
+  },
+
+  selectors: {
+    [vars.darkSelector]: {
+      color: oneTx,
+      backgroundColor: twoBg,
+    },
+    [`${vars.darkSelector}:hover`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
+    },
+    [`${vars.darkSelector}:active`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
+    },
+    [`${vars.darkSelector}:focus`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenOneBg,
+    },
+  },
+});
+
+export const oneTxGreenTwoBgButtonPseudoStyle = style({
+  color: oneTx,
+  backgroundColor: fiveBg,
+  transition: "background-color 0.2s ease-in-out",
+  fontFamily: "Inter",
+
+  ":hover": {
+    color: oneTx,
+    backgroundColor: themeLightGreenTwoBg,
+  },
+  ":active": {
+    color: oneTx,
+    backgroundColor: themeLightGreenTwoBg,
+  },
+  ":focus": {
+    color: oneTx,
+    backgroundColor: themeLightGreenTwoBg,
+  },
+
+  selectors: {
+    [vars.darkSelector]: {
+      color: oneTx,
+      backgroundColor: fiveBg,
+    },
+    [`${vars.darkSelector}:hover`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenTwoBg,
+    },
+    [`${vars.darkSelector}:active`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenTwoBg,
+    },
+    [`${vars.darkSelector}:focus`]: {
+      color: oneTx,
+      backgroundColor: themeLightGreenTwoBg,
+    },
+  },
+});
+
+export const oneTxOneBgButtonPseudoStyle = style({
+  color: oneTx,
   backgroundColor: oneBg,
+  fontFamily: "Inter",
+
   ":hover": {
     color: oneTx,
     backgroundColor: twoBg,
@@ -135,82 +255,11 @@ export const normalPseudo = style({
   },
 });
 
-export const oneTxOneBgButtonPseudo = style({
+export const oneTxThreeBgButtonPseudoStyle = style({
   color: oneTx,
-
-  backgroundColor: oneBg,
-  ":hover": {
-    color: oneTx,
-    backgroundColor: twoBg,
-  },
-  ":active": {
-    color: oneTx,
-    backgroundColor: threeBg,
-  },
-  ":focus": {
-    color: oneTx,
-    backgroundColor: threeBg,
-  },
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: oneBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
-      backgroundColor: twoBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: oneTx,
-      backgroundColor: threeBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
-      backgroundColor: threeBg,
-    },
-  },
-});
-
-export const oneTxTwoBgButtonPseudo = style({
-  color: oneTx,
-
-  backgroundColor: twoBg,
-  ":hover": {
-    color: oneTx,
-    backgroundColor: threeBg,
-  },
-  ":active": {
-    color: oneTx,
-    backgroundColor: fourBg,
-  },
-  ":focus": {
-    color: oneTx,
-    backgroundColor: fourBg,
-  },
-  selectors: {
-    [vars.darkSelector]: {
-      color: oneTx,
-      backgroundColor: twoBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: oneTx,
-      backgroundColor: threeBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: oneTx,
-      backgroundColor: fourBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: oneTx,
-      backgroundColor: fourBg,
-    },
-  },
-});
-
-export const oneTxThreeBgButtonPseudo = style({
-  color: oneTx,
-
   backgroundColor: threeBg,
+  fontFamily: "Inter",
+
   ":hover": {
     color: oneTx,
     backgroundColor: fourBg,
@@ -243,86 +292,38 @@ export const oneTxThreeBgButtonPseudo = style({
   },
 });
 
-export const fiveTxTwoBgButtonPseudo = style({
-  color: fiveTx,
-
-  backgroundColor: twoBg,
-  ":hover": {
-    color: fiveTx,
-    backgroundColor: threeBg,
-  },
-  ":active": {
-    color: fiveTx,
-    backgroundColor: fourBg,
-  },
-  ":focus": {
-    color: fiveTx,
-    backgroundColor: fourBg,
-  },
-  selectors: {
-    [vars.darkSelector]: {
-      color: fiveTx,
-      backgroundColor: twoBg,
-    },
-    [`${vars.darkSelector}:hover`]: {
-      color: fiveTx,
-      backgroundColor: threeBg,
-    },
-    [`${vars.darkSelector}:active`]: {
-      color: fiveTx,
-      backgroundColor: fourBg,
-    },
-    [`${vars.darkSelector}:focus`]: {
-      color: fiveTx,
-      backgroundColor: fourBg,
-    },
-  },
+export const borderLCStyle = style({
+  border: LCBorder,
 });
 
-export const borderLC = style({
-  border: borderLCBorder,
+export const borderHCStyle = style({
+  border: HCBorder,
 });
 
-export const borderHC = style({
-  border: borderHCBorder,
+export const borderTopStyle = style({
+  borderTop: LCBorder,
 });
 
-export const borderBottom = style({
-  borderBottom: borderLCBorder,
-});
-
-export const borderTop = style({
-  borderTop: borderLCBorder,
-});
-
-export const borderLeft = style({
-  borderLeft: borderLCBorder,
-});
-
-export const borderRight = style({
-  borderRight: borderLCBorder,
-});
-
-export const borderShadow = style({
+export const borderShadowStyle = style({
   boxShadow: `0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)`,
 });
 
-export const borderTopShadow = style({
-  borderTop: borderLCBorder,
+export const borderTopShadowStyle = style({
+  borderTop: LCBorder,
   boxShadow: `0px -2px 4px rgba(0, 0, 0, 0.1)`,
 });
 
-export const borderBottomShadow = style({
-  borderBottom: borderLCBorder,
+export const borderBottomShadowStyle = style({
+  borderBottom: LCBorder,
   boxShadow: `0px 2px 4px rgba(0, 0, 0, 0.1)`,
 });
 
-export const borderLeftShadow = style({
-  borderLeft: borderLCBorder,
+export const borderLeftShadowStyle = style({
+  borderLeft: LCBorder,
   boxShadow: `-2px 0px 4px rgba(0, 0, 0, 0.1)`,
 });
 
-export const borderRightShadow = style({
-  borderRight: borderLCBorder,
+export const borderRightShadowStyle = style({
+  borderRight: LCBorder,
   boxShadow: `2px 0px 4px rgba(0, 0, 0, 0.1)`,
 });

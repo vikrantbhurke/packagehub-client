@@ -2,15 +2,15 @@ import { Role } from "@/user/enums";
 import { RootState } from "@/global/states/store";
 import {
   oneBg,
-  roundBorder,
+  roundBorderStyle,
   threeBg,
   twoBg,
-  borderLC,
-  noBorder,
-  fiveBg,
+  borderLCStyle,
+  noBorderStyle,
   themeGreenColor,
-  fiveTxTwoBg,
-  fiveTxTwoBgButtonPseudo,
+  oneTxGreenBgButtonPseudoStyle,
+  themeTxStyle,
+  oneTxGreenTwoBgButtonPseudoStyle,
 } from "@/global/styles/app.css";
 import {
   Avatar,
@@ -21,7 +21,6 @@ import {
   Rating,
   Stack,
   Text,
-  Title,
 } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +29,12 @@ import { globalUtility } from "@/global/utilities";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
 import { IconTrash } from "@tabler/icons-react";
 import { reviewUtility } from "../review.utility";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+  textBolder,
+} from "@/global/styles/global.styles";
 import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
 import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
 import { setPage } from "../review.slice";
@@ -98,12 +102,11 @@ export const ReviewItemLayout = ({ review }: any) => {
           align="center"
           justify={isMobile ? "start" : "center"}>
           <Stack
-            maw={isMobile ? 600 : 670}
-            miw={isMobile ? "100%" : 570}
+            w={isMobile ? "100%" : 600}
             gap="md"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
+            className={`${isMobile ? `${noBorderStyle}` : `${borderLCStyle} ${roundBorderStyle}`}`}>
             <Stack gap="xs">
               <Group justify="space-between">
                 <Group onClick={handleNavigateToUserReviews}>
@@ -117,9 +120,10 @@ export const ReviewItemLayout = ({ review }: any) => {
                   )}
 
                   <Stack gap={0}>
-                    <Title order={6}>
+                    <Text fw={textBolder} className={themeTxStyle}>
                       {review.reviewerId.firstname} {review.reviewerId.lastname}
-                    </Title>
+                    </Text>
+
                     <Text size="sm" c="dimmed">
                       @{review.reviewerId.username}
                     </Text>
@@ -133,7 +137,7 @@ export const ReviewItemLayout = ({ review }: any) => {
                   bg={threeBg}
                   size="xs"
                   p="xs"
-                  className={roundBorder}
+                  className={roundBorderStyle}
                 />
               </Group>
               <Stack gap={0} align="stretch">
@@ -156,45 +160,51 @@ export const ReviewItemLayout = ({ review }: any) => {
             </Stack>
 
             <Stack gap="xs">
-              <Title order={6}>{review.title}</Title>
+              <Text fw={textBolder}>{review.title}</Text>
 
               <Text size="sm">{review.body}</Text>
             </Stack>
 
             <Group>
-              <Group p={6} gap={8} className={`${roundBorder} ${fiveTxTwoBg}`}>
-                <Group gap={4} p={4} bg={fiveBg} className={`${roundBorder}`}>
+              <Group
+                p={6}
+                gap={8}
+                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                <Group
+                  p={4}
+                  gap={4}
+                  className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
                   {auth.role === Role.Public ? (
                     <ReviewVoterReadonlyButtonLayout>
-                      <Text fw={500}>
+                      <Text fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
                     </ReviewVoterReadonlyButtonLayout>
                   ) : (
                     <ReviewUpvoteDownvoteButtonLayout review={review}>
-                      <Text fw={500}>
+                      <Text fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
                     </ReviewUpvoteDownvoteButtonLayout>
                   )}
                 </Group>
-                <Text fw={500}>Votes</Text>
+                <Text fw={textBold}>Votes</Text>
               </Group>
 
               {review.reviewerId._id === auth.id && (
                 <Group>
                   <Text
-                    fw={500}
+                    fw={textBold}
                     p="xs"
                     onClick={handleEdit}
-                    className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
+                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
                     Edit
                   </Text>
                   <Text
-                    fw={500}
+                    fw={textBold}
                     p="xs"
                     onClick={open}
-                    className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}>
+                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
                     Delete
                   </Text>
                 </Group>

@@ -5,13 +5,12 @@ import { setFocusedInput } from "@/global/states/view.slice";
 import {
   oneBg,
   oneTx,
-  inputStyles,
-  borderLC,
-  roundBorder,
+  borderLCStyle,
+  roundBorderStyle,
   twoBg,
 } from "@/global/styles/app.css";
 import {
-  getFormTextInput,
+  getFormTextInputStyles,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { useSignInUserForm } from "@/user/hooks/create";
@@ -58,7 +57,7 @@ export const SignInUserFormLayout = () => {
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${borderLC}`} ${roundBorder}`}>
+              className={`${isMobile ? "" : `${borderLCStyle}`} ${roundBorderStyle}`}>
               <Stack gap={0}>
                 <Group gap={0} align="center" justify="space-between">
                   <Space w="md" />
@@ -97,8 +96,7 @@ export const SignInUserFormLayout = () => {
                     required
                     minLength={3}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "username")}
+                    styles={getFormTextInputStyles(focusedInput === "username")}
                     wrapperProps={{
                       onFocus: () => handleFocus("username"),
                       onBlur: handleBlur,
@@ -116,8 +114,7 @@ export const SignInUserFormLayout = () => {
                     required
                     minLength={6}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "password")}
+                    styles={getFormTextInputStyles(focusedInput === "password")}
                     wrapperProps={{
                       onFocus: () => handleFocus("password"),
                       onBlur: handleBlur,

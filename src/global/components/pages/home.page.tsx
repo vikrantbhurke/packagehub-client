@@ -13,7 +13,7 @@ import { RootState } from "@/global/states/store";
 import { useDispatch } from "react-redux";
 import { useWindowScroll } from "@mantine/hooks";
 import {
-  headerHeight,
+  layoutCompHeight,
   mainContentWidth,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
@@ -22,10 +22,10 @@ import { Platform } from "@/package/enums";
 import { globalUtility } from "@/global/utilities";
 import { packageUtility } from "@/package/package.utility";
 import {
-  borderLC,
-  noBorder,
+  borderLCStyle,
+  noBorderStyle,
   oneBg,
-  roundBorder,
+  roundBorderStyle,
   twoBg,
 } from "@/global/styles/app.css";
 import { SearchPackagesByPlatformComboboxOne } from "@/package/lists";
@@ -47,7 +47,7 @@ export const HomePage = () => {
         <Title order={2}>Read, Rate And Review Software Packages.</Title>
         <Space h="xl" visibleFrom={responsiveBreakpoint} />
 
-        <Stack maw={600} miw={400}>
+        <Stack>
           <SearchPackagesByPlatformComboboxOne />
         </Stack>
 
@@ -66,7 +66,9 @@ export const HomePage = () => {
             gap="md"
             bg={oneBg}
             p="md"
-            className={isMobile ? noBorder : `${roundBorder} ${borderLC}`}>
+            className={
+              isMobile ? noBorderStyle : `${roundBorderStyle} ${borderLCStyle}`
+            }>
             <Image src={packageUtility.getPlatformImageUrl(platform)} w={50} />
             <CustomEnumCombobox
               id="package-platform"
@@ -93,7 +95,7 @@ export const HomePage = () => {
         hiddenFrom={responsiveBreakpoint}
         bg={oneBg}
         size={mainContentWidth}
-        style={{ height: `calc(100vh - ${headerHeight}px)` }}>
+        style={{ height: `calc(100vh - ${layoutCompHeight}px)` }}>
         {homepage}
       </Container>
 
@@ -101,7 +103,7 @@ export const HomePage = () => {
         visibleFrom={responsiveBreakpoint}
         bg={twoBg}
         size={mainContentWidth}
-        style={{ height: `calc(100vh - ${headerHeight}px)` }}>
+        style={{ height: `calc(100vh - ${layoutCompHeight}px)` }}>
         {homepage}
       </Container>
     </>

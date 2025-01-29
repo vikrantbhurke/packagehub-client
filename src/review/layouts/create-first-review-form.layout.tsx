@@ -13,12 +13,11 @@ import {
   Grid,
 } from "@mantine/core";
 import {
-  inputStyles,
   oneBg,
   threeBg,
   twoBg,
-  borderLC,
-  roundBorder,
+  borderLCStyle,
+  roundBorderStyle,
 } from "@/global/styles/app.css";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
@@ -30,7 +29,7 @@ import { useNavigate } from "react-router-dom";
 import { useCreateFirstReviewForm } from "../hooks/create";
 import { setFocusedInput } from "@/global/states/view.slice";
 import {
-  getFormTextInput,
+  getFormTextInputStyles,
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { I } from "@/global/components/components";
@@ -78,7 +77,7 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${borderLC} ${roundBorder}`} `}>
+              className={`${isMobile ? "" : `${borderLCStyle} ${roundBorderStyle}`} `}>
               <Stack gap="xl">
                 <Stack gap={4}>
                   <Group gap={0} align="center" justify="space-between">
@@ -105,7 +104,7 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                     bg={threeBg}
                     size="md"
                     p="xs"
-                    className={roundBorder}
+                    className={roundBorderStyle}
                     onChange={handleRating}
                   />
                 </Stack>
@@ -125,8 +124,7 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                     maxLength={50}
                     w="100%"
                     placeholder="Title of your review..."
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "title")}
+                    styles={getFormTextInputStyles(focusedInput === "title")}
                     wrapperProps={{
                       onFocus: () => handleFocus("title"),
                       onBlur: handleBlur,
@@ -153,8 +151,7 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                     maxLength={1000}
                     minRows={8}
                     maxRows={12}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "body")}
+                    styles={getFormTextInputStyles(focusedInput === "body")}
                     wrapperProps={{
                       onFocus: () => handleFocus("body"),
                       onBlur: handleBlur,

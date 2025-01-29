@@ -3,134 +3,34 @@ import {
   oneTx,
   twoBg,
   threeBg,
-  borderLCBorder,
-  borderHCBorder,
+  LCBorder,
+  HCBorder,
   themeGreenBorder,
-  noBorder,
-  oneTxThreeBgButtonPseudo,
-  oneTxOneBgButtonPseudo,
+  oneTxThreeBgButtonPseudoStyle,
+  oneTxOneBgButtonPseudoStyle,
 } from "./app.css";
 
-export const mainContentWidth = 1000;
-export const aboutContentWidth = 700;
-export const quoteCardMaxWidth = 600;
-export const subheaderHeight = 60;
-export const headerHeight = 60;
-export const footerHeight = 60;
-export const smallButtonHeight = 40;
+export const textBold = 500;
+export const textBolder = 700;
+export const buttonHeight = 40;
+export const layoutCompHeight = 60;
 export const largeButtonHeight = 60;
+export const mainContentWidth = 1000;
+export const aboutContentWidth = 800;
 export const listItemHeight = 80;
-export const navbarAsideWidth = 320;
 export const responsiveBreakpoint = "md";
-
-export const getListButtonHeight = (isMobile: boolean) =>
-  isMobile ? largeButtonHeight : smallButtonHeight;
-
-export const getSchemeStyles = (colorScheme: string) => ({
-  optionBg: colorScheme === "dark" ? twoBg : oneBg,
-  dropdownBg: colorScheme === "dark" ? threeBg : oneBg,
-});
-
-export const getSchemeButtonStyles = (colorScheme: string) => ({
-  schemeButtonBg:
-    colorScheme === "dark" ? oneTxThreeBgButtonPseudo : oneTxOneBgButtonPseudo,
-});
-
-// Component Styles
-export const getAppShell = (
-  isMobile: boolean,
-  footerHeight: number,
-  headerHeight: number
-) => ({
-  header: { height: headerHeight },
-  footer: {
-    height: isMobile ? footerHeight : 0,
-  },
-});
-
-export const getSearchTextInput = (isMobile: boolean, width: number) => ({
-  input: {
-    backgroundColor: "transparent",
-    height: isMobile ? headerHeight : "100%",
-    width,
-    maxWidth: isMobile ? "100%" : 500,
-    border: themeGreenBorder,
-    borderRadius: isMobile ? 0 : 8,
-  },
-});
-
-export const getItemCardStyles = (isMobile: boolean) => ({
-  backgroundColor: oneBg,
-  border: isMobile ? "none" : borderLCBorder,
-  borderRadius: isMobile ? 0 : 10,
-});
-
-export const getGridListItemBorderWithBorder = (isMobile: boolean) => {
-  if (isMobile) {
-    return {
-      borderTop: "none",
-      borderBottom: "none",
-      borderRight: "none",
-      borderLeft: "none",
-    };
-  } else {
-    return {
-      border: borderLCBorder,
-      borderRadius: "8px",
-      transition: "box-shadow 0.3s ease",
-    };
-  }
-};
-
-export const getSubheadersStyles = (isMobile: boolean) => {
-  return {
-    borderBottom: borderLCBorder,
-    borderLeft: isMobile ? "none" : borderLCBorder,
-    borderRight: isMobile ? "none" : borderLCBorder,
-    borderTop: "none",
-  };
-};
-
-export const getPaginationStyles = (isMobile: boolean) => {
-  return {
-    borderTop: isMobile ? "none" : borderLCBorder,
-    borderLeft: isMobile ? "none" : borderLCBorder,
-    borderRight: isMobile ? "none" : borderLCBorder,
-    borderBottom: "none",
-  };
-};
-
-export const getToproundBorder = (isMobile: boolean) => {
-  return {
-    borderRadius: isMobile ? "0" : "10px 10px 0 0",
-  };
-};
-
-export const getBottomroundBorder = (isMobile: boolean) => {
-  return {
-    borderRadius: isMobile ? "0" : "0 0 10px 10px",
-  };
-};
-
-export const addBoxShadow = (e: any) => {
-  e.currentTarget.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.2)";
-};
-
-export const removeBoxShadow = (e: any) => {
-  e.currentTarget.style.boxShadow = "none";
-};
 
 export const modal = {
   content: {
-    backgroundColor: `${oneBg}`,
-    border: noBorder,
+    backgroundColor: oneBg,
     borderRadius: 10,
   },
-  header: { backgroundColor: `${oneBg}` },
+  header: { backgroundColor: oneBg },
   title: {
     textAlign: "center" as const,
     width: "100%",
-    fontWeight: 700,
+    fontWeight: 500,
+    fontFamily: "Inter",
   },
 };
 
@@ -152,34 +52,112 @@ export const stringTruncate = {
   whiteSpace: "nowrap",
 };
 
-export const getFormTextInput = (isFocused: boolean) => ({
-  input: {
-    padding: "1rem",
-    backgroundColor: twoBg,
-    border: isFocused ? borderHCBorder : "none",
+export const getDropdownStyles = (colorScheme: string) => ({
+  dropdownBg: colorScheme === "dark" ? threeBg : oneBg,
+});
+
+export const getDropdownButtonStyles = (colorScheme: string) => ({
+  dropdownButtonBg:
+    colorScheme === "dark"
+      ? oneTxThreeBgButtonPseudoStyle
+      : oneTxOneBgButtonPseudoStyle,
+});
+
+export const getAppShellStyles = (
+  isMobile: boolean,
+  footerHeight: number,
+  headerHeight: number
+) => ({
+  header: { height: headerHeight },
+  footer: {
+    height: isMobile ? footerHeight : 0,
   },
 });
 
-export const getComboboxTextInput = (isFocused: boolean) => ({
+export const getSearchTextInputStyles = (isMobile: boolean, width: number) => ({
+  input: {
+    backgroundColor: "transparent",
+    height: isMobile ? layoutCompHeight : "100%",
+    width,
+    maxWidth: isMobile ? "100%" : 500,
+    border: themeGreenBorder,
+    borderRadius: isMobile ? 0 : 8,
+    fontFamily: "Inter",
+  },
+});
+
+export const getGridListItemBorderWithBorderStyles = (isMobile: boolean) => {
+  if (isMobile) {
+    return {
+      border: "none",
+    };
+  } else {
+    return {
+      border: LCBorder,
+      borderRadius: 10,
+    };
+  }
+};
+
+export const getPaginationStyles = (isMobile: boolean) => {
+  return {
+    borderTop: isMobile ? "none" : LCBorder,
+    borderLeft: isMobile ? "none" : LCBorder,
+    borderRight: isMobile ? "none" : LCBorder,
+    borderBottom: "none",
+  };
+};
+
+export const getToproundBorderStyles = (isMobile: boolean) => {
+  return {
+    borderRadius: isMobile ? "0" : "10px 10px 0 0",
+  };
+};
+
+export const getBottomroundBorderStyles = (isMobile: boolean) => {
+  return {
+    borderRadius: isMobile ? "0" : "0 0 10px 10px",
+  };
+};
+
+export const addBoxShadowStyles = (e: any) => {
+  e.currentTarget.style.boxShadow = "0px 4px 10px rgba(0, 0, 0, 0.2)";
+};
+
+export const removeBoxShadowStyles = (e: any) => {
+  e.currentTarget.style.boxShadow = "none";
+};
+
+export const getFormTextInputStyles = (isFocused: boolean) => ({
+  input: {
+    padding: "1rem",
+    backgroundColor: twoBg,
+    border: isFocused ? HCBorder : "none",
+    fontFamily: "Inter",
+  },
+});
+
+export const getComboboxTextInputStyles = (isFocused: boolean) => ({
   input: {
     textAlign: "center" as const,
     padding: "1rem",
     color: oneTx,
     backgroundColor: twoBg,
-    border: isFocused ? borderHCBorder : "none",
+    border: isFocused ? HCBorder : "none",
+    fontFamily: "Inter",
   },
 });
 
-export const getComboboxTextInputForPagination = () => ({
+export const getComboboxTextInputForPaginationStyles = () => ({
   input: {
     textAlign: "center" as const,
     color: oneTx,
     backgroundColor: threeBg,
-    border: borderHCBorder,
+    border: HCBorder,
   },
 });
 
-export const getSubheaderButton = (isActive: boolean) => {
+export const getSubheaderButtonStyles = (isActive: boolean) => {
   return {
     backgroundColor: oneBg,
     color: oneTx,

@@ -6,12 +6,16 @@ export const DarkThree = lighten("#09090B", 0.05);
 export const DarkFour = lighten("#09090B", 0.08);
 export const DarkFive = lighten("#09090B", 0.11);
 export const DarkBorder = lighten("#09090B", 0.1);
+export const LightGreenOne = lighten("#2FBAAA", 0.8);
+export const LightGreenTwo = lighten("#2FBAAA", 0.6);
 export const LightOne = "#FFFFFF";
-export const LightTwo = darken("#F8FAFD", 0.02);
-export const LightThree = darken("#F8FAFD", 0.05);
-export const LightFour = darken("#F8FAFD", 0.08);
-export const LightFive = darken("#F8FAFD", 0.11);
-export const LightBorder = darken("#F8FAFD", 0.1);
+export const LightTwo = darken("#F8FAFD", 0.05);
+export const LightThree = darken("#F8FAFD", 0.08);
+export const LightFour = darken("#F8FAFD", 0.11);
+export const LightFive = darken("#F8FAFD", 0.14);
+export const LightBorder = darken("#F8FAFD", 0.2);
+export const DarkGreenOne = darken("#2FBAAA", 0.8);
+export const DarkGreenTwo = darken("#2FBAAA", 0.6);
 
 export const resolveCssVariables: CSSVariablesResolver = () => cssVariables();
 
@@ -34,6 +38,8 @@ export const cssVariables = () => {
       "--quinary-background": LightFive,
       "--border-low-contrast": LightBorder,
       "--border-high-contrast": DarkBorder,
+      "--theme-light-green-one-bg": LightGreenOne,
+      "--theme-light-green-two-bg": LightGreenTwo,
     },
     dark: {
       "--primary-text": LightOne,
@@ -48,6 +54,8 @@ export const cssVariables = () => {
       "--quinary-background": DarkFive,
       "--border-low-contrast": DarkBorder,
       "--border-high-contrast": LightBorder,
+      "--theme-light-green-one-bg": DarkGreenOne,
+      "--theme-light-green-two-bg": DarkGreenTwo,
     },
   };
 };

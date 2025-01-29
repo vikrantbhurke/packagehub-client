@@ -8,7 +8,11 @@ import {
   setPage,
 } from "../package.slice";
 import { ActionIcon, Group, Modal, Space, Stack, Text } from "@mantine/core";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+} from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
@@ -81,7 +85,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text fw={500}>Platform</Text>
+            <Text fw={textBold}>Platform</Text>
 
             {order !== Order.Descending ||
             sort !== Sort.Rating ||
@@ -109,7 +113,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={500}>Rating</Text>
+          <Text fw={textBold}>Rating</Text>
 
           <CustomEnumCombobox
             shouldCapitalize={false}
@@ -123,7 +127,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={500}>Sort</Text>
+          <Text fw={textBold}>Sort</Text>
 
           <CustomEnumCombobox
             id="package-sort-box"
@@ -136,7 +140,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={500}>Order</Text>
+          <Text fw={textBold}>Order</Text>
 
           <CustomEnumCombobox
             id="package-order-box"

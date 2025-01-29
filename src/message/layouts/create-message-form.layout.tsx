@@ -9,7 +9,7 @@ import {
   Textarea,
   TextInput,
 } from "@mantine/core";
-import { getFormTextInput } from "@/global/styles/global.styles";
+import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { globalUtility } from "@/global/utilities";
 import { useDispatch } from "react-redux";
@@ -20,7 +20,6 @@ import { setReason } from "../message.slice";
 import { IconRefresh } from "@tabler/icons-react";
 import { messageUtility } from "../message.utility";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { inputStyles } from "@/global/styles/app.css";
 
 export const CreateMessageFormLayout = () => {
   const dispatch = useDispatch();
@@ -82,8 +81,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={50}
             w="100%"
             placeholder="Title of your message..."
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "title")}
+            styles={getFormTextInputStyles(focusedInput === "title")}
             wrapperProps={{
               onFocus: () => handleFocus("title"),
               onBlur: handleBlur,
@@ -112,8 +110,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={500}
             w="100%"
             placeholder="Description of your message..."
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "description")}
+            styles={getFormTextInputStyles(focusedInput === "description")}
             wrapperProps={{
               onFocus: () => handleFocus("description"),
               onBlur: handleBlur,
@@ -133,8 +130,7 @@ export const CreateMessageFormLayout = () => {
             maxLength={20}
             w="100%"
             placeholder="johndoe@gmail.com"
-            classNames={{ input: inputStyles }}
-            styles={getFormTextInput(focusedInput === "email")}
+            styles={getFormTextInputStyles(focusedInput === "email")}
             wrapperProps={{
               onFocus: () => handleFocus("email"),
               onBlur: handleBlur,

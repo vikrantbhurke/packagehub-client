@@ -14,8 +14,12 @@ import { globalUtility } from "@/global/utilities";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Platform, Rating, Sort } from "../enums";
-import { borderLC, oneBg, roundBorder } from "@/global/styles/app.css";
-import { responsiveBreakpoint } from "@/global/styles/global.styles";
+import {
+  borderLCStyle,
+  oneBg,
+  roundBorderStyle,
+} from "@/global/styles/app.css";
+import { responsiveBreakpoint, textBold } from "@/global/styles/global.styles";
 
 export const PackagesFilterBox = () => {
   const dispatch = useDispatch();
@@ -71,7 +75,7 @@ export const PackagesFilterBox = () => {
   return (
     <Stack
       w="29%"
-      className={`${borderLC} ${roundBorder}`}
+      className={`${borderLCStyle} ${roundBorderStyle}`}
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>
@@ -82,7 +86,7 @@ export const PackagesFilterBox = () => {
         <Group justify="space-between" w="100%">
           <Space w="md" />
 
-          <Text fw={500}>Platform</Text>
+          <Text fw={textBold}>Platform</Text>
 
           {order !== Order.Descending ||
           sort !== Sort.Rating ||
@@ -110,7 +114,7 @@ export const PackagesFilterBox = () => {
       </Stack>
 
       <Stack align="center" gap="xs">
-        <Text fw={500}>Rating</Text>
+        <Text fw={textBold}>Rating</Text>
 
         <CustomEnumCombobox
           shouldCapitalize={false}
@@ -124,7 +128,7 @@ export const PackagesFilterBox = () => {
       </Stack>
 
       <Stack align="center" gap="xs">
-        <Text fw={500}>Sort</Text>
+        <Text fw={textBold}>Sort</Text>
 
         <CustomEnumCombobox
           id="package-sort-box"
@@ -137,7 +141,7 @@ export const PackagesFilterBox = () => {
       </Stack>
 
       <Stack align="center" gap="xs">
-        <Text fw={500}>Order</Text>
+        <Text fw={textBold}>Order</Text>
 
         <CustomEnumCombobox
           id="package-order-box"

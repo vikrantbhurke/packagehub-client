@@ -2,7 +2,11 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setOrder, setSort, setRating, setPage } from "../review.slice";
 import { ActionIcon, Group, Modal, Space, Stack, Text } from "@mantine/core";
-import { modal, modalOverlayProps } from "@/global/styles/global.styles";
+import {
+  modal,
+  modalOverlayProps,
+  textBold,
+} from "@/global/styles/global.styles";
 import { CustomEnumCombobox, I } from "@/global/components/components";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
@@ -64,7 +68,7 @@ export const ReviewsFilterModal = ({ opened, close }: any) => {
           <Group justify="space-between" w="100%">
             <Space w="md" />
 
-            <Text fw={500}>Rating</Text>
+            <Text fw={textBold}>Rating</Text>
 
             {order !== Order.Descending ||
             sort !== Sort.Rating ||
@@ -93,7 +97,7 @@ export const ReviewsFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={500}>Sort</Text>
+          <Text fw={textBold}>Sort</Text>
 
           <CustomEnumCombobox
             id="package-sort-box"
@@ -106,7 +110,7 @@ export const ReviewsFilterModal = ({ opened, close }: any) => {
         </Stack>
 
         <Stack align="center" gap="xs">
-          <Text fw={500}>Order</Text>
+          <Text fw={textBold}>Order</Text>
 
           <CustomEnumCombobox
             id="package-order-box"

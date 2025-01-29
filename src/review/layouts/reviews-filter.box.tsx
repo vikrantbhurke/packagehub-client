@@ -8,8 +8,12 @@ import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Rating, Sort } from "../enums";
-import { borderLC, oneBg, roundBorder } from "@/global/styles/app.css";
-import { responsiveBreakpoint } from "@/global/styles/global.styles";
+import {
+  borderLCStyle,
+  oneBg,
+  roundBorderStyle,
+} from "@/global/styles/app.css";
+import { responsiveBreakpoint, textBold } from "@/global/styles/global.styles";
 
 export const ReviewsFilterBox = () => {
   const dispatch = useDispatch();
@@ -54,7 +58,7 @@ export const ReviewsFilterBox = () => {
   return (
     <Stack
       w="29%"
-      className={`${borderLC} ${roundBorder}`}
+      className={`${borderLCStyle} ${roundBorderStyle}`}
       p="md"
       bg={oneBg}
       visibleFrom={responsiveBreakpoint}>
@@ -65,7 +69,7 @@ export const ReviewsFilterBox = () => {
         <Group justify="space-between" w="100%">
           <Space w="md" />
 
-          <Text fw={500}>Rating</Text>
+          <Text fw={textBold}>Rating</Text>
 
           {order !== Order.Descending ||
           sort !== Sort.Rating ||
@@ -94,7 +98,7 @@ export const ReviewsFilterBox = () => {
       </Stack>
 
       <Stack align="center" gap="xs">
-        <Text fw={500}>Sort</Text>
+        <Text fw={textBold}>Sort</Text>
 
         <CustomEnumCombobox
           id="review-sort-box"
@@ -107,7 +111,7 @@ export const ReviewsFilterBox = () => {
       </Stack>
 
       <Stack align="center" gap="xs">
-        <Text fw={500}>Order</Text>
+        <Text fw={textBold}>Order</Text>
 
         <CustomEnumCombobox
           id="review-order-box"

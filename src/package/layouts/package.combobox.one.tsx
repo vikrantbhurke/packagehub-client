@@ -21,19 +21,20 @@ import { RootState } from "@/global/states/store";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { globalUtility } from "@/global/utilities";
 import {
-  borderHC,
-  borderShadow,
-  circularBorder,
-  inputStyles,
-  noBorder,
+  borderHCStyle,
+  borderShadowStyle,
+  circularBorderStyle,
+  inputStyle,
+  noBorderStyle,
   oneTx,
-  roundBorder,
+  oneTxGreenBgMenuButtonPseudoStyle,
+  roundBorderStyle,
   themeGreenColor,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
 import { setPage as setPackagePage } from "../package.slice";
 import {
-  getSchemeStyles,
+  getDropdownStyles,
   responsiveBreakpoint,
   wordBreakWhiteSpace,
 } from "@/global/styles/global.styles";
@@ -44,7 +45,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   const navigate = useNavigate();
   const [, scrollTo] = useWindowScroll();
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const { isMobile, search } = useSelector((state: RootState) => state.view);
   const { auth } = useSelector((state: RootState) => state.auth);
@@ -102,7 +103,9 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   let seeAllButton;
 
   const registryComp = (registry: any) => (
-    <Combobox.Option value={registry.name}>
+    <Combobox.Option
+      value={registry.name}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Group justify="space-between">
         <Text>{registry.name}</Text>
 
@@ -119,7 +122,10 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   );
 
   const repoComp = (item: any) => (
-    <Combobox.Option value={item.name} key={item.id}>
+    <Combobox.Option
+      value={item.name}
+      key={item.id}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Group
         justify="space-between"
         onClick={() => handleNavigateToPackage(item)}>
@@ -134,7 +140,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
           gap={6}
           py={4}
           px="xs"
-          className={`${roundBorder}`}
+          className={`${roundBorderStyle}`}
           bg={packageUtility.getRatingColor(item.rating)}
           align="center">
           <ActionIcon
@@ -222,13 +228,17 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
         c={oneTx}
         p="md"
         bg={dropdownBg}
-        className={`${borderShadow} ${roundBorder}`}
+        className={`${borderShadowStyle} ${roundBorderStyle}`}
         events={{ hover: true, focus: true, touch: true }}
         multiline
         maw={400}
         position="top-start"
         label={tooltipMessage}>
-        <IconInfoCircle color="darkGray" size={16} className={`${noBorder}`} />
+        <IconInfoCircle
+          color="darkGray"
+          size={16}
+          className={`${noBorderStyle}`}
+        />
       </Tooltip>
       <Text fz="xs" c="dimmed">
         Type package name in proper format in smallcase
@@ -244,7 +254,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
         autoComplete="off"
         label={comboboxLabel}
         classNames={{
-          input: `${inputStyles} ${borderHC} ${circularBorder}`,
+          input: `${inputStyle} ${borderHCStyle} ${circularBorderStyle}`,
         }}
         styles={{ input: { height: 50 } }}
         readOnly
@@ -258,7 +268,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
           <TextInput
             label={comboboxLabel}
             classNames={{
-              input: `${inputStyles} ${borderHC} ${circularBorder}`,
+              input: `${inputStyle} ${borderHCStyle} ${circularBorderStyle}`,
             }}
             styles={{
               input: { height: 50 },
@@ -284,7 +294,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
 
         <Combobox.Dropdown
           bg={dropdownBg}
-          className={`${noBorder} ${borderShadow} ${roundBorder}`}>
+          className={`${noBorderStyle} ${borderShadowStyle} ${roundBorderStyle}`}>
           <Combobox.Options>
             {registryPackage && (
               <Combobox.Group label="Package Registry">

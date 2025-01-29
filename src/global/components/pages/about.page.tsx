@@ -17,7 +17,11 @@ export const AboutPage = () => {
 
       <ScrollArea scrollbarSize={2}>
         <Center>
-          <Stack p="md" gap="lg" maw={aboutContentWidth}>
+          <Stack
+            bg={oneBg}
+            p={isMobile ? "md" : "xl"}
+            gap="lg"
+            maw={aboutContentWidth}>
             <Center>
               <Title order={2}>About</Title>
             </Center>

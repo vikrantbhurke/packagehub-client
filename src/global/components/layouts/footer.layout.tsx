@@ -1,5 +1,5 @@
-import { borderLCColor, roundBorder } from "@/global/styles/app.css";
-import { footerHeight } from "@/global/styles/global.styles";
+import { borderLCColor, roundBorderStyle } from "@/global/styles/app.css";
+import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
 import {
@@ -84,14 +84,14 @@ export const FooterLayout = () => {
   const searchIconColor = isSearchbarVisible ? borderLCColor : "transparent";
 
   return (
-    <Group justify="space-evenly" grow gap={0} h={footerHeight}>
+    <Group justify="space-evenly" grow gap={0} h={layoutCompHeight}>
       <Stack
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleNavigateToHome}>
-        <Stack bg={homeIconColor} px="xs" py={4} className={roundBorder}>
+        <Stack bg={homeIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={homePath} />
         </Stack>
         <Text>Home</Text>
@@ -101,9 +101,13 @@ export const FooterLayout = () => {
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleNavigateToPlatformPackages}>
-        <Stack bg={packagesIconColor} px="xs" py={4} className={roundBorder}>
+        <Stack
+          bg={packagesIconColor}
+          px="xs"
+          py={4}
+          className={roundBorderStyle}>
           <I I={IconBox} />
         </Stack>
         <Text>Packages</Text>
@@ -113,9 +117,9 @@ export const FooterLayout = () => {
         justify="center"
         align="center"
         gap={0}
-        h={footerHeight}
+        h={layoutCompHeight}
         onClick={handleReadOnlyClick}>
-        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorder}>
+        <Stack bg={searchIconColor} px="xs" py={4} className={roundBorderStyle}>
           <I I={IconSearch} />
         </Stack>
         <Text>Search</Text>
@@ -128,9 +132,13 @@ export const FooterLayout = () => {
             justify="center"
             align="center"
             gap={0}
-            h={footerHeight}
+            h={layoutCompHeight}
             onClick={handleNavigateToUser}>
-            <Stack bg={profileIconColor} px="xs" py={4} className={roundBorder}>
+            <Stack
+              bg={profileIconColor}
+              px="xs"
+              py={4}
+              className={roundBorderStyle}>
               <I I={profilePath} />
             </Stack>
             <Text>Profile</Text>
@@ -141,9 +149,13 @@ export const FooterLayout = () => {
             justify="center"
             align="center"
             gap={0}
-            h={footerHeight}
+            h={layoutCompHeight}
             onClick={handleNavigateToSignIn}>
-            <Stack bg={signInIconColor} px="xs" py={4} className={roundBorder}>
+            <Stack
+              bg={signInIconColor}
+              px="xs"
+              py={4}
+              className={roundBorderStyle}>
               <I I={IconLogin} />
             </Stack>
             <Text>Sign In</Text>

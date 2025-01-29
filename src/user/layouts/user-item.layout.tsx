@@ -16,10 +16,10 @@ import {
 import {
   oneTx,
   oneBg,
-  borderLC,
-  roundBorder,
+  borderLCStyle,
+  roundBorderStyle,
   twoBg,
-  noBorder,
+  noBorderStyle,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -67,6 +67,8 @@ export const UserItemLayout = ({ user }: any) => {
         </Center>
       </Modal>
 
+      <DeleteUserModalLayout opened={opened} close={close} />
+
       <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
         <Stack
           h="100%"
@@ -74,14 +76,11 @@ export const UserItemLayout = ({ user }: any) => {
           align="center"
           justify={isMobile ? "start" : "center"}>
           <Stack
-            maw={isMobile ? 600 : 670}
-            miw={isMobile ? "100%" : 570}
+            w={isMobile ? "100%" : 400}
             gap="xl"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
-            className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
-            <DeleteUserModalLayout opened={opened} close={close} />
-
+            className={`${isMobile ? `${noBorderStyle}` : `${borderLCStyle} ${roundBorderStyle}`}`}>
             <Stack align="center">
               <Group align="center" gap="xl">
                 {user.profilepic ? (

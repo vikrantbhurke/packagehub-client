@@ -2,12 +2,12 @@ import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { oneBg } from "@/global/styles/app.css";
 import {
-  addBoxShadow,
-  getGridListItemBorderWithBorder,
+  addBoxShadowStyles,
+  getGridListItemBorderWithBorderStyles,
   getPaginationStyles,
-  getToproundBorder,
-  removeBoxShadow,
-  subheaderHeight,
+  getToproundBorderStyles,
+  removeBoxShadowStyles,
+  layoutCompHeight,
 } from "@/global/styles/global.styles";
 import { Box, Center, Pagination, ScrollArea, Stack } from "@mantine/core";
 import { useRef } from "react";
@@ -53,7 +53,7 @@ export const CustomList = ({
     <Stack
       gap={0}
       justify="space-between"
-      h={`calc(100% - ${subheaderHeight}px`}
+      h={`calc(100% - ${layoutCompHeight}px`}
       bg={listBg}>
       <ScrollArea ref={scrollAreaRef} scrollbarSize={2}>
         <Box component="div" p={isMobile ? 0 : "xs"}>
@@ -64,9 +64,9 @@ export const CustomList = ({
                   h="100%"
                   bg={oneBg}
                   component="div"
-                  style={getGridListItemBorderWithBorder(isMobile)}
-                  onMouseEnter={(e) => !isMobile && addBoxShadow(e)}
-                  onMouseLeave={(e) => !isMobile && removeBoxShadow(e)}>
+                  style={getGridListItemBorderWithBorderStyles(isMobile)}
+                  onMouseEnter={(e) => !isMobile && addBoxShadowStyles(e)}
+                  onMouseLeave={(e) => !isMobile && removeBoxShadowStyles(e)}>
                   <ListItemLayout item={item} />
                 </Box>
               </Box>
@@ -81,7 +81,7 @@ export const CustomList = ({
         style={{
           zIndex: 1,
           ...getPaginationStyles(isMobile),
-          ...getToproundBorder(isMobile),
+          ...getToproundBorderStyles(isMobile),
         }}
         bg={oneBg}>
         <CustomNumberCombobox
@@ -92,14 +92,7 @@ export const CustomList = ({
           totalPages={totalPages}
         />
 
-        <Pagination
-          size="md"
-          m="xs"
-          siblings={0}
-          value={page}
-          onChange={handlePage}
-          total={totalPages}
-        />
+        <Pagination value={page} onChange={handlePage} total={totalPages} />
       </Center>
     </Stack>
   );

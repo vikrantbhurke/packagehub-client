@@ -1,10 +1,9 @@
 import {
-  footerHeight,
-  headerHeight,
+  layoutCompHeight,
   mainContentWidth,
   responsiveBreakpoint,
   stringTruncate,
-  subheaderHeight,
+  textBold,
 } from "@/global/styles/global.styles";
 import { ActionIcon, Container, Group, Stack, Text } from "@mantine/core";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -14,13 +13,13 @@ import {
   IconTrash,
 } from "@tabler/icons-react";
 import {
-  borderLC,
+  borderLCStyle,
   oneBg,
   oneTx,
-  oneTxOneBgButtonPseudo,
-  roundBorder,
+  oneTxOneBgButtonPseudoStyle,
+  roundBorderStyle,
   themeGreenColor,
-  noBorder,
+  noBorderStyle,
 } from "@/global/styles/app.css";
 import { useState } from "react";
 import { globalUtility } from "@/global/utilities";
@@ -79,15 +78,15 @@ export const ReviewsLayout = () => {
           <Stack
             w={width < Breakpoint.md ? "100%" : "69%"}
             gap={0}
-            h={`calc(100vh - ${headerHeight}px - ${isMobile ? footerHeight : 2}px)`}>
+            h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
             <Group
-              h={subheaderHeight}
+              h={layoutCompHeight}
               mx={isMobile ? 0 : "xs"}
               px="sm"
               bg={oneBg}
               justify="space-between"
               gap={0}
-              className={`${isMobile ? noBorder : `${borderLC} ${roundBorder}`}`}>
+              className={`${isMobile ? noBorderStyle : `${borderLCStyle} ${roundBorderStyle}`}`}>
               <Group gap={3}>
                 <I I={IconFileDescription} />
 
@@ -99,12 +98,15 @@ export const ReviewsLayout = () => {
 
               <Group gap={4} onClick={handleNavigateToPackageOrUser}>
                 {isSearchingReviews ? (
-                  <Text fw={500} c={themeGreenColor} style={stringTruncate}>
+                  <Text
+                    fw={textBold}
+                    c={themeGreenColor}
+                    style={stringTruncate}>
                     {search}
                   </Text>
                 ) : (
                   <Text
-                    fw={500}
+                    fw={textBold}
                     c={themeGreenColor}
                     td="underline"
                     style={stringTruncate}>
@@ -112,7 +114,7 @@ export const ReviewsLayout = () => {
                   </Text>
                 )}
 
-                <Text fw={500}>
+                <Text fw={textBold}>
                   reviews{" "}
                   {data.totalElements > 0 &&
                     `(${globalUtility.formatNumber(data.totalElements)})`}
@@ -123,7 +125,7 @@ export const ReviewsLayout = () => {
                 <ActionIcon
                   hiddenFrom={responsiveBreakpoint}
                   c={oneTx}
-                  className={oneTxOneBgButtonPseudo}
+                  className={oneTxOneBgButtonPseudoStyle}
                   onClick={openFilter}>
                   <I I={IconFilter} />
                 </ActionIcon>

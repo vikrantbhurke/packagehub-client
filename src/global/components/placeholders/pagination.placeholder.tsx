@@ -1,7 +1,7 @@
-import { borderTop, oneBg } from "@/global/styles/app.css";
+import { borderTopStyle, oneBg } from "@/global/styles/app.css";
 import {
   getPaginationStyles,
-  getToproundBorder,
+  getToproundBorderStyles,
 } from "@/global/styles/global.styles";
 import { Center, Pagination } from "@mantine/core";
 import { CustomNumberCombobox } from "../components";
@@ -13,11 +13,11 @@ export const PaginationPlaceholder = () => {
   return (
     <>
       <Center
-        className={borderTop}
+        className={borderTopStyle}
         style={{
           zIndex: 1,
           ...getPaginationStyles(isMobile),
-          ...getToproundBorder(isMobile),
+          ...getToproundBorderStyles(isMobile),
         }}
         bg={oneBg}>
         <CustomNumberCombobox
@@ -28,7 +28,7 @@ export const PaginationPlaceholder = () => {
           totalPages={1}
         />
 
-        <Pagination m="xs" total={1} />
+        <Pagination total={1} />
       </Center>
     </>
   );

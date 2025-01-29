@@ -1,24 +1,15 @@
-import {
-  Stack,
-  Text,
-  Box,
-  Title,
-  Anchor,
-  Group,
-  Rating,
-  Button,
-} from "@mantine/core";
+import { Stack, Text, Box, Anchor, Group, Rating, Button } from "@mantine/core";
 import {
   oneBg,
-  borderLC,
-  roundBorder,
+  borderLCStyle,
+  roundBorderStyle,
   twoBg,
-  oneTxTwoBgButtonPseudo,
   threeBg,
-  noBorder,
+  noBorderStyle,
   oneTx,
   themeGreenColor,
-  fiveTxTwoBgButtonPseudo,
+  oneTxGreenBgButtonPseudoStyle,
+  themeTxStyle,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -28,7 +19,7 @@ import { packageUtility } from "../package.utility";
 import { globalUtility } from "@/global/utilities";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
-import { wordBreakWhiteSpace } from "@/global/styles/global.styles";
+import { textBolder, wordBreakWhiteSpace } from "@/global/styles/global.styles";
 
 export const PackageItemLayout = ({ pkg }: any) => {
   const navigate = useNavigate();
@@ -86,19 +77,19 @@ export const PackageItemLayout = ({ pkg }: any) => {
         align="center"
         justify={isMobile ? "start" : "center"}>
         <Stack
-          maw={isMobile ? 600 : 670}
-          miw={isMobile ? "100%" : 570}
+          w={isMobile ? "100%" : 600}
           gap="lg"
           p={isMobile ? "md" : "xl"}
           bg={oneBg}
-          className={`${isMobile ? `${noBorder}` : `${borderLC} ${roundBorder}`}`}>
+          className={`${isMobile ? `${noBorderStyle}` : `${borderLCStyle} ${roundBorderStyle}`}`}>
           <Stack gap="xs">
-            <Title
-              order={6}
+            <Text
+              fw={textBolder}
+              className={themeTxStyle}
               td="underline"
               onClick={handleNavigateToReviewsByPackageId}>
               {pkg.name}
-            </Title>
+            </Text>
 
             <Group justify="space-between">
               <Group justify="start" gap="xs">
@@ -110,7 +101,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
                   size="xs"
                   bg={threeBg}
                   p="xs"
-                  className={roundBorder}
+                  className={roundBorderStyle}
                 />
 
                 <Text c="dimmed" fz="xs">
@@ -127,7 +118,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
                 disabled={auth.id ? isPending : false}
                 loading={auth.id ? isPending : false}
                 onClick={readOrWriteHandler}
-                className={`${roundBorder} ${fiveTxTwoBgButtonPseudo}`}
+                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
                 loaderProps={{ type: "dots", color: oneTx }}>
                 {readOrWriteText}
               </Button>
@@ -140,7 +131,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
             {pkg.homepageUrl !== pkg.packageUrl && (
               <Text
                 p="xs"
-                className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
+                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
                 Home :{" "}
                 <Anchor
                   style={wordBreakWhiteSpace}
@@ -153,7 +144,9 @@ export const PackageItemLayout = ({ pkg }: any) => {
               </Text>
             )}
 
-            <Text p="xs" className={`${roundBorder} ${oneTxTwoBgButtonPseudo}`}>
+            <Text
+              p="xs"
+              className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
               Registry :{" "}
               <Anchor
                 style={wordBreakWhiteSpace}

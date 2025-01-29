@@ -1,9 +1,13 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { borderShadow, noBorder } from "@/global/styles/app.css";
 import {
-  getComboboxTextInput,
-  getSchemeStyles,
+  borderShadowStyle,
+  noBorderStyle,
+  oneTxGreenBgMenuButtonPseudoStyle,
+} from "@/global/styles/app.css";
+import {
+  getComboboxTextInputStyles,
+  getDropdownStyles,
 } from "@/global/styles/global.styles";
 import { globalUtility } from "@/global/utilities";
 import {
@@ -19,7 +23,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
 // Use for Alphabets, Long Lists filter field
-// Sets Enum Value as value and Key as Display Label
+// Sets Enum Value as Value and Key as Display Label
 export const CustomEnumScrollableCombobox = ({
   EnumObject,
   data,
@@ -30,7 +34,7 @@ export const CustomEnumScrollableCombobox = ({
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -40,7 +44,11 @@ export const CustomEnumScrollableCombobox = ({
   });
 
   const options = data.map((item: any) => (
-    <Combobox.Option value={item} key={item} p="xs">
+    <Combobox.Option
+      p="xs"
+      key={item}
+      value={item}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Text tt="capitalize" ta="center">
         {globalUtility.getKeyByValue(EnumObject, item)}
       </Text>
@@ -60,7 +68,7 @@ export const CustomEnumScrollableCombobox = ({
           miw="100%"
           value={value}
           readOnly
-          styles={getComboboxTextInput(focusedInput === id)}
+          styles={getComboboxTextInputStyles(focusedInput === id)}
           wrapperProps={{
             onFocus: () => handleFocus(id),
             onBlur: handleBlur,
@@ -71,7 +79,7 @@ export const CustomEnumScrollableCombobox = ({
 
       <Combobox.Dropdown
         miw={120}
-        className={`${noBorder} ${borderShadow}`}
+        className={`${noBorderStyle} ${borderShadowStyle}`}
         p={3}
         bg={dropdownBg}>
         <Combobox.Options>

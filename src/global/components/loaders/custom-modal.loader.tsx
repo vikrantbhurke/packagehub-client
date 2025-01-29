@@ -1,4 +1,4 @@
-import { oneBg, oneTx, roundBorder } from "@/global/styles/app.css";
+import { oneBg, oneTx, roundBorderStyle } from "@/global/styles/app.css";
 import { Center, Group, Loader, Pagination, Space, Stack } from "@mantine/core";
 
 export const CustomModalLoader = () => {
@@ -8,7 +8,7 @@ export const CustomModalLoader = () => {
       p={3}
       h={200}
       bg={oneBg}
-      className={roundBorder}
+      className={roundBorderStyle}
       justify="space-between">
       <Space />
       <Center>

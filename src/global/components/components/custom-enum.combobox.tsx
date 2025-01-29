@@ -1,9 +1,13 @@
 import { RootState } from "@/global/states/store";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { borderShadow, noBorder } from "@/global/styles/app.css";
 import {
-  getComboboxTextInput,
-  getSchemeStyles,
+  borderShadowStyle,
+  noBorderStyle,
+  oneTxGreenBgMenuButtonPseudoStyle,
+} from "@/global/styles/app.css";
+import {
+  getComboboxTextInputStyles,
+  getDropdownStyles,
 } from "@/global/styles/global.styles";
 import { globalUtility } from "@/global/utilities";
 import {
@@ -18,8 +22,8 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 
-// Used for Sort & Order filters, and playlist Access field
-// Sets Enum Value as value and Key as Display Label
+// Used for Sort & Order or similar filters
+// Sets Enum Value as Value and Key as Display Label
 export const CustomEnumCombobox = ({
   EnumObject,
   data,
@@ -32,7 +36,7 @@ export const CustomEnumCombobox = ({
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -42,7 +46,11 @@ export const CustomEnumCombobox = ({
   });
 
   const options = data.map((item: any) => (
-    <Combobox.Option value={item} key={item} p="xs">
+    <Combobox.Option
+      p="xs"
+      key={item}
+      value={item}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       {shouldCapitalize ? (
         <Text tt="capitalize" ta="center">
           {globalUtility.getKeyByValue(EnumObject, item)}
@@ -67,7 +75,7 @@ export const CustomEnumCombobox = ({
           miw="100%"
           value={value}
           readOnly
-          styles={getComboboxTextInput(focusedInput === id)}
+          styles={getComboboxTextInputStyles(focusedInput === id)}
           onClick={() => combobox.openDropdown()}
           wrapperProps={{
             onFocus: () => handleFocus(id),
@@ -78,7 +86,7 @@ export const CustomEnumCombobox = ({
 
       <Combobox.Dropdown
         miw={120}
-        className={`${noBorder} ${borderShadow}`}
+        className={`${noBorderStyle} ${borderShadowStyle}`}
         p={3}
         bg={dropdownBg}>
         <Combobox.Options>

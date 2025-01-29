@@ -6,9 +6,13 @@ import { IconX } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
-import { getSearchTextInput } from "@/global/styles/global.styles";
+import { getSearchTextInputStyles } from "@/global/styles/global.styles";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { borderLC, circularBorder, inputStyles } from "@/global/styles/app.css";
+import {
+  borderLCStyle,
+  circularBorderStyle,
+  inputStyle,
+} from "@/global/styles/app.css";
 import { I } from "../components";
 
 export const SearchLayout = () => {
@@ -92,11 +96,11 @@ export const SearchLayout = () => {
         value={search}
         ref={inputRef}
         classNames={{
-          input: `${inputStyles} ${borderLC} ${circularBorder}`,
+          input: `${inputStyle} ${borderLCStyle} ${circularBorderStyle}`,
         }}
         styles={
           isMobile
-            ? getSearchTextInput(isMobile, width)
+            ? getSearchTextInputStyles(isMobile, width)
             : {
                 input: {
                   height: 50,

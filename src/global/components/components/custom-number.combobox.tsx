@@ -1,8 +1,12 @@
 import { setFocusedInput } from "@/global/states/view.slice";
-import { borderShadow, noBorder } from "@/global/styles/app.css";
 import {
-  getSchemeStyles,
-  getComboboxTextInputForPagination,
+  borderShadowStyle,
+  noBorderStyle,
+  oneTxGreenBgMenuButtonPseudoStyle,
+} from "@/global/styles/app.css";
+import {
+  getDropdownStyles,
+  getComboboxTextInputForPaginationStyles,
 } from "@/global/styles/global.styles";
 import {
   Combobox,
@@ -26,7 +30,7 @@ export const CustomNumberCombobox = ({
   const ref = useRef<any>(null);
   const dispatch = useDispatch();
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const handleFocus = (id: string) => dispatch(setFocusedInput(id));
   const handleBlur = () => dispatch(setFocusedInput(""));
@@ -36,7 +40,11 @@ export const CustomNumberCombobox = ({
   });
 
   const options = data.map((item: any) => (
-    <Combobox.Option value={item} key={item} p="xs">
+    <Combobox.Option
+      p="xs"
+      key={item}
+      value={item}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Text tt="capitalize" ta="center">
         {item}
       </Text>
@@ -57,7 +65,7 @@ export const CustomNumberCombobox = ({
           w={60}
           value={value}
           readOnly
-          styles={getComboboxTextInputForPagination()}
+          styles={getComboboxTextInputForPaginationStyles()}
           onClick={() => combobox.openDropdown()}
           wrapperProps={{
             onFocus: () => handleFocus(id),
@@ -68,7 +76,7 @@ export const CustomNumberCombobox = ({
 
       <Combobox.Dropdown
         miw={60}
-        className={`${noBorder} ${borderShadow}`}
+        className={`${noBorderStyle} ${borderShadowStyle}`}
         p={3}
         bg={dropdownBg}>
         <Combobox.Options>

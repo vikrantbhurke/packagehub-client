@@ -1,7 +1,8 @@
 import { RootState } from "@/global/states/store";
 import {
-  borderShadow,
-  noBorder,
+  borderShadowStyle,
+  noBorderStyle,
+  oneTxGreenBgMenuButtonPseudoStyle,
   themeGreenColor,
 } from "@/global/styles/app.css";
 import {
@@ -16,8 +17,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  getSchemeButtonStyles,
-  getSchemeStyles,
+  getDropdownStyles,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
 import { useInstallApp } from "@/global/hooks";
@@ -46,8 +46,7 @@ export const MenuLayout = () => {
   const [opened, { open, close }] = useDisclosure();
   const { userReviews } = useCountUserReviews(auth.id);
   const { colorScheme } = useMantineColorScheme();
-  const { schemeButtonBg } = getSchemeButtonStyles(colorScheme);
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const {
     platform,
@@ -119,13 +118,13 @@ export const MenuLayout = () => {
 
         <Menu.Dropdown
           bg={dropdownBg}
-          className={`${noBorder} ${borderShadow}`}>
+          className={`${noBorderStyle} ${borderShadowStyle}`}>
           {!isInstalled && installPrompt && (
             <Menu.Item
               onClick={handleInstallClick}
               p="xs"
               c={themeGreenColor}
-              className={schemeButtonBg}
+              className={oneTxGreenBgMenuButtonPseudoStyle}
               leftSection={<I I={IconDownload} />}
               hiddenFrom={responsiveBreakpoint}>
               <Text size="sm" c={themeGreenColor}>
@@ -137,7 +136,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToHome}
             p="xs"
-            className={schemeButtonBg}
+            className={oneTxGreenBgMenuButtonPseudoStyle}
             leftSection={<I I={IconStar} />}
             hiddenFrom={responsiveBreakpoint}>
             <Text size="sm">Home</Text>
@@ -146,7 +145,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToPlatformPackages}
             p="xs"
-            className={schemeButtonBg}
+            className={oneTxGreenBgMenuButtonPseudoStyle}
             leftSection={<I I={IconBox} />}
             hiddenFrom={responsiveBreakpoint}>
             <Text size="sm">Packages</Text>
@@ -157,7 +156,7 @@ export const MenuLayout = () => {
               <Menu.Item
                 onClick={handleNavigateToUserReviews}
                 p="xs"
-                className={schemeButtonBg}
+                className={oneTxGreenBgMenuButtonPseudoStyle}
                 leftSection={<I I={IconArticle} />}>
                 <Text size="sm">My Reviews</Text>
               </Menu.Item>
@@ -168,7 +167,7 @@ export const MenuLayout = () => {
             <Menu.Item
               onClick={handleNavigateToUser}
               p="xs"
-              className={schemeButtonBg}
+              className={oneTxGreenBgMenuButtonPseudoStyle}
               leftSection={<I I={IconUser} />}>
               <Text size="sm">Profile</Text>
             </Menu.Item>
@@ -177,7 +176,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleNavigateToAbout}
             p="xs"
-            className={schemeButtonBg}
+            className={oneTxGreenBgMenuButtonPseudoStyle}
             leftSection={<I I={IconInfoCircle} />}>
             <Text size="sm">About</Text>
           </Menu.Item>
@@ -185,7 +184,7 @@ export const MenuLayout = () => {
           <Menu.Item
             onClick={handleContact}
             p="xs"
-            className={schemeButtonBg}
+            className={oneTxGreenBgMenuButtonPseudoStyle}
             leftSection={<I I={IconMessage} />}>
             <Text size="sm">Contact</Text>
           </Menu.Item>

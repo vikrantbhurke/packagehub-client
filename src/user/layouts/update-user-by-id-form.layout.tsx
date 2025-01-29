@@ -1,5 +1,5 @@
 import {
-  getFormTextInput,
+  getFormTextInputStyles,
   mainContentWidth,
   modal,
 } from "@/global/styles/global.styles";
@@ -26,10 +26,9 @@ import { useUpdateUserByIdForm } from "../hooks/update";
 import { IconRefresh, IconTrash } from "@tabler/icons-react";
 import {
   oneTx,
-  inputStyles,
-  borderLC,
+  borderLCStyle,
   oneBg,
-  roundBorder,
+  roundBorderStyle,
   twoBg,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
@@ -75,7 +74,7 @@ export const UpdateUserByIdFormLayout = () => {
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
-              className={`${isMobile ? "" : `${borderLC}`} ${roundBorder}`}>
+              className={`${isMobile ? "" : `${borderLCStyle}`} ${roundBorderStyle}`}>
               <Modal
                 c={oneTx}
                 styles={modal}
@@ -143,7 +142,9 @@ export const UpdateUserByIdFormLayout = () => {
                 <Stack gap={0}>
                   <Text>Profile Picture</Text>
                   <FileInput
-                    styles={getFormTextInput(focusedInput === "profilepic")}
+                    styles={getFormTextInputStyles(
+                      focusedInput === "profilepic"
+                    )}
                     wrapperProps={{
                       onFocus: () => handleFocus("profilepic"),
                       onBlur: handleBlur,
@@ -160,8 +161,9 @@ export const UpdateUserByIdFormLayout = () => {
                     required
                     minLength={2}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "firstname")}
+                    styles={getFormTextInputStyles(
+                      focusedInput === "firstname"
+                    )}
                     wrapperProps={{
                       onFocus: () => handleFocus("firstname"),
                       onBlur: handleBlur,
@@ -177,8 +179,7 @@ export const UpdateUserByIdFormLayout = () => {
                     required
                     minLength={2}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "lastname")}
+                    styles={getFormTextInputStyles(focusedInput === "lastname")}
                     wrapperProps={{
                       onFocus: () => handleFocus("lastname"),
                       onBlur: handleBlur,
@@ -193,8 +194,7 @@ export const UpdateUserByIdFormLayout = () => {
                   <TextInput
                     minLength={5}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "email")}
+                    styles={getFormTextInputStyles(focusedInput === "email")}
                     wrapperProps={{
                       onFocus: () => handleFocus("email"),
                       onBlur: handleBlur,
@@ -210,8 +210,7 @@ export const UpdateUserByIdFormLayout = () => {
                   <PasswordInput
                     minLength={6}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(focusedInput === "password")}
+                    styles={getFormTextInputStyles(focusedInput === "password")}
                     wrapperProps={{
                       onFocus: () => handleFocus("password"),
                       onBlur: handleBlur,
@@ -227,8 +226,7 @@ export const UpdateUserByIdFormLayout = () => {
                   <PasswordInput
                     minLength={6}
                     maxLength={20}
-                    classNames={{ input: inputStyles }}
-                    styles={getFormTextInput(
+                    styles={getFormTextInputStyles(
                       focusedInput === "confirmPassword"
                     )}
                     wrapperProps={{

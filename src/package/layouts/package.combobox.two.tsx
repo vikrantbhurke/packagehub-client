@@ -19,13 +19,14 @@ import {
 import { IconStarFilled, IconX } from "@tabler/icons-react";
 import { globalUtility } from "@/global/utilities";
 import {
-  borderLC,
-  borderShadow,
-  circularBorder,
-  inputStyles,
-  noBorder,
+  borderLCStyle,
+  borderShadowStyle,
+  circularBorderStyle,
+  inputStyle,
+  noBorderStyle,
   oneTx,
-  roundBorder,
+  oneTxGreenBgMenuButtonPseudoStyle,
+  roundBorderStyle,
   themeGreenColor,
 } from "@/global/styles/app.css";
 import { packageUtility } from "../package.utility";
@@ -33,8 +34,8 @@ import { useWindowScroll } from "@mantine/hooks";
 import { setPage as setPackagePage } from "../package.slice";
 import { RootState } from "@/global/states/store";
 import {
-  getSchemeStyles,
-  getSearchTextInput,
+  getDropdownStyles,
+  getSearchTextInputStyles,
 } from "@/global/styles/global.styles";
 import { useEffect, useRef } from "react";
 import { I } from "@/global/components/components";
@@ -45,7 +46,7 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   const inputRef = useRef<any>(null);
   const [, scrollTo] = useWindowScroll();
   const { colorScheme } = useMantineColorScheme();
-  const { dropdownBg } = getSchemeStyles(colorScheme);
+  const { dropdownBg } = getDropdownStyles(colorScheme);
 
   const { auth } = useSelector((state: any) => state.auth);
 
@@ -110,7 +111,9 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   let seeAllButton;
 
   const registryComp = (registry: any) => (
-    <Combobox.Option value={registry.name}>
+    <Combobox.Option
+      value={registry.name}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Group justify="space-between">
         <Text>{registry.name}</Text>
 
@@ -127,7 +130,10 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   );
 
   const repoComp = (item: any) => (
-    <Combobox.Option value={item.name} key={item.id}>
+    <Combobox.Option
+      value={item.name}
+      key={item.id}
+      className={oneTxGreenBgMenuButtonPseudoStyle}>
       <Group
         justify="space-between"
         onClick={() => handleNavigateToPackage(item)}>
@@ -142,7 +148,7 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
           gap={6}
           py={4}
           px="xs"
-          className={`${roundBorder}`}
+          className={`${roundBorderStyle}`}
           bg={packageUtility.getRatingColor(item.rating)}
           align="center">
           <ActionIcon
@@ -232,11 +238,11 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
             autoComplete="off"
             ref={inputRef}
             classNames={{
-              input: `${inputStyles} ${borderLC} ${circularBorder}`,
+              input: `${inputStyle} ${borderLCStyle} ${circularBorderStyle}`,
             }}
             styles={
               isMobile
-                ? getSearchTextInput(isMobile, width)
+                ? getSearchTextInputStyles(isMobile, width)
                 : {
                     input: {
                       height: 50,
@@ -265,7 +271,7 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
 
       <Combobox.Dropdown
         bg={dropdownBg}
-        className={`${noBorder} ${borderShadow} ${roundBorder}`}>
+        className={`${noBorderStyle} ${borderShadowStyle} ${roundBorderStyle}`}>
         <Combobox.Options>
           {registryPackage && (
             <Combobox.Group label="Package Registry">

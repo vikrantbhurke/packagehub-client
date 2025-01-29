@@ -5,7 +5,6 @@ import {
   Group,
   Image,
   Text,
-  Title,
   useMantineColorScheme,
 } from "@mantine/core";
 import {
@@ -21,12 +20,14 @@ import { MenuLayout, SearchLayout } from "./index";
 import { useDispatch } from "react-redux";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
 import { useWindowScroll } from "@mantine/hooks";
-import { themeGreenColor } from "@/global/styles/app.css";
+import { themeGreenColor, themeTxStyle } from "@/global/styles/app.css";
 import { signOut } from "@/user/auth.slice";
 import {
-  headerHeight,
+  layoutCompHeight,
   mainContentWidth,
   responsiveBreakpoint,
+  textBold,
+  textBolder,
 } from "@/global/styles/global.styles";
 import { I } from "../components";
 import logo from "@/global/assets/pwa-64x64.png";
@@ -93,10 +94,13 @@ export const HeaderLayout = () => {
         <>{searchbar}</>
       ) : (
         <Container size={mainContentWidth}>
-          <Group h={headerHeight} justify="space-between" align="center">
+          <Group h={layoutCompHeight} justify="space-between" align="center">
             <Group gap={4} onClick={handleNavigateToHome} align="center">
               <Image src={logo} alt="logo" w={32} />
-              <Title order={4}>{import.meta.env.VITE_APP_NAME}</Title>
+
+              <Text fw={textBolder} fz="lg" className={themeTxStyle}>
+                {import.meta.env.VITE_APP_NAME}
+              </Text>
             </Group>
 
             <Group gap={isMobile ? 6 : "xs"}>
@@ -107,7 +111,7 @@ export const HeaderLayout = () => {
                   onClick={handleInstallClick}
                   visibleFrom={responsiveBreakpoint}>
                   <I I={IconDownload} />
-                  <Text c={themeGreenColor} fw={500}>
+                  <Text c={themeGreenColor} fw={textBold}>
                     Install App
                   </Text>
                 </Group>
@@ -116,13 +120,17 @@ export const HeaderLayout = () => {
               <Group
                 onClick={handleNavigateToHome}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={500}>Home</Text>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Home
+                </Text>
               </Group>
 
               <Group
                 onClick={handleNavigateToPlatformPackages}
                 visibleFrom={responsiveBreakpoint}>
-                <Text fw={500}>Packages</Text>
+                <Text fw={textBold} className={themeTxStyle}>
+                  Packages
+                </Text>
               </Group>
 
               <ActionIcon size="sm" onClick={handleOpenSearchbar}>

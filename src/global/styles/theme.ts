@@ -1,5 +1,5 @@
 import { themeToVars } from "@mantine/vanilla-extract";
-import { oneTx, threeBg } from "./app.css";
+import { interFontStyle, oneTx, threeBg } from "./app.css";
 import {
   Button,
   Text,
@@ -9,8 +9,10 @@ import {
   TextInput,
   Textarea,
   ActionIcon,
-  Pill,
   PasswordInput,
+  Combobox,
+  Anchor,
+  Tooltip,
 } from "@mantine/core";
 
 export const theme = createTheme({
@@ -18,8 +20,7 @@ export const theme = createTheme({
     Button: Button.extend({
       defaultProps: {
         color: oneTx,
-        h: "2rem",
-        radius: "md",
+        className: interFontStyle,
       },
     }),
 
@@ -31,14 +32,11 @@ export const theme = createTheme({
       },
     }),
 
-    Pill: Pill.extend({
-      defaultProps: {},
-    }),
-
     Text: Text.extend({
       defaultProps: {
         color: oneTx,
         fz: "sm",
+        className: interFontStyle,
       },
     }),
 
@@ -46,6 +44,7 @@ export const theme = createTheme({
       defaultProps: {
         color: oneTx,
         radius: "md",
+        className: interFontStyle,
       },
     }),
 
@@ -53,6 +52,13 @@ export const theme = createTheme({
       defaultProps: {
         color: oneTx,
         radius: "md",
+        className: interFontStyle,
+      },
+    }),
+
+    ComboboxOption: Combobox.Option.extend({
+      defaultProps: {
+        className: interFontStyle,
       },
     }),
 
@@ -60,21 +66,43 @@ export const theme = createTheme({
       defaultProps: {
         color: oneTx,
         radius: "md",
+        className: interFontStyle,
       },
     }),
 
     Title: Title.extend({
       defaultProps: {
         c: oneTx,
+        className: interFontStyle,
+      },
+    }),
+
+    Anchor: Anchor.extend({
+      defaultProps: {
+        className: interFontStyle,
+      },
+    }),
+
+    Tooltip: Tooltip.extend({
+      defaultProps: {
+        className: interFontStyle,
       },
     }),
 
     Pagination: Pagination.extend({
+      defaultProps: {
+        size: "sm",
+        m: "xs",
+        radius: "sm",
+        siblings: 0,
+      },
+
       styles: {
         control: {
           color: oneTx,
           backgroundColor: threeBg,
           border: "none",
+          className: interFontStyle,
         },
       },
     }),
