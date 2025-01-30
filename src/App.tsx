@@ -2,6 +2,7 @@ import "./App.css";
 import "@mantine/dates/styles.css";
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "@mantine/tiptap/styles.css";
 import { HelmetProvider } from "react-helmet-async";
 import { Provider } from "react-redux";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";

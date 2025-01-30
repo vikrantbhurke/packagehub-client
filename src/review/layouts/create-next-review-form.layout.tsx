@@ -4,7 +4,6 @@ import {
   Stack,
   Rating,
   Button,
-  Textarea,
   TextInput,
   Text,
   Group,
@@ -24,7 +23,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setRatingInput } from "../review.slice";
 import { reviewUtility } from "../review.utility";
-import { IconRefresh } from "@tabler/icons-react";
+import { IconRefresh, IconStarFilled } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useCreateNextReviewForm } from "../hooks/create";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -33,6 +32,7 @@ import {
   mainContentWidth,
 } from "@/global/styles/global.styles";
 import { I } from "@/global/components/components";
+import { RichTextEditor } from "./rich-text-editor.layout";
 
 export const CreateNextReviewFormLayout = ({}: any) => {
   const navigate = useNavigate();
@@ -58,8 +58,6 @@ export const CreateNextReviewFormLayout = ({}: any) => {
 
   const handleCancel = () => navigate(-1);
 
-  const placeholder = `What did you ${reviewUtility.getPlaceholder(ratingInput)} about this package?`;
-
   return (
     <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
       <Container size={mainContentWidth} p={0} h="100%">
@@ -72,7 +70,7 @@ export const CreateNextReviewFormLayout = ({}: any) => {
           py="xl">
           <form onSubmit={form.onSubmit(handleCreateNextReview)}>
             <Stack
-              w={400}
+              w={isMobile ? "100vw" : 600}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}
@@ -98,6 +96,7 @@ export const CreateNextReviewFormLayout = ({}: any) => {
                   </Group>
 
                   <Rating
+                    emptySymbol={<I I={IconStarFilled} color="gray" />}
                     value={ratingInput}
                     color={reviewUtility.getRatingColor(ratingInput)}
                     bg={threeBg}
@@ -136,28 +135,18 @@ export const CreateNextReviewFormLayout = ({}: any) => {
                 <Stack gap={4}>
                   <Group justify="space-between" w="100%">
                     <Title order={6}>Describe your experience</Title>
+
                     <Text
                       fz="xs"
-                      c={reviewUtility.getBodyColor(form.values.body.length)}>
-                      {form.values.body.length} / 1000
+                      c={reviewUtility.getBodyColor(
+                        reviewUtility.stripHtmlTags(form.values.body).length
+                      )}>
+                      {reviewUtility.stripHtmlTags(form.values.body).length} /
+                      1000
                     </Text>
                   </Group>
 
-                  <Textarea
-                    placeholder={placeholder}
-                    autosize
-                    minLength={50}
-                    maxLength={1000}
-                    minRows={8}
-                    maxRows={12}
-                    styles={getFormTextInputStyles(focusedInput === "body")}
-                    wrapperProps={{
-                      onFocus: () => handleFocus("body"),
-                      onBlur: handleBlur,
-                    }}
-                    key={form.key("body")}
-                    {...form.getInputProps("body")}
-                  />
+                  <RichTextEditor form={form} />
                 </Stack>
               </Stack>
 

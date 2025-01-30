@@ -1,5 +1,6 @@
 import { ReviewsLayout } from "./reviews.layout";
 import { ReviewsFilterBox } from "./reviews-filter.box";
+import { RichTextEditor } from "./rich-text-editor.layout";
 import { ReviewsFilterModal } from "./reviews-filter.modal";
 import { ReviewListItemLayout } from "./review-list-item.layout";
 import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
@@ -11,6 +12,7 @@ import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-butto
 
 export {
   ReviewsLayout,
+  RichTextEditor,
   ReviewsFilterBox,
   ReviewsFilterModal,
   ReviewListItemLayout,

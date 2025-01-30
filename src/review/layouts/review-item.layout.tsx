@@ -102,7 +102,7 @@ export const ReviewItemLayout = ({ review }: any) => {
           align="center"
           justify={isMobile ? "start" : "center"}>
           <Stack
-            w={isMobile ? "100%" : 600}
+            w={isMobile ? "100vw" : 600}
             gap="md"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}
@@ -162,7 +162,10 @@ export const ReviewItemLayout = ({ review }: any) => {
             <Stack gap="xs">
               <Text fw={textBolder}>{review.title}</Text>
 
-              <Text size="sm">{review.body}</Text>
+              <Text
+                size="sm"
+                dangerouslySetInnerHTML={{ __html: review.body }}
+              />
             </Stack>
 
             <Group>

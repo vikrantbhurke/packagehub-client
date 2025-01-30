@@ -149,16 +149,16 @@ export const ReviewListItemLayout = ({ item }: any) => {
         </Stack>
 
         <Stack onClick={handleReview} gap="xs">
-          <Text fw={textBolder} td="underline" className={themeTxStyle}>
+          <Text fw={textBolder} className={themeTxStyle}>
             {item.title}
           </Text>
 
           <Text
             lineClamp={3}
             size={isMobile ? "sm" : "md"}
-            className={themeTxStyle}>
-            {item.body}
-          </Text>
+            className={themeTxStyle}
+            dangerouslySetInnerHTML={{ __html: item.body }}
+          />
         </Stack>
 
         <Group>

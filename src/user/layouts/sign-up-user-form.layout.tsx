@@ -64,7 +64,7 @@ export const SignUpUserFormLayout = () => {
                 },
               }}>
               <Stack
-                w={400}
+                w={isMobile ? "100vw" : 400}
                 gap="lg"
                 p={isMobile ? "md" : "xl"}
                 bg={oneBg}

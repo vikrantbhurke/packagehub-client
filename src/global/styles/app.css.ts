@@ -16,6 +16,7 @@ export const borderHCColor = "var(--border-high-contrast)";
 export const themeGreenColor = "var(--theme-green)";
 export const themeLightGreenOneBg = "var(--theme-light-green-one-bg)";
 export const themeLightGreenTwoBg = "var(--theme-light-green-two-bg)";
+export const errorRedColor = "var(--error-red)";
 
 export const LCBorder = `1px solid ${borderLCColor}`;
 export const HCBorder = `2px solid ${borderHCColor}`;

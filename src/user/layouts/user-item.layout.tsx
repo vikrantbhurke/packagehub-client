@@ -76,7 +76,7 @@ export const UserItemLayout = ({ user }: any) => {
           align="center"
           justify={isMobile ? "start" : "center"}>
           <Stack
-            w={isMobile ? "100%" : 400}
+            w={isMobile ? "100vw" : 400}
             gap="xl"
             p={isMobile ? "md" : "xl"}
             bg={oneBg}

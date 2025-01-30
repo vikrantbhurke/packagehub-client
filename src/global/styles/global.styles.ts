@@ -10,6 +10,7 @@ import {
   oneTxOneBgButtonPseudoStyle,
 } from "./app.css";
 
+export const errorFontSize = 12;
 export const textBold = 500;
 export const textBolder = 700;
 export const buttonHeight = 40;
@@ -51,6 +52,21 @@ export const stringTruncate = {
   textOverflow: "ellipsis",
   whiteSpace: "nowrap",
 };
+
+export const getRichTextEditorStyles = (isFocused: boolean) => ({
+  root: {
+    border: isFocused ? HCBorder : "none",
+  },
+  control: { backgroundColor: oneBg },
+  toolbar: { backgroundColor: twoBg, border: "none" },
+  content: {
+    minHeight: 120,
+    maxHeight: 120,
+    overflowY: "auto",
+    backgroundColor: twoBg,
+    fontSize: "14px",
+  },
+});
 
 export const getDropdownStyles = (colorScheme: string) => ({
   dropdownBg: colorScheme === "dark" ? threeBg : oneBg,

@@ -24,6 +24,7 @@ export const cssVariables = () => {
     variables: {
       "--theme-primary": "#000",
       "--theme-green": "#2FBAAA",
+      "--error-red": "#E0312B",
     },
     light: {
       "--primary-text": DarkOne,

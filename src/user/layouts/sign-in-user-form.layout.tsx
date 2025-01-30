@@ -53,7 +53,7 @@ export const SignInUserFormLayout = () => {
         <Stack px="md" justify="center" align="center" h="100%">
           <form onSubmit={form.onSubmit(handleSignInUser)}>
             <Stack
-              w={400}
+              w={isMobile ? "100vw" : 400}
               gap="lg"
               bg={oneBg}
               p={isMobile ? "md" : "xl"}

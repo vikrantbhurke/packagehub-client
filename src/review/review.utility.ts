@@ -45,7 +45,9 @@ class ReviewUtility {
   validateBody = (body: string) => {
     const bodySchema = new Validator();
     bodySchema.is().min(50).is().max(1000);
-    return bodySchema.validate(body) ? null : ReviewError.Body;
+    return bodySchema.validate(this.stripHtmlTags(body))
+      ? null
+      : ReviewError.Body;
   };
 
   getTitleColor = (length: number) => {
@@ -56,6 +58,10 @@ class ReviewUtility {
   getBodyColor = (length: number) => {
     if (length < 50 || length > 1000) return "red";
     return "green";
+  };
+
+  stripHtmlTags = (htmlString: string) => {
+    return htmlString.replace(/<[^>]*>/g, ""); // Remove all HTML tags
   };
 }
 
