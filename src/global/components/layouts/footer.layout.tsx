@@ -1,4 +1,7 @@
-import { borderLCColor, roundBorderStyle } from "@/global/styles/app.css";
+import {
+  roundBorderStyle,
+  themeLightGreenOneBg,
+} from "@/global/styles/app.css";
 import { layoutCompHeight } from "@/global/styles/global.styles";
 import { Group, Stack, Text } from "@mantine/core";
 import { useWindowScroll } from "@mantine/hooks";
@@ -61,16 +64,16 @@ export const FooterLayout = () => {
   const handleReadOnlyClick = () => dispatch(setIsSearchbarVisible(true));
 
   const homeIconColor =
-    location.pathname === "/" ? borderLCColor : "transparent";
+    location.pathname === "/" ? themeLightGreenOneBg : "transparent";
 
   const homePath = location.pathname === "/" ? IconStarFilled : IconStar;
 
   const packagesIconColor = location.pathname.includes("/packages/platform")
-    ? borderLCColor
+    ? themeLightGreenOneBg
     : "transparent";
 
   const profileIconColor = location.pathname.includes(`/users/${auth.id}`)
-    ? borderLCColor
+    ? themeLightGreenOneBg
     : "transparent";
 
   const profilePath = location.pathname.includes(`/users/${auth.id}`)
@@ -78,10 +81,12 @@ export const FooterLayout = () => {
     : IconUser;
 
   const signInIconColor = location.pathname.includes(`/sign-in`)
-    ? borderLCColor
+    ? themeLightGreenOneBg
     : "transparent";
 
-  const searchIconColor = isSearchbarVisible ? borderLCColor : "transparent";
+  const searchIconColor = isSearchbarVisible
+    ? themeLightGreenOneBg
+    : "transparent";
 
   return (
     <Group justify="space-evenly" grow gap={0} h={layoutCompHeight}>
