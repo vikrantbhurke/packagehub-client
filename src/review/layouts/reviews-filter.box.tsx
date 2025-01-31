@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setOrder, setSort, setRating, setPage } from "../review.slice";
 import { ActionIcon, Group, Space, Stack, Text, Title } from "@mantine/core";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";

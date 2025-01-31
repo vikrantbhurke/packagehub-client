@@ -17,7 +17,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setIsSearchbarVisible } from "@/global/states/view.slice";
-import { I } from "../components";
+import { I } from "../reusables";
 import { setPage } from "@/package/package.slice";
 import { RootState } from "@/global/states/store";
 import { useSelector } from "react-redux";

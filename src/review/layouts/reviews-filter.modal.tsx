@@ -7,7 +7,7 @@ import {
   modalOverlayProps,
   textBold,
 } from "@/global/styles/global.styles";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useSearchParams } from "react-router-dom";

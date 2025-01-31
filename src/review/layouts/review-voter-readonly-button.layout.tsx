@@ -1,4 +1,4 @@
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { fiveTx } from "@/global/styles/app.css";
 import { ActionIcon } from "@mantine/core";
 import {

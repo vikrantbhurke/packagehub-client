@@ -77,7 +77,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
         align="center"
         justify={isMobile ? "start" : "center"}>
         <Stack
-          w={isMobile ? "100%" : 600}
+          w={isMobile ? "100vw" : 600}
           gap="lg"
           p={isMobile ? "md" : "xl"}
           bg={oneBg}

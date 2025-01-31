@@ -26,7 +26,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { IconMailFilled, IconStarFilled } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/review/review.slice";

@@ -13,7 +13,7 @@ import {
   circularBorderStyle,
   inputStyle,
 } from "@/global/styles/app.css";
-import { I } from "../components";
+import { I } from "../reusables";
 
 export const SearchLayout = () => {
   const location = useLocation();

@@ -1,3 +1,4 @@
+import { Breakpoint } from "../enums";
 import {
   oneBg,
   oneTx,
@@ -16,10 +17,10 @@ export const textBolder = 700;
 export const buttonHeight = 40;
 export const layoutCompHeight = 60;
 export const largeButtonHeight = 60;
-export const mainContentWidth = 1000;
-export const aboutContentWidth = 800;
+export const mainContentWidth = Breakpoint.md;
+export const aboutContentWidth = Breakpoint.sm;
 export const listItemHeight = 80;
-export const responsiveBreakpoint = "md";
+export const responsiveBreakpoint = "sm";
 
 export const modal = {
   content: {

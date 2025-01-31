@@ -17,7 +17,7 @@ import {
   mainContentWidth,
   responsiveBreakpoint,
 } from "@/global/styles/global.styles";
-import { CustomEnumCombobox, SeoComponent } from "../components";
+import { CustomEnumCombobox, SeoComponent } from "../reusables";
 import { Platform } from "@/package/enums";
 import { globalUtility } from "@/global/utilities";
 import { packageUtility } from "@/package/package.utility";

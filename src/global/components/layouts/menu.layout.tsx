@@ -30,7 +30,8 @@ import {
   IconStar,
   IconUser,
 } from "@tabler/icons-react";
-import { ContactModal, I } from "../components";
+import { I } from "../reusables";
+import { ContactModal } from "../views";
 import { setPage as setPackagePage } from "@/package/package.slice";
 import { setPage as setReviewPage } from "@/review/review.slice";
 import { CompOrFragmentRoute } from "@/global/routes";

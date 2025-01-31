@@ -4,7 +4,7 @@ import {
   getToproundBorderStyles,
 } from "@/global/styles/global.styles";
 import { Center, Pagination } from "@mantine/core";
-import { CustomNumberCombobox } from "../components";
+import { CustomNumberCombobox } from "../reusables";
 import { useSelector } from "react-redux";
 
 export const PaginationPlaceholder = () => {

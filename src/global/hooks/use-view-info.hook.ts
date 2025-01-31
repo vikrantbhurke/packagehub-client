@@ -9,7 +9,7 @@ export const useViewInfo = () => {
   const { width } = useViewportSize();
 
   useEffect(() => {
-    if (width < Breakpoint.md) dispatch(setIsMobile(true));
+    if (width < Breakpoint.sm) dispatch(setIsMobile(true));
     else dispatch(setIsMobile(false));
     dispatch(setWidth(width));
   }, [width]);

@@ -2,7 +2,7 @@ import { CustomLoader } from "@/global/components/loaders";
 import { useGetReviewById } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
 import { ReviewItemLayout } from "../layouts/review-item.layout";
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 
 export const GetReviewByIdItem = () => {
   const { review, isPending, isError, error } = useGetReviewById();

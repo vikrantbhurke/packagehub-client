@@ -5,7 +5,7 @@ import {
   IconArrowBigUpFilled,
 } from "@tabler/icons-react";
 import { ActionIcon } from "@mantine/core";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { fiveTx } from "@/global/styles/app.css";
 
 export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {

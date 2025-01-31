@@ -16,7 +16,7 @@ import { useSelector } from "react-redux";
 import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { Breakpoint } from "@/global/enums";
-import { CustomNumberCombobox } from "../components";
+import { CustomNumberCombobox } from "../reusables";
 
 export const MantineGrid = ({
   p,

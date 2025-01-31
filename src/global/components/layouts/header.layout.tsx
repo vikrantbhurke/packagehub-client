@@ -29,7 +29,7 @@ import {
   textBold,
   textBolder,
 } from "@/global/styles/global.styles";
-import { I } from "../components";
+import { I } from "../reusables";
 import logo from "@/global/assets/pwa-64x64.png";
 import { useInstallApp } from "@/global/hooks";
 import { setPage } from "@/package/package.slice";

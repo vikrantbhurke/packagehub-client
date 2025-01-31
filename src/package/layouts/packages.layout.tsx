@@ -19,15 +19,14 @@ import {
 } from "@/global/styles/app.css";
 import { useState } from "react";
 import { globalUtility } from "@/global/utilities";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useSelector } from "react-redux";
-import { Breakpoint } from "@/global/enums";
 import { PackagesFilterBox } from "./packages-filter.box";
 import { useDisclosure } from "@mantine/hooks";
 import { PackagesFilterModal } from "./packages-filter.modal";
 
 export const PackagesLayout = () => {
-  const { isMobile, width, search } = useSelector((state: any) => state.view);
+  const { isMobile, search } = useSelector((state: any) => state.view);
   const { platform } = useSelector((state: any) => state.package);
 
   const [modalOpened, { open: modalOpen, close: modalClose }] =
@@ -47,7 +46,7 @@ export const PackagesLayout = () => {
         <PackagesFilterBox />
 
         <Stack
-          w={width < Breakpoint.md ? "100%" : "69%"}
+          w={isMobile ? "100%" : "69%"}
           gap={0}
           h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
           <Group

@@ -23,9 +23,8 @@ import {
 } from "@/global/styles/app.css";
 import { useState } from "react";
 import { globalUtility } from "@/global/utilities";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 import { useSelector } from "react-redux";
-import { Breakpoint } from "@/global/enums";
 import { useDisclosure } from "@mantine/hooks";
 import { useGetUserById } from "@/user/hooks/read";
 import { useGetPackageById } from "@/package/hooks/read";
@@ -38,7 +37,7 @@ export const ReviewsLayout = () => {
   const { pkg } = useGetPackageById();
   const { user } = useGetUserById();
   const { auth } = useSelector((state: any) => state.auth);
-  const { isMobile, width, search } = useSelector((state: any) => state.view);
+  const { isMobile, search } = useSelector((state: any) => state.view);
 
   const [filterOpened, { open: openFilter, close: closeFilter }] =
     useDisclosure(false);
@@ -76,7 +75,7 @@ export const ReviewsLayout = () => {
           <ReviewsFilterBox />
 
           <Stack
-            w={width < Breakpoint.md ? "100%" : "69%"}
+            w={isMobile ? "100%" : "69%"}
             gap={0}
             h={`calc(100vh - ${layoutCompHeight}px - ${isMobile ? layoutCompHeight : 2}px)`}>
             <Group

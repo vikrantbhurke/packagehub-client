@@ -38,7 +38,7 @@ import {
   getSearchTextInputStyles,
 } from "@/global/styles/global.styles";
 import { useEffect, useRef } from "react";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 
 export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   const dispatch = useDispatch();

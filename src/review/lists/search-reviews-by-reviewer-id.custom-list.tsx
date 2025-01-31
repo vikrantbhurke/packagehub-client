@@ -8,7 +8,7 @@ import { oneBg, twoBg } from "@/global/styles/app.css";
 import { useSearchReviewsByReviewerId } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
 import { CustomLoader } from "@/global/components/loaders";
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 
 export const SearchReviewsByReviewerIdCustomList = () => {

@@ -1,4 +1,4 @@
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 import { SignUpUserFormLayout } from "../layouts";
 
 export const SignUpUserItem = () => {

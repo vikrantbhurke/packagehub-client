@@ -8,7 +8,7 @@ import {
   setPage,
 } from "../package.slice";
 import { ActionIcon, Group, Space, Stack, Text, Title } from "@mantine/core";
-import { CustomEnumCombobox, I } from "@/global/components/components";
+import { CustomEnumCombobox, I } from "@/global/components/reusables";
 import { Order } from "@/global/enums";
 import { globalUtility } from "@/global/utilities";
 import { useNavigate, useSearchParams } from "react-router-dom";

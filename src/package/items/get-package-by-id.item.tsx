@@ -2,7 +2,7 @@ import { CustomLoader } from "@/global/components/loaders";
 import { useGetPackageById } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
 import { PackageItemLayout } from "../layouts/package-item.layout";
-import { SeoComponent } from "@/global/components/components";
+import { SeoComponent } from "@/global/components/reusables";
 
 export const GetPackageByIdItem = () => {
   const { pkg, isPending, isError, error } = useGetPackageById();

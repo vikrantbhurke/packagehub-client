@@ -21,6 +21,7 @@ export const theme = createTheme({
       defaultProps: {
         color: oneTx,
         className: interFontStyle,
+        radius: 8,
       },
     }),
 

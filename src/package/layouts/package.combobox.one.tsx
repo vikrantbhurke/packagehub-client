@@ -38,7 +38,7 @@ import {
   responsiveBreakpoint,
   wordBreakWhiteSpace,
 } from "@/global/styles/global.styles";
-import { I } from "@/global/components/components";
+import { I } from "@/global/components/reusables";
 
 export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
   const dispatch = useDispatch();

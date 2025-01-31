@@ -14,7 +14,7 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { CustomNumberCombobox } from "../components";
+import { CustomNumberCombobox } from "../reusables";
 
 export const CustomList = ({
   dataArray,
