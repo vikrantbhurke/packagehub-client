@@ -1,9 +1,10 @@
+import { RootState } from "@/global/states/store";
 import { oneBg, twoBg } from "@/global/styles/app.css";
 import { Stack, Text } from "@mantine/core";
 import { useSelector } from "react-redux";
 
 export const CustomError = ({ message }: any) => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
     <Stack

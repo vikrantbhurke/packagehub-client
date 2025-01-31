@@ -1,5 +1,6 @@
 import { Breakpoint } from "@/global/enums";
 import { useCustomScrollbar } from "@/global/hooks";
+import { RootState } from "@/global/states/store";
 import { oneBg, oneTxOneBgStyle, twoBg } from "@/global/styles/app.css";
 import {
   getGridListItemBorderWithBorderStyles,
@@ -24,7 +25,7 @@ export const CustomGrid = ({
   useCustomScrollbar();
   const containerRef = useRef<any>(null);
   const [isWindow] = useState<any>(false);
-  const { isMobile, width } = useSelector((state: any) => state.view);
+  const { isMobile, width } = useSelector((state: RootState) => state.view);
 
   const handleScroll = () => {
     const container = isWindow ? window : containerRef.current;

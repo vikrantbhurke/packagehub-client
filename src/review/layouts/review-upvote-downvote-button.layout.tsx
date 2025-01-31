@@ -7,9 +7,10 @@ import {
 import { ActionIcon } from "@mantine/core";
 import { I } from "@/global/components/reusables";
 import { fiveTx } from "@/global/styles/app.css";
+import { RootState } from "@/global/states/store";
 
 export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const { upvoteReviewByIdMutation, isPending: isUpvotePending } =
     useUpvoteReviewById();

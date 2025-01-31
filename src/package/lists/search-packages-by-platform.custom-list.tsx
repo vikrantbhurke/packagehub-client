@@ -9,11 +9,12 @@ import { setPage } from "../package.slice";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const SearchPackagesByPlatformCustomList = () => {
   const { isPending, isError, packages } = useSearchPackagesByPlatform();
-  const { isMobile } = useSelector((state: any) => state.view);
-  const { page } = useSelector((state: any) => state.package);
+  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { page } = useSelector((state: RootState) => state.package);
 
   const setData = useOutletContext<any>();
 

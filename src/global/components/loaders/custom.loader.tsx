@@ -1,9 +1,10 @@
+import { RootState } from "@/global/states/store";
 import { oneBg, oneTx, twoBg } from "@/global/styles/app.css";
 import { Loader, Stack } from "@mantine/core";
 import { useSelector } from "react-redux";
 
 export const CustomLoader = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
     <Stack

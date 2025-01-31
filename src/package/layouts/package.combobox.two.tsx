@@ -48,13 +48,13 @@ export const PackageComboboxTwo = ({ packages, placeholderComp }: any) => {
   const { colorScheme } = useMantineColorScheme();
   const { dropdownBg } = getDropdownStyles(colorScheme);
 
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const {
     platform,
     sort: packageSort,
     order: packageOrder,
-  } = useSelector((state: any) => state.package);
+  } = useSelector((state: RootState) => state.package);
 
   const { isMobile, search, width } = useSelector(
     (state: RootState) => state.view

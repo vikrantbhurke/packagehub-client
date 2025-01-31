@@ -24,10 +24,11 @@ import { useSelector } from "react-redux";
 import { PackagesFilterBox } from "./packages-filter.box";
 import { useDisclosure } from "@mantine/hooks";
 import { PackagesFilterModal } from "./packages-filter.modal";
+import { RootState } from "@/global/states/store";
 
 export const PackagesLayout = () => {
-  const { isMobile, search } = useSelector((state: any) => state.view);
-  const { platform } = useSelector((state: any) => state.package);
+  const { isMobile, search } = useSelector((state: RootState) => state.view);
+  const { platform } = useSelector((state: RootState) => state.package);
 
   const [modalOpened, { open: modalOpen, close: modalClose }] =
     useDisclosure(false);

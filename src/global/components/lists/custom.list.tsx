@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import { CustomNumberCombobox } from "../reusables";
+import { RootState } from "@/global/states/store";
 
 export const CustomList = ({
   dataArray,
@@ -29,7 +30,7 @@ export const CustomList = ({
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));

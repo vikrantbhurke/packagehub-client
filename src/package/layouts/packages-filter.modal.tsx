@@ -20,6 +20,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Platform, Rating, Sort } from "../enums";
 import { oneBg } from "@/global/styles/app.css";
+import { RootState } from "@/global/states/store";
 
 export const PackagesFilterModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const PackagesFilterModal = ({ opened, close }: any) => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const { order, sort, rating, platform } = useSelector(
-    (state: any) => state.package
+    (state: RootState) => state.package
   );
 
   const handlePlatform = (platform: any) => {

@@ -54,7 +54,7 @@ export const PackageComboboxOne = ({ packages, placeholderComp }: any) => {
     platform,
     sort: packageSort,
     order: packageOrder,
-  } = useSelector((state: any) => state.package);
+  } = useSelector((state: RootState) => state.package);
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),

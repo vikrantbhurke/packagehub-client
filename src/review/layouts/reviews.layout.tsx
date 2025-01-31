@@ -31,13 +31,14 @@ import { useGetPackageById } from "@/package/hooks/read";
 import { ReviewsFilterBox } from "./reviews-filter.box";
 import { ReviewsFilterModal } from "./reviews-filter.modal";
 import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
+import { RootState } from "@/global/states/store";
 
 export const ReviewsLayout = () => {
   const navigate = useNavigate();
   const { pkg } = useGetPackageById();
   const { user } = useGetUserById();
-  const { auth } = useSelector((state: any) => state.auth);
-  const { isMobile, search } = useSelector((state: any) => state.view);
+  const { auth } = useSelector((state: RootState) => state.auth);
+  const { isMobile, search } = useSelector((state: RootState) => state.view);
 
   const [filterOpened, { open: openFilter, close: closeFilter }] =
     useDisclosure(false);

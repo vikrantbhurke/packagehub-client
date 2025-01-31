@@ -22,7 +22,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { setRatingInput } from "../review.slice";
 import { reviewUtility } from "../review.utility";
-import { IconRefresh, IconStarFilled } from "@tabler/icons-react";
+import { IconRefresh } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 import { useCreateFirstReviewForm } from "../hooks/create";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -84,7 +84,6 @@ export const CreateFirstReviewFormLayout = ({}: any) => {
                 </Group>
 
                 <Rating
-                  emptySymbol={<I I={IconStarFilled} color="gray" />}
                   value={ratingInput}
                   color={reviewUtility.getRatingColor(ratingInput)}
                   bg={threeBg}

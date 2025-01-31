@@ -44,7 +44,7 @@ export const HeaderLayout = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
 
   const { isMobile, isSearchbarVisible } = useSelector(
-    (state: any) => state.view
+    (state: RootState) => state.view
   );
 
   const {

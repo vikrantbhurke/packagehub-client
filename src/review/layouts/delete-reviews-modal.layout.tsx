@@ -2,9 +2,10 @@ import { Button, Modal, Stack, Text } from "@mantine/core";
 import { useDeleteReviewsByReviewerId } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const DeleteReviewsModalLayout = ({ opened, close }: any) => {
-  const { auth } = useSelector((state: any) => state.auth);
+  const { auth } = useSelector((state: RootState) => state.auth);
 
   const { deleteReviewsByReviewerIdMutation, isPending } =
     useDeleteReviewsByReviewerId();

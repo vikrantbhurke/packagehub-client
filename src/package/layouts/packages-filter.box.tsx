@@ -20,6 +20,7 @@ import {
   roundBorderStyle,
 } from "@/global/styles/app.css";
 import { responsiveBreakpoint, textBold } from "@/global/styles/global.styles";
+import { RootState } from "@/global/states/store";
 
 export const PackagesFilterBox = () => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export const PackagesFilterBox = () => {
   let [searchParams, setSearchParams] = useSearchParams();
 
   const { order, sort, rating, platform } = useSelector(
-    (state: any) => state.package
+    (state: RootState) => state.package
   );
 
   const handlePlatform = (platform: any) => {

@@ -10,10 +10,11 @@ import { CustomError } from "@/global/components/errors";
 import { CustomLoader } from "@/global/components/loaders";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const SearchReviewsByReviewerIdCustomList = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
-  const { page } = useSelector((state: any) => state.review);
+  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { page } = useSelector((state: RootState) => state.review);
   const { reviews, isPending, isError, error } = useSearchReviewsByReviewerId();
   const setData = useOutletContext<any>();
 

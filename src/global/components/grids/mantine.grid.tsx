@@ -17,6 +17,7 @@ import { useIsComponentVisible } from "@/global/hooks";
 import { setIsPaginationVisible } from "@/global/states/view.slice";
 import { Breakpoint } from "@/global/enums";
 import { CustomNumberCombobox } from "../reusables";
+import { RootState } from "@/global/states/store";
 
 export const MantineGrid = ({
   p,
@@ -35,7 +36,7 @@ export const MantineGrid = ({
   useIsComponentVisible(ref, setIsPaginationVisible);
   let [searchParams, setSearchParams] = useSearchParams();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const { isMobile, width } = useSelector((state: any) => state.view);
+  const { isMobile, width } = useSelector((state: RootState) => state.view);
 
   const handlePage = (page: number) => {
     dispatch(setPage(page));

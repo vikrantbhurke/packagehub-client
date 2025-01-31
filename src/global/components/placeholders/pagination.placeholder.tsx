@@ -6,9 +6,10 @@ import {
 import { Center, Pagination } from "@mantine/core";
 import { CustomNumberCombobox } from "../reusables";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const PaginationPlaceholder = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
 
   return (
     <>

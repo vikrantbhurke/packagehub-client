@@ -14,12 +14,15 @@ import {
   roundBorderStyle,
 } from "@/global/styles/app.css";
 import { responsiveBreakpoint, textBold } from "@/global/styles/global.styles";
+import { RootState } from "@/global/states/store";
 
 export const ReviewsFilterBox = () => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const { order, sort, rating } = useSelector((state: any) => state.review);
+  const { order, sort, rating } = useSelector(
+    (state: RootState) => state.review
+  );
 
   const handleSort = (sort: any) => {
     dispatch(setSort(sort));

@@ -12,10 +12,11 @@ import {
 } from "@/global/styles/app.css";
 import { useViewInfo } from "@/global/hooks";
 import { useSelector } from "react-redux";
+import { RootState } from "@/global/states/store";
 
 export const AppLayout = () => {
   useViewInfo();
-  const { isMobile } = useSelector((state: any) => state.view);
+  const { isMobile } = useSelector((state: RootState) => state.view);
   const { header, footer } = getAppShellStyles(
     isMobile,
     layoutCompHeight,

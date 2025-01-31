@@ -31,7 +31,7 @@ export const FooterLayout = () => {
   const location = useLocation();
 
   const { auth } = useSelector((state: RootState) => state.auth);
-  const { isSearchbarVisible } = useSelector((state: any) => state.view);
+  const { isSearchbarVisible } = useSelector((state: RootState) => state.view);
 
   const {
     platform,

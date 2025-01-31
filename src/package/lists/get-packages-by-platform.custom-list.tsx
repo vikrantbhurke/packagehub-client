@@ -10,10 +10,11 @@ import { CustomError } from "@/global/components/errors";
 import { CustomLoader } from "@/global/components/loaders";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
+import { RootState } from "@/global/states/store";
 
 export const GetPackagesByPlatformCustomList = () => {
-  const { isMobile } = useSelector((state: any) => state.view);
-  const { page } = useSelector((state: any) => state.package);
+  const { isMobile } = useSelector((state: RootState) => state.view);
+  const { page } = useSelector((state: RootState) => state.package);
   const { packages, isPending, isError, error } = useGetPackagesByPlatform();
   const setData = useOutletContext<any>();
 

@@ -14,12 +14,15 @@ import { useSearchParams } from "react-router-dom";
 import { IconRefresh } from "@tabler/icons-react";
 import { Rating, Sort } from "../enums";
 import { oneBg } from "@/global/styles/app.css";
+import { RootState } from "@/global/states/store";
 
 export const ReviewsFilterModal = ({ opened, close }: any) => {
   const dispatch = useDispatch();
   let [searchParams, setSearchParams] = useSearchParams();
 
-  const { order, sort, rating } = useSelector((state: any) => state.review);
+  const { order, sort, rating } = useSelector(
+    (state: RootState) => state.review
+  );
 
   const handleSort = (sort: any) => {
     dispatch(setSort(sort));
