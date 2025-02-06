@@ -27,7 +27,7 @@ import { useNavigate } from "react-router-dom";
 import { useDeleteReviewById } from "../hooks/delete";
 import { globalUtility } from "@/global/utilities";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
-import { IconTrash } from "@tabler/icons-react";
+import { IconStarFilled, IconTrash } from "@tabler/icons-react";
 import { reviewUtility } from "../review.utility";
 import {
   modal,
@@ -39,6 +39,7 @@ import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.
 import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
 import { setPage } from "../review.slice";
 import { useDispatch } from "react-redux";
+import { I } from "@/global/components/reusables";
 
 export const ReviewItemLayout = ({ review }: any) => {
   const navigate = useNavigate();
@@ -133,11 +134,18 @@ export const ReviewItemLayout = ({ review }: any) => {
                 <Rating
                   readOnly
                   value={review.rating}
-                  color={reviewUtility.getRatingColor(review.rating)}
                   bg={threeBg}
-                  size="xs"
-                  p="xs"
+                  p={8}
+                  pb={6}
                   className={roundBorderStyle}
+                  emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+                  fullSymbol={
+                    <I
+                      I={IconStarFilled}
+                      size={14}
+                      color={reviewUtility.getRatingColor(review.rating)}
+                    />
+                  }
                 />
               </Group>
               <Stack gap={0} align="stretch">
@@ -179,24 +187,27 @@ export const ReviewItemLayout = ({ review }: any) => {
                   className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
                   {auth.role === Role.Public ? (
                     <ReviewVoterReadonlyButtonLayout>
-                      <Text fw={textBold}>
+                      <Text fz="xs" fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
                     </ReviewVoterReadonlyButtonLayout>
                   ) : (
                     <ReviewUpvoteDownvoteButtonLayout review={review}>
-                      <Text fw={textBold}>
+                      <Text fz="xs" fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
                     </ReviewUpvoteDownvoteButtonLayout>
                   )}
                 </Group>
-                <Text fw={textBold}>Votes</Text>
+                <Text fz="xs" fw={textBold}>
+                  Votes
+                </Text>
               </Group>
 
               {review.reviewerId._id === auth.id && (
                 <Group>
                   <Text
+                    fz="xs"
                     fw={textBold}
                     p="xs"
                     onClick={handleEdit}
@@ -204,6 +215,7 @@ export const ReviewItemLayout = ({ review }: any) => {
                     Edit
                   </Text>
                   <Text
+                    fz="xs"
                     fw={textBold}
                     p="xs"
                     onClick={open}

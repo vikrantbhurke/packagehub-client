@@ -23,7 +23,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setRatingInput } from "../review.slice";
 import { useEffect } from "react";
-import { IconRefresh } from "@tabler/icons-react";
+import { IconRefresh, IconStarFilled } from "@tabler/icons-react";
 import { useUpdateReviewByIdForm } from "../hooks/update";
 import { getFormTextInputStyles } from "@/global/styles/global.styles";
 import { I } from "@/global/components/reusables";
@@ -90,12 +90,18 @@ export const UpdateReviewByIdFormLayout = () => {
 
                 <Rating
                   value={ratingInput}
-                  color={reviewUtility.getRatingColor(ratingInput)}
                   bg={threeBg}
-                  size="md"
-                  p="xs"
-                  className={roundBorderStyle}
+                  p={8}
+                  pb={4}
                   onChange={handleRating}
+                  className={roundBorderStyle}
+                  emptySymbol={<I I={IconStarFilled} color="gray" />}
+                  fullSymbol={
+                    <I
+                      I={IconStarFilled}
+                      color={reviewUtility.getRatingColor(ratingInput)}
+                    />
+                  }
                 />
               </Stack>
 

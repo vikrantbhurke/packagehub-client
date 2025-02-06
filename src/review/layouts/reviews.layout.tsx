@@ -1,6 +1,7 @@
 import {
   layoutCompHeight,
   mainContentWidth,
+  marginLeft,
   responsiveBreakpoint,
   stringTruncate,
   textBold,
@@ -123,6 +124,7 @@ export const ReviewsLayout = () => {
 
               <Group>
                 <ActionIcon
+                  ml={marginLeft}
                   hiddenFrom={responsiveBreakpoint}
                   c={oneTx}
                   className={oneTxOneBgButtonPseudoStyle}
@@ -130,7 +132,11 @@ export const ReviewsLayout = () => {
                   <I I={IconFilter} />
                 </ActionIcon>
 
-                <ActionIcon disabled visibleFrom={responsiveBreakpoint} />
+                <ActionIcon
+                  disabled
+                  ml={marginLeft}
+                  visibleFrom={responsiveBreakpoint}
+                />
 
                 {user?.id === auth.id && data.totalElements > 0 && (
                   <ActionIcon onClick={openDeleteReviews}>

@@ -5,15 +5,15 @@ class ReviewUtility {
   getRatingColor(rating: number): string {
     switch (rating) {
       case 1:
-        return "red";
+        return "#E03131";
       case 2:
-        return "orange";
+        return "#E8590C";
       case 3:
-        return "yellow";
+        return "#F08C00";
       case 4:
-        return "lime";
+        return "#66A80F";
       case 5:
-        return "teal";
+        return "#099268";
       default:
         return "white";
     }

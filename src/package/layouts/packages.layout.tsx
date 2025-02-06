@@ -1,6 +1,7 @@
 import {
   layoutCompHeight,
   mainContentWidth,
+  marginLeft,
   responsiveBreakpoint,
   stringTruncate,
   textBold,
@@ -80,6 +81,7 @@ export const PackagesLayout = () => {
             </Group>
 
             <ActionIcon
+              ml={marginLeft}
               hiddenFrom={responsiveBreakpoint}
               c={oneTx}
               className={oneTxOneBgButtonPseudoStyle}
@@ -87,7 +89,11 @@ export const PackagesLayout = () => {
               <I I={IconFilter} />
             </ActionIcon>
 
-            <ActionIcon disabled visibleFrom={responsiveBreakpoint} />
+            <ActionIcon
+              disabled
+              ml={marginLeft}
+              visibleFrom={responsiveBreakpoint}
+            />
 
             <PackagesFilterModal opened={modalOpened} close={modalClose} />
           </Group>

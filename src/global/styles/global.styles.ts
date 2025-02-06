@@ -11,16 +11,17 @@ import {
   oneTxOneBgButtonPseudoStyle,
 } from "./app.css";
 
-export const errorFontSize = 12;
 export const textBold = 500;
+export const marginLeft = 50;
 export const textBolder = 700;
 export const buttonHeight = 40;
+export const errorFontSize = 12;
+export const listItemHeight = 80;
 export const layoutCompHeight = 60;
 export const largeButtonHeight = 60;
+export const responsiveBreakpoint = "sm";
 export const mainContentWidth = Breakpoint.md;
 export const aboutContentWidth = Breakpoint.sm;
-export const listItemHeight = 80;
-export const responsiveBreakpoint = "sm";
 
 export const modal = {
   content: {

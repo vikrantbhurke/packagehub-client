@@ -28,12 +28,13 @@ import {
   textBold,
   textBolder,
 } from "@/global/styles/global.styles";
-import { IconTrash } from "@tabler/icons-react";
+import { IconStarFilled, IconTrash } from "@tabler/icons-react";
 import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
 import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
 import { Role } from "@/user/enums";
 import { useDispatch } from "react-redux";
 import { setPage } from "../review.slice";
+import { I } from "@/global/components/reusables";
 
 export const ReviewListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -121,11 +122,18 @@ export const ReviewListItemLayout = ({ item }: any) => {
             <Rating
               readOnly
               value={item.rating}
-              color={reviewUtility.getRatingColor(item.rating)}
               bg={threeBg}
-              size="xs"
-              p="xs"
+              p={8}
+              pb={6}
               className={roundBorderStyle}
+              emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+              fullSymbol={
+                <I
+                  I={IconStarFilled}
+                  size={14}
+                  color={reviewUtility.getRatingColor(item.rating)}
+                />
+              }
             />
           </Group>
 
@@ -172,24 +180,27 @@ export const ReviewListItemLayout = ({ item }: any) => {
               className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
               {auth.role === Role.Public ? (
                 <ReviewVoterReadonlyButtonLayout>
-                  <Text fw={textBold}>
+                  <Text fz="xs" fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
                 </ReviewVoterReadonlyButtonLayout>
               ) : (
                 <ReviewUpvoteDownvoteButtonLayout review={item}>
-                  <Text fw={textBold}>
+                  <Text fz="xs" fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
                 </ReviewUpvoteDownvoteButtonLayout>
               )}
             </Group>
-            <Text fw={textBold}>Votes</Text>
+            <Text fz="xs" fw={textBold}>
+              Votes
+            </Text>
           </Group>
 
           {item.reviewerId._id === auth.id && (
             <Group>
               <Text
+                fz="xs"
                 fw={textBold}
                 p="xs"
                 onClick={handleEdit}
@@ -197,6 +208,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
                 Edit
               </Text>
               <Text
+                fz="xs"
                 fw={textBold}
                 p="xs"
                 onClick={open}

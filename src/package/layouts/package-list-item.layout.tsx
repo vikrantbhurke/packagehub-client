@@ -16,6 +16,8 @@ import { useGetReviewByPackageIdAndReviewerId } from "@/review/hooks/read";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
 import { textBolder, wordBreakWhiteSpace } from "@/global/styles/global.styles";
+import { IconStarFilled } from "@tabler/icons-react";
+import { I } from "@/global/components/reusables";
 
 export const PackageListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -80,11 +82,18 @@ export const PackageListItemLayout = ({ item }: any) => {
             readOnly
             fractions={4}
             value={item.rating}
-            color={packageUtility.getRatingColor(item.rating)}
-            size="xs"
             bg={threeBg}
-            p="xs"
+            p={8}
+            pb={6}
             className={roundBorderStyle}
+            emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+            fullSymbol={
+              <I
+                I={IconStarFilled}
+                size={14}
+                color={packageUtility.getRatingColor(item.rating)}
+              />
+            }
           />
 
           <Text c="dimmed" fz="xs">
@@ -98,6 +107,7 @@ export const PackageListItemLayout = ({ item }: any) => {
 
         <Button
           px="xs"
+          fz="xs"
           disabled={auth.id ? isPending : false}
           loading={auth.id ? isPending : false}
           onClick={readOrWriteHandler}

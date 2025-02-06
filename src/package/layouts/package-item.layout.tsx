@@ -20,6 +20,8 @@ import { globalUtility } from "@/global/utilities";
 import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
 import { textBolder, wordBreakWhiteSpace } from "@/global/styles/global.styles";
+import { IconStarFilled } from "@tabler/icons-react";
+import { I } from "@/global/components/reusables";
 
 export const PackageItemLayout = ({ pkg }: any) => {
   const navigate = useNavigate();
@@ -97,11 +99,18 @@ export const PackageItemLayout = ({ pkg }: any) => {
                   readOnly
                   fractions={4}
                   value={pkg.rating}
-                  color={packageUtility.getRatingColor(pkg.rating)}
-                  size="xs"
                   bg={threeBg}
-                  p="xs"
+                  p={8}
+                  pb={6}
                   className={roundBorderStyle}
+                  emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+                  fullSymbol={
+                    <I
+                      I={IconStarFilled}
+                      size={14}
+                      color={packageUtility.getRatingColor(pkg.rating)}
+                    />
+                  }
                 />
 
                 <Text c="dimmed" fz="xs">
@@ -115,6 +124,7 @@ export const PackageItemLayout = ({ pkg }: any) => {
 
               <Button
                 px="xs"
+                fz="xs"
                 disabled={auth.id ? isPending : false}
                 loading={auth.id ? isPending : false}
                 onClick={readOrWriteHandler}
