@@ -6,7 +6,6 @@ import {
   Stack,
   TextInput,
   PasswordInput,
-  FileInput,
   Button,
   Grid,
   Avatar,
@@ -15,21 +14,23 @@ import {
   Image,
   Text,
   Box,
+  FileButton,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useUpdateUserByIdForm } from "../hooks/update";
-import { IconRefresh, IconTrash } from "@tabler/icons-react";
+import { IconRefresh } from "@tabler/icons-react";
 import {
   oneTx,
   borderLCStyle,
   oneBg,
   roundBorderStyle,
   twoBg,
+  fiveTx,
 } from "@/global/styles/app.css";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { I } from "@/global/components/reusables";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
@@ -41,6 +42,13 @@ export const UpdateUserByIdFormLayout = () => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const [picViewOpened, setOpened] = useState(false);
   const [picDeleteOpened, { open, close }] = useDisclosure();
+  const [file, setFile] = useState<any>(null);
+  const resetRef = useRef<() => void>(null);
+
+  const clearFile = () => {
+    setFile(null);
+    resetRef.current?.();
+  };
 
   const { focusedInput, isMobile } = useSelector(
     (state: RootState) => state.view
@@ -83,31 +91,21 @@ export const UpdateUserByIdFormLayout = () => {
             <Group gap={0} align="center" justify="space-between">
               <Space w="xl" />
 
-              <Group justify="center" align="center" gap="xs">
-                <Stack align="center">
-                  {user.profilepic ? (
-                    <>
-                      <Avatar
-                        src={user.profilepic}
-                        size="xl"
-                        radius="50%"
-                        onClick={() => setOpened(true)}
-                      />
-                    </>
-                  ) : (
-                    <Avatar size="xl">
-                      {user.firstname[0]}
-                      {user.lastname[0]}
-                    </Avatar>
-                  )}
-                </Stack>
-
-                {user.id === auth.id && user.profilepic && (
-                  <ActionIcon c="crimson" onClick={open}>
-                    <I I={IconTrash} />
-                  </ActionIcon>
-                )}
-              </Group>
+              {user.profilepic ? (
+                <>
+                  <Avatar
+                    src={user.profilepic}
+                    size="xl"
+                    radius="50%"
+                    onClick={() => setOpened(true)}
+                  />
+                </>
+              ) : (
+                <Avatar size="xl">
+                  {user.firstname[0]}
+                  {user.lastname[0]}
+                </Avatar>
+              )}
 
               {form.isDirty() ? (
                 <ActionIcon aria-label="Refresh" onClick={form.reset}>
@@ -123,18 +121,52 @@ export const UpdateUserByIdFormLayout = () => {
             </Group>
 
             <Stack gap="sm">
-              <Stack gap={0}>
-                <Text>Profile Picture</Text>
-                <FileInput
-                  styles={getFormTextInputStyles(focusedInput === "profilepic")}
-                  wrapperProps={{
-                    onFocus: () => handleFocus("profilepic"),
-                    onBlur: handleBlur,
-                  }}
-                  clearable
-                  key={form.key("profilepic")}
-                  {...form.getInputProps("profilepic")}
-                />
+              <Stack>
+                {file && (
+                  <Text p="xs" fz="xs" bg={twoBg} className={roundBorderStyle}>
+                    Selected file: {file.name}
+                  </Text>
+                )}
+
+                <Grid>
+                  <Grid.Col span={4}>
+                    <FileButton
+                      resetRef={resetRef}
+                      onChange={(file) => {
+                        setFile(file);
+                        form.setFieldValue("profilepic", file);
+                      }}
+                      accept="image/*">
+                      {(props) => (
+                        <Button fullWidth bg={fiveTx} c={oneBg} {...props}>
+                          Upload
+                        </Button>
+                      )}
+                    </FileButton>
+                  </Grid.Col>
+
+                  <Grid.Col span={4}>
+                    <Button
+                      disabled={!file}
+                      color="yellow"
+                      fullWidth
+                      onClick={clearFile}>
+                      Reset
+                    </Button>
+                  </Grid.Col>
+
+                  <Grid.Col span={4}>
+                    {user.id === auth.id && user.profilepic ? (
+                      <Button fullWidth bg="red" c="white" onClick={open}>
+                        Delete
+                      </Button>
+                    ) : (
+                      <Button disabled fullWidth>
+                        Delete
+                      </Button>
+                    )}
+                  </Grid.Col>
+                </Grid>
               </Stack>
 
               <Stack gap={0}>
