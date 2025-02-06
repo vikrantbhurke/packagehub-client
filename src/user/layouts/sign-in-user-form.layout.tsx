@@ -16,7 +16,9 @@ import {
   Anchor,
   Box,
   Button,
+  Center,
   Group,
+  Image,
   PasswordInput,
   Space,
   Stack,
@@ -28,6 +30,7 @@ import { IconRefresh } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import logo from "@/global/assets/pwa-192x192.png";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
@@ -53,6 +56,10 @@ export const SignInUserFormLayout = () => {
             bg={oneBg}
             p={isMobile ? "md" : "xl"}
             className={`${isMobile ? "" : `${borderLCStyle}`} ${roundBorderStyle}`}>
+            <Center>
+              <Image src={logo} alt="logo" w={128} />
+            </Center>
+
             <Stack gap={0}>
               <Group gap={0} align="center" justify="space-between">
                 <Space w="md" />
