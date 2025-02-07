@@ -19,23 +19,6 @@ class ReviewUtility {
     }
   }
 
-  getPlaceholder(ratingInput: number): string {
-    switch (ratingInput) {
-      case 1:
-        return "hate";
-      case 2:
-        return "dislike";
-      case 3:
-        return "feel";
-      case 4:
-        return "like";
-      case 5:
-        return "love";
-      default:
-        return "";
-    }
-  }
-
   validateTitle = (body: string) => {
     const bodySchema = new Validator();
     bodySchema.is().min(5).is().max(50);

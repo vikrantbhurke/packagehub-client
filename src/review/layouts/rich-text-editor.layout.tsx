@@ -14,7 +14,6 @@ import {
   errorFontSize,
   getRichTextEditorStyles,
 } from "@/global/styles/global.styles";
-import { reviewUtility } from "../review.utility";
 
 interface RichTextEditorProps {
   form: any;
@@ -23,9 +22,8 @@ interface RichTextEditorProps {
 export function RichTextEditor({ form }: RichTextEditorProps) {
   const dispatch = useDispatch();
   const { focusedInput } = useSelector((state: RootState) => state.view);
-  const { ratingInput } = useSelector((state: RootState) => state.review);
 
-  const placeholder = `What did you ${reviewUtility.getPlaceholder(ratingInput)} about this package?`;
+  const placeholder = `What did you think about this package?`;
 
   const editor = useEditor({
     extensions: [

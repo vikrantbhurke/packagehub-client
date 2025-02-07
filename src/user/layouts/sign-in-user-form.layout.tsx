@@ -25,18 +25,26 @@ import {
   Text,
   TextInput,
   Title,
+  Transition,
 } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import logo from "@/global/assets/pwa-192x192.png";
+import { useEffect, useState } from "react";
 
 export const SignInUserFormLayout = () => {
   useAuthReroute();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { form, handleSignInUser, isPending } = useSignInUserForm();
+
+  const [mounted, setMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const { focusedInput, isMobile } = useSelector(
     (state: RootState) => state.view
@@ -56,8 +64,16 @@ export const SignInUserFormLayout = () => {
             bg={oneBg}
             p={isMobile ? "md" : "xl"}
             className={`${isMobile ? "" : `${borderLCStyle}`} ${roundBorderStyle}`}>
-            <Center>
-              <Image src={logo} alt="logo" w={128} />
+            <Center h={128}>
+              <Transition
+                mounted={mounted}
+                transition="scale"
+                duration={1000}
+                timingFunction="ease">
+                {(styles: any) => (
+                  <Image style={styles} src={logo} alt="logo" w={128} />
+                )}
+              </Transition>
             </Center>
 
             <Stack gap={0}>

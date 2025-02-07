@@ -32,7 +32,7 @@ export const modal = {
   title: {
     textAlign: "center" as const,
     width: "100%",
-    fontWeight: 500,
+    fontWeight: 700,
     fontFamily: "Inter",
   },
 };
