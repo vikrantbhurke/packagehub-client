@@ -1,8 +1,9 @@
-import { Center, Loader, Text } from "@mantine/core";
+import { Text } from "@mantine/core";
 import { useSearchPackagesByPlatform } from "../hooks/read";
 import { PackageComboboxOne } from "../layouts";
 import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
+import { PackageComboboxSkeleton } from "../skeletons";
 
 export const SearchPackagesByPlatformComboboxOne = () => {
   const { isPending, isError, packages } = useSearchPackagesByPlatform();
@@ -27,11 +28,7 @@ export const SearchPackagesByPlatformComboboxOne = () => {
     return (
       <PackageComboboxOne
         packages={emptyPackages}
-        placeholderComp={
-          <Center>
-            <Loader color="white" type="dots" />
-          </Center>
-        }
+        placeholderComp={<PackageComboboxSkeleton />}
       />
     );
 

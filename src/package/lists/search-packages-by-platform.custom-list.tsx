@@ -1,7 +1,6 @@
 import { PackageListItemLayout } from "../layouts";
 import { CustomList } from "@/global/components/lists";
 import { useSearchPackagesByPlatform } from "../hooks/read";
-import { CustomLoader } from "@/global/components/loaders";
 import { CustomError } from "@/global/components/errors";
 import { useSelector } from "react-redux";
 import { oneBg, twoBg } from "@/global/styles/app.css";
@@ -10,6 +9,7 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { PackageListItemSkeleton } from "../skeletons";
 
 export const SearchPackagesByPlatformCustomList = () => {
   const { isPending, isError, packages } = useSearchPackagesByPlatform();
@@ -29,10 +29,14 @@ export const SearchPackagesByPlatformCustomList = () => {
 
   if (isPending)
     return (
-      <>
-        <CustomLoader />
-        <PaginationPlaceholder />
-      </>
+      <CustomList
+        page={page}
+        listBg={isMobile ? oneBg : twoBg}
+        setPage={setPage}
+        dataArray={Array(3).fill({})}
+        totalPages={1}
+        ListItemLayout={PackageListItemSkeleton}
+      />
     );
 
   if (isError)

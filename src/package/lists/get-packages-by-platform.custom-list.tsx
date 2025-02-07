@@ -7,10 +7,10 @@ import { CustomList } from "@/global/components/lists";
 import { oneBg, twoBg } from "@/global/styles/app.css";
 import { useGetPackagesByPlatform } from "../hooks/read";
 import { CustomError } from "@/global/components/errors";
-import { CustomLoader } from "@/global/components/loaders";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
+import { PackageListItemSkeleton } from "../skeletons";
 
 export const GetPackagesByPlatformCustomList = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -29,10 +29,14 @@ export const GetPackagesByPlatformCustomList = () => {
 
   if (isPending)
     return (
-      <>
-        <CustomLoader />
-        <PaginationPlaceholder />
-      </>
+      <CustomList
+        page={page}
+        listBg={isMobile ? oneBg : twoBg}
+        setPage={setPage}
+        dataArray={Array(3).fill({})}
+        totalPages={1}
+        ListItemLayout={PackageListItemSkeleton}
+      />
     );
 
   if (isError)
