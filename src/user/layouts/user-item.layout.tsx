@@ -26,14 +26,14 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 import { DeleteUserModalLayout } from "./delete-user-modal.layout";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 import { IconMailFilled, IconStarFilled } from "@tabler/icons-react";
 import { useDispatch } from "react-redux";
 import { setPage } from "@/review/review.slice";
 import { useCountUserReviews } from "../hooks/read";
 import { globalUtility } from "@/global/utilities";
 
-export const UserItemLayout = ({ user }: any) => {
+export const UserItemLayout = ({ user, isPending }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [opened, { open, close }] = useDisclosure();
@@ -63,6 +63,11 @@ export const UserItemLayout = ({ user }: any) => {
         title="Profile Picture"
         centered>
         <Center>
+          {isPending ? (
+            <CustomSkeleton />
+          ) : (
+            <Image src={user.profilepic} alt="Large Profile" radius="md" />
+          )}
           <Image src={user.profilepic} alt="Large Profile" radius="md" />
         </Center>
       </Modal>
@@ -83,20 +88,26 @@ export const UserItemLayout = ({ user }: any) => {
             className={`${isMobile ? `${noBorderStyle}` : `${borderLCStyle} ${roundBorderStyle}`}`}>
             <Stack align="center">
               <Group align="center" gap="xl">
-                {user.profilepic ? (
-                  <>
-                    <Avatar
-                      src={user.profilepic}
-                      size="xl"
-                      radius="50%"
-                      onClick={() => setPicOpened(true)}
-                    />
-                  </>
+                {isPending ? (
+                  <CustomSkeleton v="circular" h={84} w={84} />
                 ) : (
-                  <Avatar size="xl">
-                    {user.firstname[0]}
-                    {user.lastname[0]}
-                  </Avatar>
+                  <>
+                    {user.profilepic ? (
+                      <>
+                        <Avatar
+                          src={user.profilepic}
+                          size="xl"
+                          radius="50%"
+                          onClick={() => setPicOpened(true)}
+                        />
+                      </>
+                    ) : (
+                      <Avatar size="xl">
+                        {user.firstname[0]}
+                        {user.lastname[0]}
+                      </Avatar>
+                    )}
+                  </>
                 )}
 
                 <Stack gap="md" align="center">
@@ -105,70 +116,96 @@ export const UserItemLayout = ({ user }: any) => {
                     onClick={() => {
                       userReviews?.count > 0 && handleNavigateToUserReviews();
                     }}>
-                    <Title order={5}>
-                      {user.firstname} {user.lastname}
-                    </Title>
+                    {isPending ? (
+                      <CustomSkeleton w={130} />
+                    ) : (
+                      <Title order={5}>
+                        {user.firstname} {user.lastname}
+                      </Title>
+                    )}
 
-                    <Text size="sm" c="dimmed">
-                      @{user.username}
-                    </Text>
+                    {isPending ? (
+                      <CustomSkeleton h={15} />
+                    ) : (
+                      <Text size="sm" c="dimmed">
+                        @{user.username}
+                      </Text>
+                    )}
                   </Stack>
 
                   <Stack gap={0}>
                     <Group gap="xs">
-                      <I I={IconMailFilled} /> <Text>{user.email}</Text>
-                    </Group>
-
-                    <Group
-                      gap="xs"
-                      onClick={() => {
-                        userReviews?.count > 0 && handleNavigateToUserReviews();
-                      }}>
-                      <I I={IconStarFilled} />
-
-                      {userReviews?.count > 0 ? (
-                        <Text>
-                          {globalUtility.formatNumber(userReviews?.count)}{" "}
-                          reviews
-                        </Text>
+                      {isPending ? (
+                        <CustomSkeleton h={15} w={130} />
                       ) : (
-                        <Text>0 reviews</Text>
+                        <>
+                          <I I={IconMailFilled} />
+                          <Text>{user.email}</Text>
+                        </>
                       )}
                     </Group>
+
+                    {isPending ? (
+                      <CustomSkeleton h={15} />
+                    ) : (
+                      <Group
+                        gap="xs"
+                        onClick={() => {
+                          userReviews?.count > 0 &&
+                            handleNavigateToUserReviews();
+                        }}>
+                        <I I={IconStarFilled} />
+
+                        {userReviews?.count > 0 ? (
+                          <Text>
+                            {globalUtility.formatNumber(userReviews?.count)}{" "}
+                            reviews
+                          </Text>
+                        ) : (
+                          <Text>0 reviews</Text>
+                        )}
+                      </Group>
+                    )}
                   </Stack>
                 </Stack>
               </Group>
             </Stack>
 
-            {auth.id === user.id && (
-              <Grid>
-                <Grid.Col span={6}>
-                  <Button
-                    fullWidth
-                    bg="blue"
-                    onClick={() => navigate(`/users/${user.id}/edit`)}>
-                    Edit Profile
-                  </Button>
-                </Grid.Col>
+            {isPending ? (
+              <></>
+            ) : (
+              <>
+                {auth.id === user.id && (
+                  <Grid>
+                    <Grid.Col span={6}>
+                      <Button
+                        fullWidth
+                        bg="blue"
+                        onClick={() => navigate(`/users/${user.id}/edit`)}>
+                        Edit Profile
+                      </Button>
+                    </Grid.Col>
 
-                <Grid.Col span={6}>
-                  <Button fullWidth bg="red" onClick={open}>
-                    Delete Account
-                  </Button>
-                </Grid.Col>
+                    <Grid.Col span={6}>
+                      <Button fullWidth bg="red" onClick={open}>
+                        Delete Account
+                      </Button>
+                    </Grid.Col>
 
-                {userReviews?.count > 0 && (
-                  <Grid.Col span={6}>
-                    <Button
-                      fullWidth
-                      bg={oneTx}
-                      c={oneBg}
-                      onClick={handleNavigateToUserReviews}>
-                      View Reviews
-                    </Button>
-                  </Grid.Col>
+                    {userReviews?.count > 0 && (
+                      <Grid.Col span={6}>
+                        <Button
+                          fullWidth
+                          bg={oneTx}
+                          c={oneBg}
+                          onClick={handleNavigateToUserReviews}>
+                          View Reviews
+                        </Button>
+                      </Grid.Col>
+                    )}
+                  </Grid>
                 )}
-              </Grid>
+              </>
             )}
           </Stack>
         </Stack>

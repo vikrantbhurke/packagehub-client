@@ -9,7 +9,6 @@ import { useOutletContext } from "react-router-dom";
 import { useEffect } from "react";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { PackageListItemSkeleton } from "../skeletons";
 
 export const SearchPackagesByPlatformCustomList = () => {
   const { isPending, isError, packages } = useSearchPackagesByPlatform();
@@ -33,9 +32,9 @@ export const SearchPackagesByPlatformCustomList = () => {
         page={page}
         listBg={isMobile ? oneBg : twoBg}
         setPage={setPage}
-        dataArray={Array(3).fill({})}
+        dataArray={Array(3).fill({ isPending })}
         totalPages={1}
-        ListItemLayout={PackageListItemSkeleton}
+        ListItemLayout={PackageListItemLayout}
       />
     );
 

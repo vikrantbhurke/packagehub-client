@@ -1,14 +1,16 @@
-import { Group, Skeleton, Stack } from "@mantine/core";
+import { CustomSkeleton } from "@/global/components/reusables";
+import { fiveBg } from "@/global/styles/app.css";
+import { Group, Stack } from "@mantine/core";
 
 export const PackageComboboxSkeleton = () => {
   return (
-    <Group w="100%" justify="space-between" p="xs">
-      <Stack w="60%" gap="xs">
-        <Skeleton height={10} radius="sm" width="30%" />
-        <Skeleton height={6} radius="sm" width="20%" />
+    <Group justify="space-between">
+      <Stack gap={0}>
+        <CustomSkeleton bgcolor={fiveBg} />
+        <CustomSkeleton h={15} bgcolor={fiveBg} />
       </Stack>
 
-      <Skeleton height={30} radius="sm" width="15%" />
+      <CustomSkeleton v="rounded" w={50} h={30} bgcolor={fiveBg} />
     </Group>
   );
 };

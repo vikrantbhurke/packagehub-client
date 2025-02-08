@@ -39,9 +39,9 @@ import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.
 import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
 import { setPage } from "../review.slice";
 import { useDispatch } from "react-redux";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 
-export const ReviewItemLayout = ({ review }: any) => {
+export const ReviewItemLayout = ({ review, isPending }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -111,7 +111,9 @@ export const ReviewItemLayout = ({ review }: any) => {
             <Stack gap="xs">
               <Group justify="space-between">
                 <Group onClick={handleNavigateToUserReviews}>
-                  {review.reviewerId.profilepic ? (
+                  {isPending ? (
+                    <CustomSkeleton v="circular" h={40} w={40} />
+                  ) : review.reviewerId.profilepic ? (
                     <Avatar src={review.reviewerId.profilepic} radius="50%" />
                   ) : (
                     <Avatar>
@@ -121,59 +123,98 @@ export const ReviewItemLayout = ({ review }: any) => {
                   )}
 
                   <Stack gap={0}>
-                    <Text fw={textBolder} className={themeTxStyle}>
-                      {review.reviewerId.firstname} {review.reviewerId.lastname}
-                    </Text>
+                    {isPending ? (
+                      <CustomSkeleton w={130} />
+                    ) : (
+                      <Text fw={textBolder} className={themeTxStyle}>
+                        {review.reviewerId.firstname}{" "}
+                        {review.reviewerId.lastname}
+                      </Text>
+                    )}
 
-                    <Text size="sm" c="dimmed">
-                      @{review.reviewerId.username}
-                    </Text>
+                    {isPending ? (
+                      <CustomSkeleton h={15} />
+                    ) : (
+                      <Text size="sm" c="dimmed">
+                        @{review.reviewerId.username}
+                      </Text>
+                    )}
                   </Stack>
                 </Group>
 
-                <Rating
-                  readOnly
-                  value={review.rating}
-                  bg={threeBg}
-                  p={8}
-                  pb={6}
-                  className={roundBorderStyle}
-                  emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
-                  fullSymbol={
-                    <I
-                      I={IconStarFilled}
-                      size={14}
-                      color={reviewUtility.getRatingColor(review.rating)}
-                    />
-                  }
-                />
+                {isPending ? (
+                  <CustomSkeleton h={60} w={85} />
+                ) : (
+                  <Rating
+                    readOnly
+                    value={review.rating}
+                    bg={threeBg}
+                    p={8}
+                    pb={6}
+                    className={roundBorderStyle}
+                    emptySymbol={
+                      <I I={IconStarFilled} size={14} color="gray" />
+                    }
+                    fullSymbol={
+                      <I
+                        I={IconStarFilled}
+                        size={14}
+                        color={reviewUtility.getRatingColor(review.rating)}
+                      />
+                    }
+                  />
+                )}
               </Group>
+
               <Stack gap={0} align="stretch">
                 <Group gap={5}>
-                  <Text
-                    size="sm"
-                    c={themeGreenColor}
-                    td="underline"
-                    onClick={handleNavigateToPackageReviews}>
-                    {review.packageId.name}
-                  </Text>
-                  <Text size="sm">review</Text>
+                  {isPending ? (
+                    <CustomSkeleton />
+                  ) : (
+                    <>
+                      <Text
+                        size="sm"
+                        c={themeGreenColor}
+                        td="underline"
+                        onClick={handleNavigateToPackageReviews}>
+                        {review.packageId.name}
+                      </Text>
+                      <Text size="sm">review</Text>
+                    </>
+                  )}
                 </Group>
+
                 <Group gap="xs">
-                  <Text fz="xs" c="dimmed">
-                    {globalUtility.formatDateDistance(review.updatedAt)}
-                  </Text>
+                  {isPending ? (
+                    <CustomSkeleton h={15} />
+                  ) : (
+                    <Text fz="xs" c="dimmed">
+                      {globalUtility.formatDateDistance(review.updatedAt)}
+                    </Text>
+                  )}
                 </Group>
               </Stack>
             </Stack>
 
             <Stack gap="xs">
-              <Text fw={textBolder}>{review.title}</Text>
+              {isPending ? (
+                <CustomSkeleton w={200} />
+              ) : (
+                <Text fw={textBolder}>{review.title}</Text>
+              )}
 
-              <Text
-                size="sm"
-                dangerouslySetInnerHTML={{ __html: review.body }}
-              />
+              {isPending ? (
+                <Stack gap={0} miw={400}>
+                  <CustomSkeleton w="100%" />
+                  <CustomSkeleton w="100%" />
+                  <CustomSkeleton w="100%" />
+                </Stack>
+              ) : (
+                <Text
+                  size="sm"
+                  dangerouslySetInnerHTML={{ __html: review.body }}
+                />
+              )}
             </Stack>
 
             <Group>
@@ -185,7 +226,9 @@ export const ReviewItemLayout = ({ review }: any) => {
                   p={4}
                   gap={4}
                   className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
-                  {auth.role === Role.Public ? (
+                  {isPending ? (
+                    <CustomSkeleton v="circular" w={20} h={20} />
+                  ) : auth.role === Role.Public ? (
                     <ReviewVoterReadonlyButtonLayout>
                       <Text fz="xs" fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
@@ -199,30 +242,41 @@ export const ReviewItemLayout = ({ review }: any) => {
                     </ReviewUpvoteDownvoteButtonLayout>
                   )}
                 </Group>
-                <Text fz="xs" fw={textBold}>
-                  Votes
-                </Text>
+
+                {isPending ? (
+                  <CustomSkeleton w={60} />
+                ) : (
+                  <Text fz="xs" fw={textBold}>
+                    Votes
+                  </Text>
+                )}
               </Group>
 
-              {review.reviewerId._id === auth.id && (
-                <Group>
-                  <Text
-                    fz="xs"
-                    fw={textBold}
-                    p="xs"
-                    onClick={handleEdit}
-                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-                    Edit
-                  </Text>
-                  <Text
-                    fz="xs"
-                    fw={textBold}
-                    p="xs"
-                    onClick={open}
-                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-                    Delete
-                  </Text>
-                </Group>
+              {isPending ? (
+                <></>
+              ) : (
+                <>
+                  {review.reviewerId._id === auth.id && (
+                    <Group>
+                      <Text
+                        fz="xs"
+                        fw={textBold}
+                        p="xs"
+                        onClick={handleEdit}
+                        className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                        Edit
+                      </Text>
+                      <Text
+                        fz="xs"
+                        fw={textBold}
+                        p="xs"
+                        onClick={open}
+                        className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                        Delete
+                      </Text>
+                    </Group>
+                  )}
+                </>
               )}
             </Group>
           </Stack>

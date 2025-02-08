@@ -10,7 +10,6 @@ import { CustomError } from "@/global/components/errors";
 import { SeoComponent } from "@/global/components/reusables";
 import { PaginationPlaceholder } from "@/global/components/placeholders";
 import { RootState } from "@/global/states/store";
-import { PackageListItemSkeleton } from "../skeletons";
 
 export const GetPackagesByPlatformCustomList = () => {
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -33,9 +32,9 @@ export const GetPackagesByPlatformCustomList = () => {
         page={page}
         listBg={isMobile ? oneBg : twoBg}
         setPage={setPage}
-        dataArray={Array(3).fill({})}
+        dataArray={Array(3).fill({ isPending })}
         totalPages={1}
-        ListItemLayout={PackageListItemSkeleton}
+        ListItemLayout={PackageListItemLayout}
       />
     );
 

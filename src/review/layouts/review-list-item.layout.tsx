@@ -34,7 +34,7 @@ import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-butto
 import { Role } from "@/user/enums";
 import { useDispatch } from "react-redux";
 import { setPage } from "../review.slice";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 
 export const ReviewListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -76,6 +76,8 @@ export const ReviewListItemLayout = ({ item }: any) => {
     scrollTo({ y: 0 });
   };
 
+  const isPending = item.isPending;
+
   return (
     <>
       <Modal
@@ -100,7 +102,9 @@ export const ReviewListItemLayout = ({ item }: any) => {
         <Stack gap="xs">
           <Group justify="space-between">
             <Group onClick={handleNavigateToUserReviews}>
-              {item.reviewerId.profilepic ? (
+              {isPending ? (
+                <CustomSkeleton v="circular" h={40} w={40} />
+              ) : item.reviewerId.profilepic ? (
                 <Avatar src={item.reviewerId.profilepic} radius="50%" />
               ) : (
                 <Avatar>
@@ -110,63 +114,99 @@ export const ReviewListItemLayout = ({ item }: any) => {
               )}
 
               <Stack gap={0}>
-                <Text fw={textBolder} className={themeTxStyle}>
-                  {item.reviewerId.firstname} {item.reviewerId.lastname}
-                </Text>
-                <Text size="sm" c="dimmed">
-                  @{item.reviewerId.username}
-                </Text>
+                {isPending ? (
+                  <CustomSkeleton w={130} />
+                ) : (
+                  <Text fw={textBolder} className={themeTxStyle}>
+                    {item.reviewerId.firstname} {item.reviewerId.lastname}
+                  </Text>
+                )}
+
+                {isPending ? (
+                  <CustomSkeleton h={15}/>
+                ) : (
+                  <Text size="sm" c="dimmed">
+                    @{item.reviewerId.username}
+                  </Text>
+                )}
               </Stack>
             </Group>
 
-            <Rating
-              readOnly
-              value={item.rating}
-              bg={threeBg}
-              p={8}
-              pb={6}
-              className={roundBorderStyle}
-              emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
-              fullSymbol={
-                <I
-                  I={IconStarFilled}
-                  size={14}
-                  color={reviewUtility.getRatingColor(item.rating)}
-                />
-              }
-            />
+            {isPending ? (
+              <CustomSkeleton h={60} w={85} />
+            ) : (
+              <Rating
+                readOnly
+                value={item.rating}
+                bg={threeBg}
+                p={8}
+                pb={6}
+                className={roundBorderStyle}
+                emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+                fullSymbol={
+                  <I
+                    I={IconStarFilled}
+                    size={14}
+                    color={reviewUtility.getRatingColor(item.rating)}
+                  />
+                }
+              />
+            )}
           </Group>
 
           <Stack gap={0} align="stretch">
             <Group gap={5}>
-              <Text
-                size="sm"
-                c={themeGreenColor}
-                td="underline"
-                onClick={handleNavigateToPackageReviews}>
-                {item.packageId.name}
-              </Text>
-              <Text size="sm">review</Text>
+              {isPending ? (
+                <CustomSkeleton />
+              ) : (
+                <>
+                  <Text
+                    size="sm"
+                    c={themeGreenColor}
+                    td="underline"
+                    onClick={handleNavigateToPackageReviews}>
+                    {item.packageId.name}
+                  </Text>
+                  <Text size="sm">review</Text>
+                </>
+              )}
             </Group>
+
             <Group gap="xs">
-              <Text fz="xs" c="dimmed">
-                {globalUtility.formatDateDistance(item.updatedAt)}
-              </Text>
+              {isPending ? (
+                <CustomSkeleton h={15}/>
+              ) : (
+                <Text fz="xs" c="dimmed">
+                  {globalUtility.formatDateDistance(item.updatedAt)}
+                </Text>
+              )}
             </Group>
           </Stack>
         </Stack>
 
         <Stack onClick={handleReview} gap="xs">
-          <Text fw={textBolder} className={themeTxStyle}>
-            {item.title}
-          </Text>
+          {isPending ? (
+            <CustomSkeleton w={200} />
+          ) : (
+            <Text fw={textBolder} className={themeTxStyle}>
+              {item.title}
+            </Text>
+          )}
 
-          <Text
-            lineClamp={3}
-            size={isMobile ? "sm" : "md"}
-            className={themeTxStyle}
-            dangerouslySetInnerHTML={{ __html: item.body }}
-          />
+          {isPending ? (
+            <Stack gap={0} miw={400}>
+              <CustomSkeleton w="100%" />
+              <CustomSkeleton w="100%" />
+              <CustomSkeleton w="100%" />
+            </Stack>
+          ) : (
+            <Text
+              lineClamp={3}
+              size={isMobile ? "sm" : "md"}
+              className={themeTxStyle}
+              dangerouslySetInnerHTML={{ __html: item.body }}
+            />
+          )}
         </Stack>
 
         <Group>
@@ -178,7 +218,9 @@ export const ReviewListItemLayout = ({ item }: any) => {
               p={4}
               gap={4}
               className={`${roundBorderStyle} ${oneTxGreenTwoBgButtonPseudoStyle}`}>
-              {auth.role === Role.Public ? (
+              {isPending ? (
+                <CustomSkeleton v="circular" w={20} h={20} />
+              ) : auth.role === Role.Public ? (
                 <ReviewVoterReadonlyButtonLayout>
                   <Text fz="xs" fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
@@ -192,30 +234,41 @@ export const ReviewListItemLayout = ({ item }: any) => {
                 </ReviewUpvoteDownvoteButtonLayout>
               )}
             </Group>
-            <Text fz="xs" fw={textBold}>
-              Votes
-            </Text>
+
+            {isPending ? (
+              <CustomSkeleton w={60} />
+            ) : (
+              <Text fz="xs" fw={textBold}>
+                Votes
+              </Text>
+            )}
           </Group>
 
-          {item.reviewerId._id === auth.id && (
-            <Group>
-              <Text
-                fz="xs"
-                fw={textBold}
-                p="xs"
-                onClick={handleEdit}
-                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-                Edit
-              </Text>
-              <Text
-                fz="xs"
-                fw={textBold}
-                p="xs"
-                onClick={open}
-                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-                Delete
-              </Text>
-            </Group>
+          {isPending ? (
+            <></>
+          ) : (
+            <>
+              {item.reviewerId._id === auth.id && (
+                <Group>
+                  <Text
+                    fz="xs"
+                    fw={textBold}
+                    p="xs"
+                    onClick={handleEdit}
+                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                    Edit
+                  </Text>
+                  <Text
+                    fz="xs"
+                    fw={textBold}
+                    p="xs"
+                    onClick={open}
+                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                    Delete
+                  </Text>
+                </Group>
+              )}
+            </>
           )}
         </Group>
       </Stack>

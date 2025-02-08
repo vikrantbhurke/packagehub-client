@@ -17,7 +17,7 @@ import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
 import { textBolder, wordBreakWhiteSpace } from "@/global/styles/global.styles";
 import { IconStarFilled } from "@tabler/icons-react";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 
 export const PackageListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -28,10 +28,11 @@ export const PackageListItemLayout = ({ item }: any) => {
     (state: RootState) => state.review
   );
 
-  const { review, isPending } = useGetReviewByPackageIdAndReviewerId({
-    pid: item.id,
-    rwid: auth.id,
-  });
+  const { review, isPending: isReviewPending } =
+    useGetReviewByPackageIdAndReviewerId({
+      pid: item.id,
+      rwid: auth.id,
+    });
 
   const handleNativateToCreateNextReview = () => {
     if (!auth.id) {
@@ -66,88 +67,123 @@ export const PackageListItemLayout = ({ item }: any) => {
     readOrWriteHandler = () => handleNativateToCreateNextReview();
   }
 
+  const isPending = item.isPending;
+
   return (
     <Stack p="md" gap="xs">
-      <Text
-        fw={textBolder}
-        className={themeTxStyle}
-        td="underline"
-        onClick={handleNavigateToReviewsByPackageId}>
-        {item.name}
-      </Text>
-
-      <Group justify="space-between">
-        <Group justify="start" gap="xs">
-          <Rating
-            readOnly
-            fractions={4}
-            value={item.rating}
-            bg={threeBg}
-            p={8}
-            pb={6}
-            className={roundBorderStyle}
-            emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
-            fullSymbol={
-              <I
-                I={IconStarFilled}
-                size={14}
-                color={packageUtility.getRatingColor(item.rating)}
-              />
-            }
-          />
-
-          <Text c="dimmed" fz="xs">
-            {globalUtility.formatFloat(item.rating)} rating
-          </Text>
-
-          <Text c="dimmed" fz="xs">
-            {globalUtility.formatNumberWithComma(item.reviews)} reviews
-          </Text>
-        </Group>
-
-        <Button
-          px="xs"
-          fz="xs"
-          disabled={auth.id ? isPending : false}
-          loading={auth.id ? isPending : false}
-          onClick={readOrWriteHandler}
-          className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
-          loaderProps={{ type: "dots", color: oneTx }}>
-          {readOrWriteText}
-        </Button>
-      </Group>
-
-      {item.description !== "None" && <Text>{item.description}</Text>}
-
-      {item.homepageUrl !== item.packageUrl && (
+      {isPending ? (
+        <CustomSkeleton />
+      ) : (
         <Text
-          p="xs"
-          className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-          Home :{" "}
-          <Anchor
-            style={wordBreakWhiteSpace}
-            target="_blank"
-            href={item.homepageUrl}
-            size="sm"
-            c={themeGreenColor}>
-            {item.homepageUrl}
-          </Anchor>
+          fw={textBolder}
+          className={themeTxStyle}
+          td="underline"
+          onClick={handleNavigateToReviewsByPackageId}>
+          {item.name}
         </Text>
       )}
 
-      <Text
-        p="xs"
-        className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-        Registry :{" "}
-        <Anchor
-          style={wordBreakWhiteSpace}
-          target="_blank"
-          href={item.packageUrl}
-          size="sm"
-          c={themeGreenColor}>
-          {item.packageUrl}
-        </Anchor>
-      </Text>
+      <Group justify="space-between">
+        <Group justify="start" gap="xs">
+          {isPending ? (
+            <CustomSkeleton v="rounded" h={40} w={85} />
+          ) : (
+            <Rating
+              readOnly
+              fractions={4}
+              value={item.rating}
+              bg={threeBg}
+              p={8}
+              pb={6}
+              className={roundBorderStyle}
+              emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
+              fullSymbol={
+                <I
+                  I={IconStarFilled}
+                  size={14}
+                  color={packageUtility.getRatingColor(item.rating)}
+                />
+              }
+            />
+          )}
+
+          {isPending ? (
+            <CustomSkeleton h={15} w={50} />
+          ) : (
+            <Text c="dimmed" fz="xs">
+              {globalUtility.formatFloat(item.rating)} rating
+            </Text>
+          )}
+
+          {isPending ? (
+            <CustomSkeleton h={15} w={50} />
+          ) : (
+            <Text c="dimmed" fz="xs">
+              {globalUtility.formatNumberWithComma(item.reviews)} reviews
+            </Text>
+          )}
+        </Group>
+
+        {isPending ? (
+          <CustomSkeleton h={50} />
+        ) : (
+          <Button
+            px="xs"
+            fz="xs"
+            disabled={auth.id ? isReviewPending : false}
+            loading={auth.id ? isReviewPending : false}
+            onClick={readOrWriteHandler}
+            className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
+            loaderProps={{ type: "dots", color: oneTx }}>
+            {readOrWriteText}
+          </Button>
+        )}
+      </Group>
+
+      {isPending ? (
+        <CustomSkeleton w="100%" />
+      ) : (
+        <> {item.description !== "None" && <Text>{item.description}</Text>}</>
+      )}
+
+      {isPending ? (
+        <Stack gap="xs">
+          <CustomSkeleton v="rounded" h={40} w="100%" />
+          <CustomSkeleton v="rounded" h={40} w="100%" />
+        </Stack>
+      ) : (
+        <>
+          {item.homepageUrl !== item.packageUrl && (
+            <Text
+              p="xs"
+              className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+              Home :{" "}
+              <Anchor
+                style={wordBreakWhiteSpace}
+                target="_blank"
+                href={item.homepageUrl}
+                size="sm"
+                c={themeGreenColor}>
+                {item.homepageUrl}
+              </Anchor>
+            </Text>
+          )}
+
+          <Text
+            p="xs"
+            className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+            Registry :{" "}
+            <Anchor
+              style={wordBreakWhiteSpace}
+              target="_blank"
+              href={item.packageUrl}
+              size="sm"
+              c={themeGreenColor}>
+              {item.packageUrl}
+            </Anchor>
+          </Text>
+        </>
+      )}
     </Stack>
   );
 };

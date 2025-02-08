@@ -21,9 +21,9 @@ import { setPage } from "@/review/review.slice";
 import { useDispatch } from "react-redux";
 import { textBolder, wordBreakWhiteSpace } from "@/global/styles/global.styles";
 import { IconStarFilled } from "@tabler/icons-react";
-import { I } from "@/global/components/reusables";
+import { CustomSkeleton, I } from "@/global/components/reusables";
 
-export const PackageItemLayout = ({ pkg }: any) => {
+export const PackageItemLayout = ({ pkg, isPending }: any) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isMobile } = useSelector((state: RootState) => state.view);
@@ -33,10 +33,11 @@ export const PackageItemLayout = ({ pkg }: any) => {
     (state: RootState) => state.review
   );
 
-  const { review, isPending } = useGetReviewByPackageIdAndReviewerId({
-    pid: pkg.id,
-    rwid: auth.id,
-  });
+  const { review, isPending: isReviewPending } =
+    useGetReviewByPackageIdAndReviewerId({
+      pid: pkg.id,
+      rwid: auth.id,
+    });
 
   const handleNativateToCreateNextReview = () => {
     if (!auth.id) {
@@ -85,88 +86,123 @@ export const PackageItemLayout = ({ pkg }: any) => {
           bg={oneBg}
           className={`${isMobile ? `${noBorderStyle}` : `${borderLCStyle} ${roundBorderStyle}`}`}>
           <Stack gap="xs">
-            <Text
-              fw={textBolder}
-              className={themeTxStyle}
-              td="underline"
-              onClick={handleNavigateToReviewsByPackageId}>
-              {pkg.name}
-            </Text>
-
-            <Group justify="space-between">
-              <Group justify="start" gap="xs">
-                <Rating
-                  readOnly
-                  fractions={4}
-                  value={pkg.rating}
-                  bg={threeBg}
-                  p={8}
-                  pb={6}
-                  className={roundBorderStyle}
-                  emptySymbol={<I I={IconStarFilled} size={14} color="gray" />}
-                  fullSymbol={
-                    <I
-                      I={IconStarFilled}
-                      size={14}
-                      color={packageUtility.getRatingColor(pkg.rating)}
-                    />
-                  }
-                />
-
-                <Text c="dimmed" fz="xs">
-                  {globalUtility.formatFloat(pkg.rating)} rating
-                </Text>
-
-                <Text c="dimmed" fz="xs">
-                  {globalUtility.formatNumberWithComma(pkg.reviews)} reviews
-                </Text>
-              </Group>
-
-              <Button
-                px="xs"
-                fz="xs"
-                disabled={auth.id ? isPending : false}
-                loading={auth.id ? isPending : false}
-                onClick={readOrWriteHandler}
-                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
-                loaderProps={{ type: "dots", color: oneTx }}>
-                {readOrWriteText}
-              </Button>
-            </Group>
-          </Stack>
-
-          {pkg.description !== "None" && <Text>{pkg.description}</Text>}
-
-          <Stack gap="xs">
-            {pkg.homepageUrl !== pkg.packageUrl && (
+            {isPending ? (
+              <CustomSkeleton />
+            ) : (
               <Text
-                p="xs"
-                className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-                Home :{" "}
-                <Anchor
-                  style={wordBreakWhiteSpace}
-                  target="_blank"
-                  href={pkg.homepageUrl}
-                  size="sm"
-                  c={themeGreenColor}>
-                  {pkg.homepageUrl}
-                </Anchor>
+                fw={textBolder}
+                className={themeTxStyle}
+                td="underline"
+                onClick={handleNavigateToReviewsByPackageId}>
+                {pkg.name}
               </Text>
             )}
 
-            <Text
-              p="xs"
-              className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
-              Registry :{" "}
-              <Anchor
-                style={wordBreakWhiteSpace}
-                target="_blank"
-                href={pkg.packageUrl}
-                size="sm"
-                c={themeGreenColor}>
-                {pkg.packageUrl}
-              </Anchor>
-            </Text>
+            <Group justify="space-between">
+              <Group justify="start" gap="xs">
+                {isPending ? (
+                  <CustomSkeleton v="rounded" h={40} w={85} />
+                ) : (
+                  <Rating
+                    readOnly
+                    fractions={4}
+                    value={pkg.rating}
+                    bg={threeBg}
+                    p={8}
+                    pb={6}
+                    className={roundBorderStyle}
+                    emptySymbol={
+                      <I I={IconStarFilled} size={14} color="gray" />
+                    }
+                    fullSymbol={
+                      <I
+                        I={IconStarFilled}
+                        size={14}
+                        color={packageUtility.getRatingColor(pkg.rating)}
+                      />
+                    }
+                  />
+                )}
+
+                {isPending ? (
+                  <CustomSkeleton h={15} w={50} />
+                ) : (
+                  <Text c="dimmed" fz="xs">
+                    {globalUtility.formatFloat(pkg.rating)} rating
+                  </Text>
+                )}
+
+                {isPending ? (
+                  <CustomSkeleton h={15} w={50} />
+                ) : (
+                  <Text c="dimmed" fz="xs">
+                    {globalUtility.formatNumberWithComma(pkg.reviews)} reviews
+                  </Text>
+                )}
+              </Group>
+
+              {isPending ? (
+                <CustomSkeleton h={50} />
+              ) : (
+                <Button
+                  px="xs"
+                  fz="xs"
+                  disabled={auth.id ? isReviewPending : false}
+                  loading={auth.id ? isReviewPending : false}
+                  onClick={readOrWriteHandler}
+                  className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
+                  loaderProps={{ type: "dots", color: oneTx }}>
+                  {readOrWriteText}
+                </Button>
+              )}
+            </Group>
+          </Stack>
+
+          {isPending ? (
+            <CustomSkeleton w="100%" />
+          ) : (
+            <> {pkg.description !== "None" && <Text>{pkg.description}</Text>}</>
+          )}
+
+          <Stack gap="xs">
+            {isPending ? (
+              <Stack gap="xs">
+                <CustomSkeleton v="rounded" h={40} w="100%" />
+                <CustomSkeleton v="rounded" h={40} w="100%" />
+              </Stack>
+            ) : (
+              <>
+                {pkg.homepageUrl !== pkg.packageUrl && (
+                  <Text
+                    p="xs"
+                    className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                    Home :{" "}
+                    <Anchor
+                      style={wordBreakWhiteSpace}
+                      target="_blank"
+                      href={pkg.homepageUrl}
+                      size="sm"
+                      c={themeGreenColor}>
+                      {pkg.homepageUrl}
+                    </Anchor>
+                  </Text>
+                )}
+
+                <Text
+                  p="xs"
+                  className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}>
+                  Registry :{" "}
+                  <Anchor
+                    style={wordBreakWhiteSpace}
+                    target="_blank"
+                    href={pkg.packageUrl}
+                    size="sm"
+                    c={themeGreenColor}>
+                    {pkg.packageUrl}
+                  </Anchor>
+                </Text>
+              </>
+            )}
           </Stack>
         </Stack>
       </Stack>
