@@ -1,5 +1,5 @@
 import { themeToVars } from "@mantine/vanilla-extract";
-import { interFontStyle, oneTx, skeletonStyle, threeBg } from "./app.css";
+import { interFontStyle, oneTx, threeBg } from "./app.css";
 import {
   Button,
   Text,
@@ -17,12 +17,6 @@ import {
 
 export const theme = createTheme({
   components: {
-    Skeleton: {
-      defaultProps: {
-        className: skeletonStyle,
-      },
-    },
-
     Button: Button.extend({
       defaultProps: {
         color: oneTx,

@@ -8,11 +8,12 @@ import {
   useMantineColorScheme,
 } from "@mantine/core";
 import {
-  IconBulb,
   IconDownload,
   IconLogin,
   IconLogout,
+  IconMoon,
   IconSearch,
+  IconSun,
 } from "@tabler/icons-react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -139,9 +140,9 @@ export const HeaderLayout = () => {
 
               <ActionIcon size="sm" onClick={handleTheme}>
                 {colorScheme === "dark" ? (
-                  <I I={IconBulb} color="orange" />
+                  <I I={IconSun} color="orange" />
                 ) : (
-                  <I I={IconBulb} color="dodgerblue" />
+                  <I I={IconMoon} color="dodgerblue" />
                 )}
               </ActionIcon>
 

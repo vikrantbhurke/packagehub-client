@@ -34,15 +34,6 @@ export const inputStyle = style({
   },
 });
 
-export const skeletonStyle = style({
-  backgroundColor: oneBg, // Main skeleton color
-  selectors: {
-    "&::before": {
-      backgroundColor: oneBg, // Shimmer effect
-    },
-  },
-});
-
 export const interFontStyle = style({
   fontFamily: "Inter",
 });
