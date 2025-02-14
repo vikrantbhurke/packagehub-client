@@ -29,8 +29,8 @@ import {
   textBolder,
 } from "@/global/styles/global.styles";
 import { IconStarFilled, IconTrash } from "@tabler/icons-react";
-import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
-import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
+import { ReviewVoterReadonlyButton } from "./review-voter-readonly-button.layout";
+import { ReviewUpvoteDownvoteButton } from "./review-upvote-downvote-button.layout";
 import { Role } from "@/user/enums";
 import { useDispatch } from "react-redux";
 import { setPage } from "../review.slice";
@@ -123,7 +123,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
                 )}
 
                 {isPending ? (
-                  <CustomSkeleton h={15}/>
+                  <CustomSkeleton h={15} />
                 ) : (
                   <Text size="sm" c="dimmed">
                     @{item.reviewerId.username}
@@ -174,7 +174,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
 
             <Group gap="xs">
               {isPending ? (
-                <CustomSkeleton h={15}/>
+                <CustomSkeleton h={15} />
               ) : (
                 <Text fz="xs" c="dimmed">
                   {globalUtility.formatDateDistance(item.updatedAt)}
@@ -221,17 +221,17 @@ export const ReviewListItemLayout = ({ item }: any) => {
               {isPending ? (
                 <CustomSkeleton v="circular" w={20} h={20} />
               ) : auth.role === Role.Public ? (
-                <ReviewVoterReadonlyButtonLayout>
+                <ReviewVoterReadonlyButton>
                   <Text fz="xs" fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
-                </ReviewVoterReadonlyButtonLayout>
+                </ReviewVoterReadonlyButton>
               ) : (
-                <ReviewUpvoteDownvoteButtonLayout review={item}>
+                <ReviewUpvoteDownvoteButton review={item}>
                   <Text fz="xs" fw={textBold}>
                     {globalUtility.formatNumberWithComma(item.votes)}
                   </Text>
-                </ReviewUpvoteDownvoteButtonLayout>
+                </ReviewUpvoteDownvoteButton>
               )}
             </Group>
 

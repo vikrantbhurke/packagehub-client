@@ -7,7 +7,7 @@ import {
 } from "@tabler/icons-react";
 import { useNavigate } from "react-router-dom";
 
-export const ReviewVoterReadonlyButtonLayout = ({ children }: any) => {
+export const ReviewVoterReadonlyButton = ({ children }: any) => {
   const navigate = useNavigate();
 
   const handleNavigateToSignIn = () => {

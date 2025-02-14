@@ -9,7 +9,7 @@ import { I } from "@/global/components/reusables";
 import { fiveTx } from "@/global/styles/app.css";
 import { RootState } from "@/global/states/store";
 
-export const ReviewUpvoteDownvoteButtonLayout = ({ children, review }: any) => {
+export const ReviewUpvoteDownvoteButton = ({ children, review }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { upvoteReviewByIdMutation, isPending: isUpvotePending } =

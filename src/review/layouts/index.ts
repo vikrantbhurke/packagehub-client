@@ -7,8 +7,8 @@ import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
 import { CreateFirstReviewFormLayout } from "./create-first-review-form.layout";
 import { CreateNextReviewFormLayout } from "./create-next-review-form.layout";
 import { UpdateReviewByIdFormLayout } from "./update-review-by-id-form.layout";
-import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
-import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
+import { ReviewVoterReadonlyButton } from "./review-voter-readonly-button.layout";
+import { ReviewUpvoteDownvoteButton } from "./review-upvote-downvote-button.layout";
 
 export {
   ReviewsLayout,
@@ -20,6 +20,6 @@ export {
   CreateFirstReviewFormLayout,
   CreateNextReviewFormLayout,
   UpdateReviewByIdFormLayout,
-  ReviewVoterReadonlyButtonLayout,
-  ReviewUpvoteDownvoteButtonLayout,
+  ReviewVoterReadonlyButton,
+  ReviewUpvoteDownvoteButton,
 };

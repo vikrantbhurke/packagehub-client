@@ -35,8 +35,8 @@ import {
   textBold,
   textBolder,
 } from "@/global/styles/global.styles";
-import { ReviewVoterReadonlyButtonLayout } from "./review-voter-readonly-button.layout";
-import { ReviewUpvoteDownvoteButtonLayout } from "./review-upvote-downvote-button.layout";
+import { ReviewVoterReadonlyButton } from "./review-voter-readonly-button.layout";
+import { ReviewUpvoteDownvoteButton } from "./review-upvote-downvote-button.layout";
 import { setPage } from "../review.slice";
 import { useDispatch } from "react-redux";
 import { CustomSkeleton, I } from "@/global/components/reusables";
@@ -229,17 +229,17 @@ export const ReviewItemLayout = ({ review, isPending }: any) => {
                   {isPending ? (
                     <CustomSkeleton v="circular" w={20} h={20} />
                   ) : auth.role === Role.Public ? (
-                    <ReviewVoterReadonlyButtonLayout>
+                    <ReviewVoterReadonlyButton>
                       <Text fz="xs" fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
-                    </ReviewVoterReadonlyButtonLayout>
+                    </ReviewVoterReadonlyButton>
                   ) : (
-                    <ReviewUpvoteDownvoteButtonLayout review={review}>
+                    <ReviewUpvoteDownvoteButton review={review}>
                       <Text fz="xs" fw={textBold}>
                         {globalUtility.formatNumberWithComma(review.votes)}
                       </Text>
-                    </ReviewUpvoteDownvoteButtonLayout>
+                    </ReviewUpvoteDownvoteButton>
                   )}
                 </Group>
 

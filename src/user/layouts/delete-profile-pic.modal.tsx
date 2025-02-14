@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
-export const DeleteProfilePicModalLayout = ({ opened, close }: any) => {
+export const DeleteProfilePicModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { deleteProfilePicByIdMutation, isPending, isSuccess } =

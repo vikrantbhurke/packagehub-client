@@ -34,7 +34,7 @@ import { useRef, useState } from "react";
 import { I } from "@/global/components/reusables";
 import { useDispatch } from "react-redux";
 import { setFocusedInput } from "@/global/states/view.slice";
-import { DeleteProfilePicModalLayout } from "./delete-profile-pic-modal.layout";
+import { DeleteProfilePicModal } from "./delete-profile-pic.modal";
 
 export const UpdateUserByIdFormLayout = () => {
   const navigate = useNavigate();
@@ -83,10 +83,7 @@ export const UpdateUserByIdFormLayout = () => {
               </Center>
             </Modal>
 
-            <DeleteProfilePicModalLayout
-              opened={picDeleteOpened}
-              close={close}
-            />
+            <DeleteProfilePicModal opened={picDeleteOpened} close={close} />
 
             <Group gap={0} align="center" justify="space-between">
               <Space w="xl" />

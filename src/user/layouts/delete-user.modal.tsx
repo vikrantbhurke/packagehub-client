@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
 
-export const DeleteUserModalLayout = ({ opened, close }: any) => {
+export const DeleteUserModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
   const { deleteUserByIdMutation, isPending, isSuccess } = useDeleteUserById();
 
