@@ -11,13 +11,13 @@ export const DeleteProfilePicModal = ({ opened, close }: any) => {
   const { deleteProfilePicByIdMutation, isPending, isSuccess } =
     useDeleteProfilePicById();
 
-  const handleDeleteProfilePicById = () => {
-    deleteProfilePicByIdMutation(auth.id);
-  };
-
   useEffect(() => {
     if (isSuccess) close();
   }, [isSuccess]);
+
+  const handleDeleteProfilePicById = () => {
+    deleteProfilePicByIdMutation(auth.id);
+  };
 
   return (
     <Modal
