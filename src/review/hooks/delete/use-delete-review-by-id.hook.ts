@@ -36,7 +36,11 @@ export const useDeleteReviewById = () => {
     rating,
   };
 
-  const { mutate: deleteReviewByIdMutation } = useMutation({
+  const {
+    mutate: deleteReviewByIdMutation,
+    isPending,
+    isSuccess,
+  } = useMutation({
     mutationFn: deleteReviewById,
 
     onMutate: async (rid) => {
@@ -173,5 +177,5 @@ export const useDeleteReviewById = () => {
     },
   });
 
-  return { deleteReviewByIdMutation };
+  return { deleteReviewByIdMutation, isPending, isSuccess };
 };

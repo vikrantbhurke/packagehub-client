@@ -31,7 +31,7 @@ import { useGetUserById } from "@/user/hooks/read";
 import { useGetPackageById } from "@/package/hooks/read";
 import { ReviewsFilterBox } from "./reviews-filter.box";
 import { ReviewsFilterModal } from "./reviews-filter.modal";
-import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
+import { DeleteReviewsModal } from "./delete-reviews.modal";
 import { RootState } from "@/global/states/store";
 
 export const ReviewsLayout = () => {
@@ -67,7 +67,7 @@ export const ReviewsLayout = () => {
 
   return (
     <>
-      <DeleteReviewsModalLayout
+      <DeleteReviewsModal
         opened={deleteReviewsOpened}
         close={closeDeleteReviews}
       />

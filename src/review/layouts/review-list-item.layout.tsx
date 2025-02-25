@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Group,
-  Modal,
-  Rating,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Avatar, Group, Rating, Stack, Text } from "@mantine/core";
 import { reviewUtility } from "../review.utility";
 import {
   roundBorderStyle,
@@ -21,20 +13,15 @@ import { RootState } from "@/global/states/store";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
-import { useDeleteReviewById } from "../hooks/delete";
-import {
-  modal,
-  modalOverlayProps,
-  textBold,
-  textBolder,
-} from "@/global/styles/global.styles";
-import { IconStarFilled, IconTrash } from "@tabler/icons-react";
+import { textBold, textBolder } from "@/global/styles/global.styles";
+import { IconStarFilled } from "@tabler/icons-react";
 import { ReviewVoterReadonlyButton } from "./review-voter-readonly-button.layout";
 import { ReviewUpvoteDownvoteButton } from "./review-upvote-downvote-button.layout";
 import { Role } from "@/user/enums";
 import { useDispatch } from "react-redux";
 import { setPage } from "../review.slice";
 import { CustomSkeleton, I } from "@/global/components/reusables";
+import { DeleteReviewModal } from "./delete-review.modal";
 
 export const ReviewListItemLayout = ({ item }: any) => {
   const navigate = useNavigate();
@@ -42,7 +29,6 @@ export const ReviewListItemLayout = ({ item }: any) => {
   const { isMobile } = useSelector((state: RootState) => state.view);
   const [, scrollTo] = useWindowScroll();
   const [opened, { open, close }] = useDisclosure(false);
-  const { deleteReviewByIdMutation } = useDeleteReviewById();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { sort, order, rating } = useSelector(
@@ -50,10 +36,6 @@ export const ReviewListItemLayout = ({ item }: any) => {
   );
 
   const handleEdit = () => navigate(`/reviews/${item.id}/edit`);
-
-  const handleDelete = () => {
-    deleteReviewByIdMutation(item.id);
-  };
 
   const handleNavigateToUserReviews = () => {
     dispatch(setPage(1));
@@ -80,23 +62,7 @@ export const ReviewListItemLayout = ({ item }: any) => {
 
   return (
     <>
-      <Modal
-        styles={modal}
-        overlayProps={modalOverlayProps}
-        opened={opened}
-        onClose={close}
-        centered>
-        <Stack align="center">
-          <Text>Are you sure you want to delete the review?</Text>
-          <Button
-            fullWidth
-            bg="red"
-            onClick={handleDelete}
-            leftSection={<IconTrash stroke={1.5} size={20} />}>
-            Delete Review
-          </Button>
-        </Stack>
-      </Modal>
+      <DeleteReviewModal rid={item.id} opened={opened} close={close} />
 
       <Stack p="md" gap="md">
         <Stack gap="xs">

@@ -3,12 +3,17 @@ import { useDeleteReviewsByReviewerId } from "../hooks/delete";
 import { modal, modalOverlayProps } from "@/global/styles/global.styles";
 import { useSelector } from "react-redux";
 import { RootState } from "@/global/states/store";
+import { useEffect } from "react";
 
-export const DeleteReviewsModalLayout = ({ opened, close }: any) => {
+export const DeleteReviewsModal = ({ opened, close }: any) => {
   const { auth } = useSelector((state: RootState) => state.auth);
 
-  const { deleteReviewsByReviewerIdMutation, isPending } =
+  const { deleteReviewsByReviewerIdMutation, isPending, isSuccess } =
     useDeleteReviewsByReviewerId();
+
+  useEffect(() => {
+    if (isSuccess) close();
+  }, [isSuccess]);
 
   const handleDeleteReviewsByReviewerId = () => {
     deleteReviewsByReviewerIdMutation(auth.id);

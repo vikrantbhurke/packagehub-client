@@ -3,7 +3,8 @@ import { ReviewsFilterBox } from "./reviews-filter.box";
 import { RichTextEditor } from "./rich-text-editor.layout";
 import { ReviewsFilterModal } from "./reviews-filter.modal";
 import { ReviewListItemLayout } from "./review-list-item.layout";
-import { DeleteReviewsModalLayout } from "./delete-reviews-modal.layout";
+import { DeleteReviewModal } from "./delete-review.modal";
+import { DeleteReviewsModal } from "./delete-reviews.modal";
 import { CreateFirstReviewFormLayout } from "./create-first-review-form.layout";
 import { CreateNextReviewFormLayout } from "./create-next-review-form.layout";
 import { UpdateReviewByIdFormLayout } from "./update-review-by-id-form.layout";
@@ -16,7 +17,8 @@ export {
   ReviewsFilterBox,
   ReviewsFilterModal,
   ReviewListItemLayout,
-  DeleteReviewsModalLayout,
+  DeleteReviewModal,
+  DeleteReviewsModal,
   CreateFirstReviewFormLayout,
   CreateNextReviewFormLayout,
   UpdateReviewByIdFormLayout,

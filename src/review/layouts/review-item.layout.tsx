@@ -12,34 +12,20 @@ import {
   themeTxStyle,
   oneTxGreenTwoBgButtonPseudoStyle,
 } from "@/global/styles/app.css";
-import {
-  Avatar,
-  Box,
-  Button,
-  Group,
-  Modal,
-  Rating,
-  Stack,
-  Text,
-} from "@mantine/core";
+import { Avatar, Box, Group, Rating, Stack, Text } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useDeleteReviewById } from "../hooks/delete";
 import { globalUtility } from "@/global/utilities";
 import { useDisclosure, useWindowScroll } from "@mantine/hooks";
-import { IconStarFilled, IconTrash } from "@tabler/icons-react";
+import { IconStarFilled } from "@tabler/icons-react";
 import { reviewUtility } from "../review.utility";
-import {
-  modal,
-  modalOverlayProps,
-  textBold,
-  textBolder,
-} from "@/global/styles/global.styles";
+import { textBold, textBolder } from "@/global/styles/global.styles";
 import { ReviewVoterReadonlyButton } from "./review-voter-readonly-button.layout";
 import { ReviewUpvoteDownvoteButton } from "./review-upvote-downvote-button.layout";
 import { setPage } from "../review.slice";
 import { useDispatch } from "react-redux";
 import { CustomSkeleton, I } from "@/global/components/reusables";
+import { DeleteReviewModal } from "./delete-review.modal";
 
 export const ReviewItemLayout = ({ review, isPending }: any) => {
   const navigate = useNavigate();
@@ -47,7 +33,6 @@ export const ReviewItemLayout = ({ review, isPending }: any) => {
   const { isMobile } = useSelector((state: RootState) => state.view);
   const [, scrollTo] = useWindowScroll();
   const [opened, { open, close }] = useDisclosure(false);
-  const { deleteReviewByIdMutation } = useDeleteReviewById();
   const { auth } = useSelector((state: RootState) => state.auth);
 
   const { sort, order, rating } = useSelector(
@@ -55,10 +40,6 @@ export const ReviewItemLayout = ({ review, isPending }: any) => {
   );
 
   const handleEdit = () => navigate(`/reviews/${review.id}/edit`);
-
-  const handleDelete = () => {
-    deleteReviewByIdMutation(review.id);
-  };
 
   const handleNavigateToUserReviews = () => {
     dispatch(setPage(1));
@@ -78,23 +59,7 @@ export const ReviewItemLayout = ({ review, isPending }: any) => {
 
   return (
     <>
-      <Modal
-        styles={modal}
-        overlayProps={modalOverlayProps}
-        opened={opened}
-        onClose={close}
-        centered>
-        <Stack align="center">
-          <Text>Are you sure you want to delete the review?</Text>
-          <Button
-            fullWidth
-            bg="red"
-            onClick={handleDelete}
-            leftSection={<IconTrash stroke={1.5} size={20} />}>
-            Delete Review
-          </Button>
-        </Stack>
-      </Modal>
+      <DeleteReviewModal rid={review.id} opened={opened} close={close} />
 
       <Box component="div" bg={isMobile ? oneBg : twoBg} h="100%">
         <Stack
