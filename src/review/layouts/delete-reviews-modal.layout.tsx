@@ -31,6 +31,7 @@ export const DeleteReviewsModalLayout = ({ opened, close }: any) => {
           onClick={handleDeleteReviewsByReviewerId}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Delete Reviews

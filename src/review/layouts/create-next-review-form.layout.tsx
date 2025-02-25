@@ -145,10 +145,10 @@ export const CreateNextReviewFormLayout = ({}: any) => {
             <Grid>
               <Grid.Col span={6}>
                 <Button
-                  disabled={isPending}
                   type="submit"
                   fullWidth
                   bg="green"
+                  disabled={isPending}
                   loading={isPending}
                   loaderProps={{ type: "dots" }}>
                   Submit Review

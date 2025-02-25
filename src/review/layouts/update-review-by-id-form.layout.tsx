@@ -151,10 +151,10 @@ export const UpdateReviewByIdFormLayout = () => {
             <Grid>
               <Grid.Col span={6}>
                 <Button
-                  disabled={isPending}
                   type="submit"
                   fullWidth
                   bg="blue"
+                  disabled={isPending}
                   loading={isPending}
                   loaderProps={{ type: "dots" }}>
                   Update Review

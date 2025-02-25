@@ -144,6 +144,7 @@ export const CreateMessageFormLayout = () => {
           type="submit"
           fullWidth
           bg="green"
+          disabled={isPending || !form.isDirty()}
           loading={isPending}
           loaderProps={{ type: "dots" }}>
           Send Message

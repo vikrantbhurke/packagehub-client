@@ -28,10 +28,11 @@ export const DeleteUserModal = ({ opened, close }: any) => {
         <Text ta="center">Are you sure you want to delete account?</Text>
 
         <Button
-          onClick={handleDeleteUserById}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeleteUserById}
           loaderProps={{ type: "dots" }}>
           Delete Account
         </Button>

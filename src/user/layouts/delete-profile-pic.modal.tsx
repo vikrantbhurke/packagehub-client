@@ -32,10 +32,11 @@ export const DeleteProfilePicModal = ({ opened, close }: any) => {
         </Text>
 
         <Button
-          onClick={handleDeleteProfilePicById}
           fullWidth
           bg="red"
+          disabled={isPending}
           loading={isPending}
+          onClick={handleDeleteProfilePicById}
           loaderProps={{ type: "dots" }}>
           Delete Profile Pic
         </Button>

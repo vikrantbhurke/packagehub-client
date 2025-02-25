@@ -147,10 +147,10 @@ export const PackageItemLayout = ({ pkg, isPending }: any) => {
                 <Button
                   px="xs"
                   fz="xs"
-                  disabled={auth.id ? isReviewPending : false}
-                  loading={auth.id ? isReviewPending : false}
                   onClick={readOrWriteHandler}
                   className={`${roundBorderStyle} ${oneTxGreenBgButtonPseudoStyle}`}
+                  disabled={auth.id ? isReviewPending : false}
+                  loading={auth.id ? isReviewPending : false}
                   loaderProps={{ type: "dots", color: oneTx }}>
                   {readOrWriteText}
                 </Button>
