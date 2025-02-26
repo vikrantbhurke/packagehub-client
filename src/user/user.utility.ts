@@ -56,7 +56,7 @@ class UserUtility {
 
     passwordSchema
       .is()
-      .min(6)
+      .min(8)
       .is()
       .max(20)
       .has()
